@@ -1,0 +1,80 @@
+---
+export interface Props {}
+---
+
+<div class="Cursor"></div>
+
+<script>
+	const cursor = document.querySelector(".Cursor");
+
+	document.addEventListener("mouseover", (e) => {
+		cursor.setAttribute("style", `top: ${e.clientY}px; left: ${e.clientX}px`);
+	});
+
+	document.addEventListener("mousemove", (e) => {
+		cursor.setAttribute("style", `top: ${e.pageY}px; left: ${e.pageX}px`);
+	});
+
+	document.addEventListener("click", (e) => {
+		cursor.classList.add("Cursor--expand");
+		setTimeout(() => {
+			cursor.classList.remove("Cursor--expand");
+		}, 300);
+	});
+</script>
+
+<style lang="scss">
+	@keyframes cursorAnimation {
+		from {
+			transform: translateX(-50%) translateY(-50%) scale(1);
+		}
+		to {
+			transform: translateX(-50%) translateY(-50%) scale(1.2);
+		}
+	}
+
+	@keyframes cursorAnimationExpand {
+		0% {
+			transform: translateX(-50%) translateY(-50%) scale(1);
+		}
+		25% {
+			transform: translateX(-50%) translateY(-50%) scale(0.25);
+		}
+		50% {
+			transform: translateX(-50%) translateY(-50%) scale(3);
+		}
+		100% {
+			transform: translateX(-50%) translateY(-50%) scale(1);
+		}
+	}
+
+	.Cursor {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background-color: transparent;
+		mix-blend-mode: exclusion;
+		// mix-blend-mode: screen;
+		// mix-blend-mode: difference;
+		border: 2px solid #98767c;
+
+		position: absolute;
+		top: 50px;
+		left: 50px;
+
+		display: grid;
+		place-items: center;
+		transition: all 0.35s ease-out;
+		transform: translateX(-50%) translateY(-50%);
+		animation: cursorAnimation 0.5s infinite alternate;
+		pointer-events: none;
+		z-index: 5000;
+
+		&--expand {
+			animation: cursorAnimationExpand 0.5s infinite alternate;
+			background-color: transparent;
+			border: 1px solid green;
+			mix-blend-mode: unset;
+		}
+	}
+</style>

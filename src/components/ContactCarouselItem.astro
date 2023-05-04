@@ -1,0 +1,64 @@
+---
+export interface Props {
+	label: string;
+	url: string;
+}
+
+const { label, url } = Astro.props;
+---
+
+<a
+	class="ContactCarouselItem"
+	href={url}
+	target="_blank"
+	rel="noreferrer noopener"
+	><h1>
+		{
+			Array(8)
+				.fill(0)
+				.map((item: 0) => (
+					<>
+						<>
+							<span>{label}</span>
+							<span> &middot; </span>
+						</>
+					</>
+				))
+		}
+	</h1></a
+>
+
+<style lang="scss">
+	.ContactCarouselItem {
+		border-top: 1px solid #e6ddc455;
+		border-bottom: 1px solid #e6ddc455;
+		display: block;
+		width: 100%;
+		overflow-x: hidden;
+		cursor: none;
+		text-decoration: none;
+
+		h1 {
+			// text-transform: uppercase;
+
+			font-family: "Nexa";
+			font-style: normal;
+			font-weight: 900;
+			font-size: 170px;
+			line-height: 258px;
+			color: #e6ddc4aa;
+			user-select: none;
+			// text-align: center;
+
+			transition: color 0.5s;
+
+			display: flex;
+			width: max-content;
+
+			&:hover {
+				color: #678983;
+				// transform: unset !important;
+			}
+		}
+	}
+</style>

@@ -1,0 +1,96 @@
+---
+const navList = [
+	{ title: "me.", route: "" },
+	{ title: "work.", route: "work" },
+	{ title: "more.me.", route: "more-me" },
+	{ title: "contact.", route: "contact" },
+];
+
+let hash: string;
+---
+
+<header class="Header">
+	<nav class="Navigation">
+		<ul>
+			{
+				navList.map((navItem) => (
+					<li
+						class={`navItem navItem--${
+							(hash ? hash?.startsWith(`#${navItem.route}`) : false) && "active"
+						}`}
+					>
+						<a href={`#${navItem.route}`}>{navItem.title}</a>
+					</li>
+				))
+			}
+		</ul>
+	</nav>
+</header>
+
+<style lang="scss">
+	.Header {
+		position: fixed;
+		z-index: 1000;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		width: 100%;
+		padding: 0 1rem;
+	}
+	.Navigation {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		max-width: 1600px;
+		margin: auto 0;
+		margin-bottom: 2.25rem;
+		position: relative;
+		z-index: 1000;
+
+		ul {
+			background: #e6ddc4;
+			backdrop-filter: blur(20px) saturate(1.7);
+
+			display: flex;
+			list-style-type: none;
+
+			margin: 0;
+			padding: 10px;
+			border-radius: 50px;
+			transition: all 0.2s linear;
+
+			.navItem {
+				display: flex;
+				position: relative;
+
+				a {
+					font-family: Raleway;
+					padding: 6px 1rem;
+					margin: 0 3px;
+
+					font-size: 14px;
+					/* // line-height: 18px; */
+					border-radius: 1.5rem;
+					text-decoration: none;
+					color: hsl(228, 34%, 14%);
+					transition: all 0.2s ease-in-out;
+					display: flex;
+					align-items: center;
+					font-weight: 500;
+				}
+
+				&--active {
+					a {
+						background: #678983;
+						// color: #e6ddc4;
+						font-weight: 600;
+					}
+				}
+			}
+		}
+	}
+</style>
+
+<script>
+	export let hash = window?.location?.hash;
+</script>

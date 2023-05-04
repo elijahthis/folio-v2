@@ -1,0 +1,50 @@
+---
+export interface Props {}
+---
+
+<div class="Cursor2"></div>
+
+<script>
+	const cursor = document.querySelector(".Cursor2");
+
+	document.addEventListener("mouseover", (e) => {
+		cursor.setAttribute("style", `top: ${e.clientY}px; left: ${e.clientX}px`);
+	});
+
+	document.addEventListener("mousemove", (e) => {
+		cursor.setAttribute("style", `top: ${e.pageY}px; left: ${e.pageX}px`);
+	});
+</script>
+
+<style lang="scss">
+	@keyframes cursorAnimation {
+		from {
+			transform: translateX(-50%) translateY(-50%) scale(1);
+		}
+		to {
+			transform: translateX(-50%) translateY(-50%) scale(1.2);
+		}
+	}
+
+	.Cursor2 {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background-color: #98767c;
+		mix-blend-mode: exclusion;
+		// mix-blend-mode: difference;
+
+		position: absolute;
+		top: 40px;
+		left: 40px;
+
+		display: grid;
+		place-items: center;
+		transition: all 0.05s ease-out;
+		transform: translateX(-50%) translateY(-50%);
+		animation: cursorAnimation 0.25s infinite alternate;
+		pointer-events: none;
+		// display: none;
+		z-index: 5000;
+	}
+</style>
