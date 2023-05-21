@@ -1,55 +1,7 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
-import PageLayout from "../layouts/PageLayout.astro";
-import myPicture from "../assets/images/nightcafe-studio-elijah.jpg";
+import HomeIntro from "../PageParts/home/intro.astro";
+import HomeMain from "../PageParts/home/index.astro";
 ---
 
-<PageLayout title="home.">
-	<div class="HomePage">
-		<div class="HomePage__imgBackground"></div>
-		<div class="HomePage__rest">
-			<p>
-				I'm a software engineer, focused on creating visually compelling
-				products for the web. Lots of people get bored at this point. That's
-				alright. Just remember that I build stuff.
-			</p>
-		</div>
-	</div>
-</PageLayout>
-
-<style lang="scss">
-	.HomePage {
-		width: 100%;
-		// height: 200vh;
-
-		/*  */
-
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-
-		&__imgBackground {
-			background: url(/images/nightcafe-studio-elijah.jpg) no-repeat;
-			background-size: cover;
-			background-position: 70%;
-			opacity: 50%;
-		}
-
-		&__rest {
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			justify-content: flex-end;
-
-			font-family: "Tajawal";
-			font-style: normal;
-			font-weight: 300;
-			font-size: 24px;
-			line-height: 28px;
-			color: white;
-			padding-right: 220px;
-			padding-bottom: 150px;
-			padding-left: 60px;
-		}
-	}
-</style>
+<HomeIntro />
+<HomeMain />

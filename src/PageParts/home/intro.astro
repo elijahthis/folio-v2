@@ -1,0 +1,73 @@
+---
+import IntroLayout from "../../layouts/IntroLayout.astro";
+import { BsFillArrowDownCircleFill } from "react-icons/bs";
+---
+
+<IntroLayout>
+	<div class="HomeIntro">
+		<h1 class="HomeIntro__bigHeader">
+			elijah<br />oyerinde
+		</h1>
+		<div class="HomeIntro__bottom">
+			<p>OPEN SOURCE COLLABORATOR</p>
+			<div class="scrollLink">
+				<p>scroll</p>
+				<BsFillArrowDownCircleFill />
+			</div>
+		</div>
+	</div>
+</IntroLayout>
+
+<script>
+	const list = [
+		"OPEN SOURCE COLLABORATOR",
+		"WEB PERFORMACE SPECIALIST",
+		"SOFTWARE ARCHITECT",
+		"PROBLEM SOLVER",
+	];
+</script>
+
+<style lang="scss">
+	@import "../../styles/variables";
+
+	.HomeIntro {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		height: 100vh;
+
+		&__bigHeader {
+			font-family: "Nexa-Heavy";
+			font-style: normal;
+			font-weight: 900;
+			font-size: 170px;
+			line-height: 170px;
+			color: rgba($main_light, 0.5);
+
+			padding-top: 33.33vh;
+		}
+
+		&__bottom {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 1rem;
+			justify-content: space-between;
+
+			color: $main_light;
+
+			padding-bottom: 18px;
+			font-family: "Nexa Bold";
+
+			.scrollLink {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 1rem;
+				cursor: pointer;
+				font-family: "Nexa-Heavy";
+			}
+		}
+	}
+</style>

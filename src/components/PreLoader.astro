@@ -23,7 +23,7 @@ let bigText = "simple";
 
 	let mySplitText: any;
 	let count = 0;
-	const textList = ["simple.", "elegant.", "hello."];
+	const textList = ["hello.", "stranger.", "..."];
 
 	const textAnimation = () => {
 		const textEl = document.querySelector(".split");
@@ -81,7 +81,7 @@ let bigText = "simple";
 	}
 </script>
 
-<main>
+<main class="PreLoader">
 	<div class="SplitWrap">
 		<h1 class="split">.</h1>
 		<!-- <p>Welcome to Elijah's trophy room.</p> -->
@@ -93,15 +93,17 @@ let bigText = "simple";
 </main>
 
 <style lang="scss">
-	main {
+	.PreLoader {
 		height: 100vh;
+		width: 100vw;
 		background: #f0e9d2;
 
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		position: relative;
+		position: fixed;
+		z-index: 1200;
 
 		.SplitWrap {
 			// border: 1px solid black;

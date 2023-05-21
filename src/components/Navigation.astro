@@ -28,6 +28,8 @@ let hash: string;
 </header>
 
 <style lang="scss">
+	@import "../styles/variables";
+
 	.Header {
 		position: fixed;
 		z-index: 1000;
@@ -48,7 +50,7 @@ let hash: string;
 		z-index: 1000;
 
 		ul {
-			background: #e6ddc4;
+			background: $sec_light;
 			backdrop-filter: blur(20px) saturate(1.7);
 
 			display: flex;
@@ -81,7 +83,7 @@ let hash: string;
 
 				&--active {
 					a {
-						background: #678983;
+						background: $tertiary_col;
 						// color: #e6ddc4;
 						font-weight: 600;
 					}
