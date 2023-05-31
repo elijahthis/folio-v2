@@ -1,0 +1,105 @@
+---
+import { isRenderTemplateResult } from "astro/dist/runtime/server/render/astro";
+import PageLayout from "../../layouts/PageLayout.astro";
+
+const workList = [
+	{
+		title: "Kardinal",
+		desc: "Bring everyone together for work by reimagining how they travel, connect, and collaborate. We help businesses create unique, engaging experiences for employees, clients, and partners that drive productivity and connection.",
+	},
+	{
+		title: "Knight Ventures",
+		desc: "Bring everyone together for work by reimagining how they travel, connect, and collaborate. We help businesses create unique, engaging experiences for employees, clients, and partners that drive productivity and connection.",
+	},
+	{
+		title: "Yeve",
+		desc: "Bring everyone together for work by reimagining how they travel, connect, and collaborate. We help businesses create unique, engaging experiences for employees, clients, and partners that drive productivity and connection.",
+	},
+];
+---
+
+<PageLayout title="work.">
+	<div class="workPage">
+		<div class="workBoxes">
+			{
+				workList.map((workItem, ind) => (
+					<div class="workBoxes__box">
+						<h3>{workItem.title}</h3>
+						<div class="workBoxes__box__headerOverlap" />
+						<div class="flexCenter">
+							<div class="workBoxes__box__img" />
+							<p>{workItem.desc}</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</PageLayout>
+
+<style lang="scss">
+	@import "../../styles/variables";
+
+	.workPage {
+		height: 100vh;
+		width: 100%;
+		// overflow-y: hidden;
+
+		padding: 0;
+
+		.workBoxes {
+			width: 100%;
+			height: 100vh;
+			// overflow-y: hidden;
+			position: relative;
+
+			& > :nth-child(even) {
+				background-color: $tertiary_col;
+			}
+
+			&__box {
+				width: 100vw;
+				height: 100vh;
+				// border-top-left-radius: 52px;
+				// border-top-right-radius: 52px;
+
+				background-color: #d9d9d9;
+
+				position: absolute;
+				top: 100%;
+				border: 3px solid $tertiary_col;
+
+				text-align: center;
+				// padding: 1rem;
+
+				h3 {
+					font-size: 220px;
+					line-height: 220px;
+					text-align: center;
+					padding: 0.5rem 0;
+					padding-top: 1.5rem;
+				}
+
+				&__headerOverlap {
+					border-bottom: 1px solid;
+				}
+
+				.flexCenter {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					gap: 60px;
+
+					padding: 60px;
+				}
+
+				&__img {
+					width: 609px;
+					height: 341px;
+					background: #000000;
+					box-shadow: 5px 5px 40px #3e4d87;
+				}
+			}
+		}
+	}
+</style>

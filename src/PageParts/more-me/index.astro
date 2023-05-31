@@ -1,0 +1,53 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+---
+
+<PageLayout title="more.me.">
+	<div class="MoreMePage">
+		<div class="MoreMePage__grid1"></div>
+		<div class="MoreMePage__grid2">
+			<p class="MoreMePage__p1">
+				It's a no-brainer that I write code.<br />
+				What else?
+			</p>
+		</div>
+		<div class="MoreMePage__grid3">
+			<p class="MoreMePage__p2">
+				I watch movies. <br />
+				I listen to music. <br />
+				I play the ukulele. <br />
+				I'm a Gunner. <br />
+				I fold paper. <br />
+				I sleep like the dead.<br />
+				<!--- -No pics for you ---->
+				I read fiction<br />
+				I write non-fiction.
+			</p>
+		</div>
+	</div>
+</PageLayout>
+
+<style lang="scss">
+	@import "../../styles/variables";
+
+	.MoreMePage {
+		display: grid;
+		grid-template-rows: repeat(3, 1fr);
+		width: 100%;
+
+		p {
+			color: $main-light;
+		}
+
+		&__grid2 {
+			padding-left: 50vw;
+		}
+
+		&__grid3 {
+			padding-right: 50vw;
+			p {
+				text-align: right;
+			}
+		}
+	}
+</style>

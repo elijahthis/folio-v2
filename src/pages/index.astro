@@ -3,9 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import PageLayout from "../layouts/PageLayout.astro";
 import myPicture from "../assets/images/nightcafe-studio-elijah.jpg";
-import Home from "../sections/home.astro";
-import Contact from "../sections/contact.astro";
-import Work from "../sections/work.astro";
+import Home from "../sections/Home.astro";
+import Contact from "../sections/Contact.astro";
+import Work from "../sections/Work.astro";
+import MoreMe from "../sections/MoreMe.astro";
 import Loading from "./loading.astro";
 ---
 
@@ -49,14 +50,22 @@ import Loading from "./loading.astro";
 </script> -->
 <Layout title="Elijah Oyerinde • Software Engineer">
 	<!-- <Loading /> -->
-	<div>
+	<div class="MainWrap">
 		<Home />
-		<!-- <Work /> -->
-		<!-- <Contact /> -->
+		<Work />
+		<MoreMe />
+		<Contact />
 	</div>
 </Layout>
 
 <style lang="scss">
+	@import "../styles/variables";
+
+	.MainWrap {
+		position: relative;
+		background-color: $main-dark;
+	}
+
 	.HomePage {
 		width: 100%;
 		// height: 100vh;

@@ -15,11 +15,14 @@ let bigText = "simple";
 	import SplitType from "split-type";
 	import gsap from "gsap";
 
+	// const tl = gsap.timeline();
+
 	// change time
 	const timeEl = document.querySelector(".bottomDiv__time");
-	setInterval(() => {
-		timeEl.innerHTML = new Date().toLocaleTimeString();
-	}, 1000);
+	if (timeEl)
+		setInterval(() => {
+			timeEl.innerHTML = new Date().toLocaleTimeString();
+		}, 1000);
 
 	let mySplitText: any;
 	let count = 0;

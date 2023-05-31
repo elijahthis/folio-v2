@@ -1,13 +1,22 @@
 ---
 import IntroLayout from "../../layouts/IntroLayout.astro";
 import { BsFillArrowDownCircleFill } from "react-icons/bs";
+// import me from '../'
 ---
 
-<IntroLayout>
+<main class="HomeIntroWrap">
 	<div class="HomeIntro">
-		<h1 class="HomeIntro__bigHeader">
-			elijah<br />oyerinde
-		</h1>
+		<!-- View 01 -->
+
+		<div class="HomeIntro__bigHeader">
+			<h1>
+				<span>elijah</span>
+			</h1>
+			<!-- <br /> -->
+			<h1>
+				<span>oyerinde</span>
+			</h1>
+		</div>
 		<div class="HomeIntro__bottom">
 			<p>OPEN SOURCE COLLABORATOR</p>
 			<div class="scrollLink">
@@ -15,20 +24,55 @@ import { BsFillArrowDownCircleFill } from "react-icons/bs";
 				<BsFillArrowDownCircleFill />
 			</div>
 		</div>
+
+		<!-- View 01 -->
+		<div class="HomeIntro__view2">
+			<div class="HomeIntro__view2__imgWrap">
+				<img src="/images/nightcafe-studio-elijah.jpg" alt="" class="bigMe" />
+				<div class="HomeIntro__view2__imgWrap__cover"></div>
+			</div>
+
+			<p>
+				Hello there. I’m Elijah. Elijah Oyerinde. I figure you want to know
+				about me. That’s lovely.
+			</p>
+		</div>
 	</div>
-</IntroLayout>
+</main>
 
 <script>
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+	const { innerHeight } = window;
+
+	// gsap.registerPlugin(ScrollTrigger);
+
+	const tl = gsap.timeline({
+		scrollTrigger: {
+			trigger: "body",
+			pin: true,
+			end: `+=${innerHeight * 1.3}`,
+			scrub: 1,
+		},
+	});
+
 	const list = [
 		"OPEN SOURCE COLLABORATOR",
 		"WEB PERFORMACE SPECIALIST",
 		"SOFTWARE ARCHITECT",
 		"PROBLEM SOLVER",
+		"WEB ENGINEER",
 	];
 </script>
 
 <style lang="scss">
 	@import "../../styles/variables";
+
+	.HomeIntroWrap {
+		height: 100vh;
+		background-color: $main_dark;
+	}
 
 	.HomeIntro {
 		display: flex;
@@ -36,28 +80,53 @@ import { BsFillArrowDownCircleFill } from "react-icons/bs";
 		justify-content: space-between;
 
 		height: 100vh;
+		position: relative;
 
 		&__bigHeader {
-			font-family: "Nexa-Heavy";
-			font-style: normal;
-			font-weight: 900;
-			font-size: 170px;
-			line-height: 170px;
-			color: rgba($main_light, 0.5);
+			margin: auto 0;
+			padding: 0 100px;
 
-			padding-top: 33.33vh;
+			& > :first-child {
+				color: $tertiary_col;
+			}
+
+			& > :last-child {
+				margin-top: -15px;
+			}
+
+			h1 {
+				font-family: "Nexa-Heavy";
+				font-style: normal;
+				font-weight: 900;
+				font-size: 170px;
+				line-height: 170px;
+				color: rgba($main_light, 0.5);
+
+				height: 185px;
+				overflow-y: hidden;
+				// background-color: green;
+
+				span {
+					display: inline-block;
+				}
+			}
 		}
 
 		&__bottom {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+
 			display: flex;
 			flex-direction: row;
 			align-items: center;
 			gap: 1rem;
 			justify-content: space-between;
+			width: 100%;
 
 			color: $main_light;
 
-			padding-bottom: 18px;
+			padding: 0 100px 18px 100px;
 			font-family: "Nexa Bold";
 
 			.scrollLink {
@@ -67,6 +136,49 @@ import { BsFillArrowDownCircleFill } from "react-icons/bs";
 				gap: 1rem;
 				cursor: pointer;
 				font-family: "Nexa-Heavy";
+			}
+		}
+
+		&__view2 {
+			position: absolute;
+			height: 0;
+			overflow-y: hidden;
+
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 40px;
+			width: 100%;
+			// flex-direction: row;
+			// align-items: center;
+			// padding-left: 61px;
+
+			&__imgWrap {
+				height: 100%;
+				position: relative;
+				display: flex;
+				overflow: hidden;
+
+				&__cover {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					background-color: $main_dark;
+				}
+
+				img {
+					height: 110%;
+					// width: 150%;
+					// margin: auto 0;
+				}
+			}
+
+			p {
+				color: $main_light;
+				max-width: 368px;
+				// opacity: 0;
+				margin: auto 0;
 			}
 		}
 	}

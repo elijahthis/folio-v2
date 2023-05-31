@@ -2,17 +2,21 @@
 export interface Props {
 	label: string;
 	url: string;
+	ind: number;
 }
 
-const { label, url } = Astro.props;
+const { label, url, ind } = Astro.props;
 ---
 
 <a
-	class="ContactCarouselItem"
+	class={`ContactCarouselItem ContactCarouselItem--${
+		ind % 2 === 0 ? "even" : "odd"
+	}`}
 	href={url}
 	target="_blank"
 	rel="noreferrer noopener"
-	><h1>
+>
+	<h1>
 		{
 			Array(8)
 				.fill(0)
@@ -25,8 +29,8 @@ const { label, url } = Astro.props;
 					</>
 				))
 		}
-	</h1></a
->
+	</h1>
+</a>
 
 <style lang="scss">
 	@import "../styles/variables";
@@ -40,6 +44,16 @@ const { label, url } = Astro.props;
 		cursor: none;
 		text-decoration: none;
 
+		position: relative;
+		height: 258px;
+
+		&--odd h1 {
+			right: 0;
+		}
+		&--even h1 {
+			left: 0;
+		}
+
 		h1 {
 			// text-transform: uppercase;
 
@@ -52,13 +66,20 @@ const { label, url } = Astro.props;
 			user-select: none;
 			// text-align: center;
 
-			transition: color 0.5s;
+			transition: color 0.5s, -webkit-text-stroke-color 0.35s;
 
 			display: flex;
 			width: max-content;
 
+			position: absolute;
+			top: 0;
+			-webkit-text-stroke-width: 0.8px;
+			-webkit-text-stroke-color: rgba($sec_light, 0.5);
+
 			&:hover {
-				color: $tertiary_col;
+				// color: $tertiary_col;
+				color: $main-dark;
+				-webkit-text-stroke-color: $tertiary_col;
 				// transform: unset !important;
 			}
 		}

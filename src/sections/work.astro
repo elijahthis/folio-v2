@@ -1,40 +1,7 @@
 ---
-import { isRenderTemplateResult } from "astro/dist/runtime/server/render/astro";
-import PageLayout from "../layouts/PageLayout.astro";
+import WorkIntro from "../PageParts/work/intro.astro";
+import WorkBody from "../PageParts/work/index.astro";
 ---
 
-<PageLayout title="work.">
-	<div class="workPage">
-		<div class="workBoxes">
-			{
-				Array(4)
-					.fill(0)
-					.map((item, ind) => <div class="workBoxes__box"> </div>)
-			}
-		</div>
-	</div>
-</PageLayout>
-
-<style lang="scss">
-	.workPage {
-		height: 100vh;
-
-		padding: 0 60px;
-		display: flex;
-
-		.workBoxes {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			gap: 1rem;
-			margin: auto 0;
-
-			&__box {
-				width: 20vw;
-				height: 20vh;
-
-				background-color: #d9d9d9;
-			}
-		}
-	}
-</style>
+<WorkIntro />
+<WorkBody />

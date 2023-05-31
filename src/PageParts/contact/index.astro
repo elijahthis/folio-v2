@@ -1,0 +1,62 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Card.astro";
+import PageLayout from "../../layouts/PageLayout.astro";
+import ContactCarouselItem from "../../components/ContactCarouselItem.astro";
+
+const contactList: { label: string; url: string }[] = [
+	{ label: "TWITTER", url: "https://twitter.com/elijahthis" },
+	{ label: "GITHUB", url: "https://github.com/elijahthis" },
+	{
+		label: "LINKEDIN",
+		url: "https://www.linkedin.com/in/elijah-oyerinde-070a24215/",
+	},
+	{ label: "hello@elijahthis.com", url: "mailto:hello@elijahthis.com" },
+];
+---
+
+<script>
+	import gsap from "gsap";
+	import { Power2, Power4 } from "gsap";
+
+	const carouselItems = document.querySelectorAll(
+		".ContactCarouselItem > h1"
+	) as NodeListOf<HTMLElement>;
+
+	carouselItems.forEach((cItem, index) => {
+		console.log("cItem", cItem);
+
+		const singleAnimation = gsap.to(cItem, {
+			xPercent: index % 2 ? -50 : 50,
+			duration: cItem.clientWidth / 200,
+			repeat: -1,
+			// ease: Power2.easeIn,
+			ease: "none",
+		});
+
+		cItem.addEventListener("mouseover", () => singleAnimation.pause());
+		cItem.addEventListener("mouseleave", () => singleAnimation.play());
+	});
+</script>
+
+<PageLayout title="contact.">
+	<div class="contactBody">
+		{
+			contactList.map((contactItem, ind) => (
+				<ContactCarouselItem
+					label={contactItem.label}
+					url={contactItem.url}
+					ind={ind + 1}
+				/>
+			))
+		}
+	</div>
+</PageLayout>
+
+<style lang="scss">
+	.contactBody {
+		width: 100%;
+		overflow-y: auto;
+		// padding-right: 170px;
+	}
+</style>
