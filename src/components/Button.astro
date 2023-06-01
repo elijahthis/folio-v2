@@ -1,0 +1,48 @@
+---
+const { label, onClick } = Astro.props;
+---
+
+<button onclick={onClick} class="Button" data-title={label}>
+	<div>{label}</div>
+</button>
+
+<style lang="scss">
+	@import "../styles/variables";
+
+	.Button {
+		padding: 0.5rem 1rem;
+		font-family: "Nexa Bold";
+		border-radius: 9999px;
+
+		border: 1px solid black;
+		background-color: transparent;
+		overflow: hidden;
+		text-transform: uppercase;
+		transition: border-color 0.3s cubic-bezier(0.3, 0.86, 0.36, 0.95);
+
+		&::after {
+			content: attr(data-title);
+			position: absolute;
+			left: 0;
+			top: 100%;
+			padding: 0 1rem;
+			color: $tertiary-col;
+		}
+
+		div,
+		&::after {
+			transition: all 0.15s cubic-bezier(0.3, 0.86, 0.36, 0.95);
+			// transition: transform 0.25s;
+		}
+
+		&:hover {
+			div {
+				transform: translateY(-120%);
+			}
+			&::after {
+				transform: translateY(-140%);
+			}
+			border-color: $tertiary-col;
+		}
+	}
+</style>

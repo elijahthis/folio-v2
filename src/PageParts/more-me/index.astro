@@ -7,21 +7,23 @@ import PageLayout from "../../layouts/PageLayout.astro";
 		<div class="MoreMePage__grid1"></div>
 		<div class="MoreMePage__grid2">
 			<p class="MoreMePage__p1">
-				It's a no-brainer that I write code.<br />
+				It's a no-brainer that I <a href="https://github.com/elijahthis"
+					>write code</a
+				>.<br />
 				What else?
 			</p>
 		</div>
 		<div class="MoreMePage__grid3">
 			<p class="MoreMePage__p2">
 				I watch movies. <br />
-				I listen to music. <br />
+				I listen to <a href="/">music</a>. <br />
 				I play the ukulele. <br />
-				I'm a Gunner. <br />
+				I'm a <a href="/">Gunner</a>. <br />
 				I fold paper. <br />
 				I sleep like the dead.<br />
 				<!--- -No pics for you ---->
-				I read fiction<br />
-				I write non-fiction.
+				I read fiction.<br />
+				I write <a href="/">non-fiction</a>.
 			</p>
 		</div>
 	</div>
@@ -37,6 +39,15 @@ import PageLayout from "../../layouts/PageLayout.astro";
 
 		p {
 			color: $main-light;
+
+			a {
+				color: $sec-light;
+				transition: all 0.35s;
+
+				&:hover {
+					color: $tertiary_col;
+				}
+			}
 		}
 
 		&__grid2 {

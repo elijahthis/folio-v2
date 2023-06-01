@@ -163,6 +163,31 @@ workTl
 			ease: Power2.easeOut,
 		},
 		"<"
+	)
+	.to(
+		".workBoxes__box__headerLine",
+		{
+			width: "100%",
+			delay: 1,
+			duration: 4,
+			stagger: { each: 5, repeatDelay: 2 },
+			ease: Power2.easeOut,
+		},
+		"<"
+	)
+	.fromTo(
+		".flexCenter > *",
+		{
+			y: "20px",
+		},
+		{
+			y: 0,
+			delay: 1.5,
+			duration: 3.5,
+			stagger: 1,
+			ease: Power2.easeOut,
+		},
+		"<"
 	);
 /* ------------------------------------------ */
 
@@ -172,4 +197,21 @@ introAnimation(".MoreMeIntro");
 
 /* -------- Contact Intro animation ---------- */
 introAnimation(".ContactIntro");
+/* ------------------------------------------ */
+
+/* -------- Contact animation ---------- */
+gsap.to(".ContactCarouselItem__topLine", {
+	width: "100%",
+	ease: Power4.easeIn,
+	duration: 0.4,
+
+	scrollTrigger: {
+		trigger: ".contactBody",
+		start: "top top",
+		// pin: true,
+		end: `+=100%`,
+		scrub: false,
+		markers: true,
+	},
+});
 /* ------------------------------------------ */

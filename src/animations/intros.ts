@@ -9,16 +9,19 @@ export const introAnimation = (classItem: string) => {
 		types: "chars",
 	});
 
-	const introTl = gsap.timeline({
-		scrollTrigger: {
-			trigger: classItem,
-			start: "top top",
-			pin: true,
-			end: `+=100%`,
-			scrub: false,
-			markers: true,
-		},
-	});
+	const introTl = gsap
+		.timeline
+		// 	{
+		// 	scrollTrigger: {
+		// 		trigger: classItem,
+		// 		start: "top top",
+		// 		pin: true,
+		// 		end: `+=100%`,
+		// 		scrub: false,
+		// 		markers: true,
+		// 	},
+		// }
+		();
 	introTl
 		.to(splitIntro.chars, {
 			color: "transparent",
@@ -27,4 +30,14 @@ export const introAnimation = (classItem: string) => {
 			ease: Power2.easeOut,
 		})
 		.addPause(4);
+
+	ScrollTrigger.create({
+		trigger: classItem,
+		start: "top top",
+		pin: true,
+		end: () => "+=" + introTl.duration() * 100, // Pin until the timeline animation completes
+		scrub: false,
+		markers: true,
+		animation: introTl,
+	});
 };

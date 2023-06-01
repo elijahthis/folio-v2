@@ -1,19 +1,23 @@
 ---
 import { isRenderTemplateResult } from "astro/dist/runtime/server/render/astro";
+import Button from "../../components/Button.astro";
 import PageLayout from "../../layouts/PageLayout.astro";
 
 const workList = [
 	{
 		title: "Kardinal",
 		desc: "Bring everyone together for work by reimagining how they travel, connect, and collaborate. We help businesses create unique, engaging experiences for employees, clients, and partners that drive productivity and connection.",
+		link: "https://gokardinal.com",
 	},
 	{
 		title: "Knight Ventures",
 		desc: "Bring everyone together for work by reimagining how they travel, connect, and collaborate. We help businesses create unique, engaging experiences for employees, clients, and partners that drive productivity and connection.",
+		link: "https://knight.ventures",
 	},
 	{
 		title: "Yeve",
 		desc: "Bring everyone together for work by reimagining how they travel, connect, and collaborate. We help businesses create unique, engaging experiences for employees, clients, and partners that drive productivity and connection.",
+		link: "https://yeve.co.uk",
 	},
 ];
 ---
@@ -25,10 +29,14 @@ const workList = [
 				workList.map((workItem, ind) => (
 					<div class="workBoxes__box">
 						<h3>{workItem.title}</h3>
-						<div class="workBoxes__box__headerOverlap" />
+						<div class="workBoxes__box__headerLine" />
 						<div class="flexCenter">
 							<div class="workBoxes__box__img" />
 							<p>{workItem.desc}</p>
+							<Button
+								onClick={`window.open('${workItem.link}', '_blank')`}
+								label="View Live"
+							/>
 						</div>
 					</div>
 				))
@@ -67,30 +75,34 @@ const workList = [
 
 				position: absolute;
 				top: 100%;
-				border: 3px solid $tertiary_col;
-
 				text-align: center;
 				// padding: 1rem;
 
 				h3 {
-					font-size: 220px;
-					line-height: 220px;
+					font-size: 200px;
+					line-height: 200px;
 					text-align: center;
 					padding: 0.5rem 0;
 					padding-top: 1.5rem;
 				}
 
-				&__headerOverlap {
+				&__headerLine {
 					border-bottom: 1px solid;
+					width: 0;
 				}
 
 				.flexCenter {
 					display: flex;
 					flex-direction: column;
 					align-items: center;
-					gap: 60px;
+					// gap: 60px;
 
 					padding: 60px;
+
+					& > p {
+						margin-top: 50px;
+						margin-bottom: 30px;
+					}
 				}
 
 				&__img {

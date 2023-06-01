@@ -30,14 +30,16 @@ const { label, url, ind } = Astro.props;
 				))
 		}
 	</h1>
+	<div class="ContactCarouselItem__topLine"></div>
+	<!-- <div class="ContactCarouselItem__bottomLine"></div> -->
 </a>
 
 <style lang="scss">
 	@import "../styles/variables";
 
 	.ContactCarouselItem {
-		border-top: 1px solid rgba($sec_light, 0.5);
-		border-bottom: 1px solid rgba($sec_light, 0.5);
+		// border-top: 1px solid rgba($sec_light, 0.5);
+		// border-bottom: 1px solid rgba($sec_light, 0.5);
 		display: block;
 		width: 100%;
 		overflow-x: hidden;
@@ -82,6 +84,17 @@ const { label, url, ind } = Astro.props;
 				-webkit-text-stroke-color: $tertiary_col;
 				// transform: unset !important;
 			}
+		}
+
+		&__topLine {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 0;
+			height: 1px;
+
+			border-top: 1px solid rgba($sec_light, 0.5);
+			border-bottom: 1px solid rgba($sec_light, 0.5);
 		}
 	}
 </style>
