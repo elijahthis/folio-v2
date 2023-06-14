@@ -48,13 +48,18 @@ const workList = [
 ];
 ---
 
-<PageLayout title="work.">
+<PageLayout title="work." className="WorkWrapper">
 	<div class="workPage">
 		<div class="workBoxes">
 			{
 				workList.map((workItem, ind) => (
 					<div class="workBoxes__box">
-						<h3>{workItem.title}</h3>
+						<h3>
+							<div class="workCount">
+								<span>#{ind + 1}</span>
+							</div>
+							{workItem.title}
+						</h3>
 						<div class="workBoxes__box__headerLine" />
 						<div class="flexCenter">
 							<div class="workBoxes__box__images">
@@ -116,6 +121,24 @@ const workList = [
 					text-align: center;
 					padding: 0.5rem 0;
 					padding-top: 1.5rem;
+					position: relative;
+
+					.workCount {
+						font-weight: 400;
+						font-size: 50px;
+						line-height: 64px;
+
+						position: absolute;
+						left: 100px;
+						transform: translateX(-100%);
+
+						display: flex;
+						flex-direction: row;
+
+						& > span {
+							margin: auto 0;
+						}
+					}
 				}
 
 				&__headerLine {
@@ -132,7 +155,7 @@ const workList = [
 					& > p {
 						margin-top: 50px;
 						margin-bottom: 30px;
-						padding: 0 2rem;
+						padding: 0 100px;
 					}
 				}
 

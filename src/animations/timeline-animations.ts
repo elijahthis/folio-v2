@@ -131,7 +131,7 @@ introAnimation(".WorkIntro");
 /* -------- Work animation ---------- */
 const workTl = gsap.timeline({
 	scrollTrigger: {
-		trigger: ".astro-3ZBXO6IV",
+		trigger: ".WorkWrapper",
 		start: "top top",
 		pin: true,
 		end: `+=600%`,
@@ -146,6 +146,13 @@ console.log("workBoxes__box", workBoxes__box);
 
 workBoxes__box.forEach((box: Element) => {
 	const boxTl = gsap.timeline();
+
+	console.log(
+		"boxx",
+		box.querySelector(".workBoxes__box__images__inner"),
+		box.querySelector(".workBoxes__box__images").clientWidth,
+		box.querySelector(".workBoxes__box__images__inner").clientWidth
+	);
 
 	boxTl
 		.to(box, {
@@ -188,10 +195,14 @@ workBoxes__box.forEach((box: Element) => {
 			"<"
 		)
 		.to(box.querySelector(".workBoxes__box__images__inner"), {
-			left: `${
-				-box.querySelector(".workBoxes__box__images__inner").clientWidth +
-				box.querySelector(".workBoxes__box__images").clientWidth
-			}px`,
+			// left: `${
+			// 	box.querySelector(".workBoxes__box__images").clientWidth -
+			// 	box.querySelector(".workBoxes__box__images__inner").clientWidth
+			// }px`,
+			transform: `translateX(${
+				document.documentElement.clientWidth -
+				box.querySelector(".workBoxes__box__images__inner").clientWidth
+			}px)`,
 			// right: 0,
 			delay: 1,
 			duration: 6,
@@ -235,6 +246,36 @@ workBoxes__box.forEach((box: Element) => {
 
 /* -------- More Me Intro animation ---------- */
 introAnimation(".MoreMeIntro");
+/* ------------------------------------------ */
+
+/* -------- More Me animation ---------- */
+
+// const moreMeTl = gsap.timeline();
+
+// moreMeTl
+// 	.fromTo(
+// 		".MoreMe__row--left > span",
+// 		{ xPercent: 150 },
+// 		{
+// 			xPercent: 0,
+// 			stagger: 0.1,
+// 			ease: Power3.easeIn,
+// 			delay: 0,
+// 			duration: 4,
+// 		}
+// 	)
+// 	.addPause(8);
+
+// ScrollTrigger.create({
+// 	trigger: ".MoreMePage",
+// 	start: "top top",
+// 	pin: true,
+// 	end: () => "+=" + moreMeTl.duration() * 100, // Pin until the timeline animation completes
+// 	scrub: false,
+// 	markers: true,
+// 	animation: moreMeTl,
+// });
+
 /* ------------------------------------------ */
 
 /* -------- Contact Intro animation ---------- */

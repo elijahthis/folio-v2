@@ -1,46 +1,76 @@
 ---
 import FunLink from "../../components/FunLink.astro";
 import PageLayout from "../../layouts/PageLayout.astro";
-import film1 from "../../assets/images/film 1 - casablanca.jpg";
-import film2 from "../../assets/images/film 2 - a few good men.jpg";
-import film3 from "../../assets/images/film 3 - breaking bad.jpg";
-import film4 from "../../assets/images/film 4 - there will be blood.jpg";
-import film5 from "../../assets/images/film 5 - spirited away.jpg";
-import film6 from "../../assets/images/film 6 - House of the Dragon.jpg";
-import film7 from "../../assets/images/film 7 - The Godfather.jpg";
+import film1 from "../../assets/images/film 1 - casablanca.webp";
+import film2 from "../../assets/images/film 2 - a few good men.webp";
+import film3 from "../../assets/images/film 3 - breaking bad.webp";
+import film4 from "../../assets/images/film 4 - there will be blood.webp";
+import film5 from "../../assets/images/film 5 - spirited away.webp";
+import film6 from "../../assets/images/film 6 - House of the Dragon.webp";
+import film7 from "../../assets/images/film 7 - The Godfather.webp";
 import ImageHoverShutter from "../../components/ImageHoverShutter.astro";
 ---
 
-<PageLayout title="more.me.">
+<PageLayout title="more.me." className="MoreMeWrapper">
 	<div class="MoreMePage">
 		<div class="MoreMePage__grid1"></div>
 		<div class="MoreMePage__grid2">
-			<p class="MoreMePage__p1">
-				It's a no-brainer that I
-				<FunLink href="https://github.com/elijahthis">write code</FunLink>.<br
-				/>
-				What else?
-			</p>
+			<div class="MoreMePage__p1">
+				<div class="MoreMe__row">
+					<span>
+						It's a no-brainer that I
+						<FunLink href="https://github.com/elijahthis">
+							write code
+						</FunLink>.<br />
+					</span>
+				</div>
+				<div class="MoreMe__row">
+					<span>What else?</span>
+				</div>
+			</div>
 		</div>
 		<div class="MoreMePage__grid3">
 			<div class="MoreMePage__p2">
-				<ImageHoverShutter images={[film1]}>
+				<!-- <ImageHoverShutter images={[film1]}>
 					<p>I watch movies.<br /></p>
 				</ImageHoverShutter>
 				<ImageHoverShutter images={[film2]}>
 					I listen to <FunLink href="/">music</FunLink>. <br />
-				</ImageHoverShutter>
+				</ImageHoverShutter> -->
 
-				<div>I fiddle with my ukulele. <br /></div>
-				<div>
-					I'm a <FunLink href="https://www.arsenal.com/">Gunner</FunLink>. <br
-					/>
+				<div class="MoreMe__row--left">
+					<span>I watch movies.<br /></span>
 				</div>
-				<div>I fold paper. <br /></div>
-				<div>I sleep like the dead.<br /></div>
-				<!--- -No pics for you ---->
-				<div>I read fiction.<br /></div>
-				I write <FunLink href="/">non-fiction</FunLink>.
+				<div class="MoreMe__row--left">
+					<span>
+						I listen to <FunLink href="/">music</FunLink>.<br />
+					</span>
+				</div>
+			</div>
+			<div class="MoreMe__row--left">
+				<span>
+					I fiddle with my ukulele.
+					<br />
+				</span>
+			</div>
+			<div class="MoreMe__row--left">
+				<span>
+					I'm a <FunLink href="https://www.arsenal.com/">Gunner</FunLink>.
+					<br />
+				</span>
+			</div>
+			<div class="MoreMe__row--left">
+				<span>I fold paper.<br /></span>
+			</div>
+			<div class="MoreMe__row--left">
+				<span>I sleep like the dead.<br /></span>
+			</div>
+			<!--- -No pics for you ---->
+			<div class="MoreMe__row--left">
+				<span>I read fiction.<br /></span>
+			</div>
+			<div class="MoreMe__row--left">
+				<span>I write <FunLink href="/">non-fiction</FunLink>.</span>
 			</div>
 		</div>
 	</div>
@@ -69,6 +99,7 @@ import ImageHoverShutter from "../../components/ImageHoverShutter.astro";
 
 		&__grid2 {
 			padding-left: 50vw;
+			color: $main-light;
 		}
 
 		&__grid3 {
@@ -76,6 +107,14 @@ import ImageHoverShutter from "../../components/ImageHoverShutter.astro";
 			color: $main-light;
 			* {
 				text-align: right;
+			}
+		}
+
+		.MoreMe__row,
+		.MoreMe__row--left {
+			overflow-x: hidden;
+			& > span {
+				display: block;
 			}
 		}
 	}
