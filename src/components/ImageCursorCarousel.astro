@@ -1,0 +1,167 @@
+---
+import film1 from "../assets/images/film 1 - casablanca.jpg";
+import film2 from "../assets/images/film 2 - a few good men.jpg";
+import film3 from "../assets/images/film 3 - breaking bad.jpg";
+import film4 from "../assets/images/film 4 - there will be blood.jpg";
+import film5 from "../assets/images/film 5 - spirited away.jpg";
+import film6 from "../assets/images/film 6 - House of the Dragon.jpg";
+import film7 from "../assets/images/film 7 - The Godfather.jpg";
+
+const images = [film1, film2, film3, film4, film5, film6, film7];
+---
+
+<script>
+	import gsap, { Power4 } from "gsap";
+	const imageCursor = document.querySelector(".Cursor > .ImageCursor");
+	const imageNodes = document.querySelectorAll(".ImageCursor > img");
+	let visibleImage = 0;
+	let imageInterval;
+	let isIntersecting = false;
+
+	let observer = new IntersectionObserver((entries, observer) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				isIntersecting = true;
+				console.log("entry", entry);
+			} else {
+				isIntersecting = false;
+				console.log("NotEntry", entry);
+			}
+
+			// Each entry describes an intersection change for one observed
+			// target element:
+			//   entry.boundingClientRect
+			//   entry.intersectionRatio
+			//   entry.intersectionRect
+			//   entry.isIntersecting
+			//   entry.rootBounds
+			//   entry.target
+			//   entry.time
+		});
+	});
+
+	observer.observe(document.querySelector(".MoreMePage"));
+
+	// start carousel only when mouse enters .MoreMePage
+	document.querySelector(".MoreMePage").addEventListener("mouseenter", (e) => {
+		imageInterval = setInterval(() => {
+			const prevInd = visibleImage;
+			// visibleImage = Math.ceil(Math.random() * 11 - 1);
+			visibleImage = (prevInd + 1) % imageNodes.length;
+
+			const tl = gsap.timeline();
+
+			tl.to(imageNodes[prevInd], {
+				width: 0,
+				duration: 0.25,
+				ease: Power4.easeOut,
+			})
+				.to(
+					imageCursor,
+					{
+						width: 0,
+						duration: 0.25,
+						ease: Power4.easeOut,
+					},
+					"<"
+				)
+				.to(imageCursor, {
+					width: "400px",
+					duration: 0.25,
+					ease: Power4.easeOut,
+				})
+				.to(
+					imageNodes[visibleImage],
+					{
+						width: "400px",
+						duration: 0.75,
+						ease: Power4.easeOut,
+					},
+					"<"
+				);
+		}, 5000);
+	});
+
+	// hover animation carousel
+	document.querySelector(".MoreMePage").addEventListener("mouseover", (e) => {
+		// make cursor slower, as we're using a larger image cursor.
+		document.querySelector(".Cursor").classList.add("Cursor--slower");
+
+		gsap.to(imageCursor, {
+			// transform: `translate3d(calc(${xPosn}px - 50%), calc(${yPosn}px - 50%), 0)`,
+			width: "400px",
+			duration: 0.5,
+			// ease: Power4.easeOut,
+		});
+	});
+
+	document.querySelector(".MoreMePage").addEventListener("mouseleave", (e) => {
+		// make cursor faster again.
+		document.querySelector(".Cursor").classList.remove("Cursor--slower");
+
+		gsap.to(imageCursor, {
+			width: 0,
+			duration: 0.5,
+			// ease: Power4.easeOut,
+		});
+
+		// stop carousel when mouse leaves .MoreMePage
+		clearInterval(imageInterval);
+	});
+
+	// tilt cursor on mouse move
+	let rotating = false;
+
+	document
+		.querySelector(".MoreMePage")
+		.addEventListener("mousemove", (e: MouseEvent) => {
+			console.log("mousemove", e.movementY);
+			if (Math.abs(e.movementX) > 30 && !rotating) {
+				rotating = true;
+				const tl = gsap.timeline();
+				tl.to(imageCursor, {
+					transform: `rotate(${
+						(e.movementX / window.innerWidth) * 180
+					}deg) translateX(-50%) translateY(-50%)`,
+					duration: 0.2,
+				})
+					.to(imageCursor, {
+						transform: `rotate(0deg) translateX(-50%) translateY(-50%)`,
+						duration: 0.2,
+					})
+					.then(() => {
+						rotating = false;
+					});
+			}
+		});
+</script>
+
+<div class="ImageCursor">
+	{images.map((item: string) => <img src={item} />)}
+</div>
+
+<style lang="scss">
+	@import "../styles/variables";
+
+	.ImageCursor {
+		width: 0;
+		height: 400px;
+		overflow: hidden;
+
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		transform-origin: center;
+		background-color: $sec-light;
+		display: flex;
+		flex-direction: row;
+
+		img {
+			width: 0;
+			height: 600px;
+			object-fit: cover;
+			// transform: translateY(-7%);
+		}
+	}
+</style>

@@ -2,7 +2,11 @@
 const { label, onClick } = Astro.props;
 ---
 
-<button onclick={onClick} class="Button" data-title={label}>
+<button
+	onclick={`setTimeout(()=>${onClick}(), 400) `}
+	class="Button"
+	data-title={label}
+>
 	<div>{label}</div>
 </button>
 
@@ -19,6 +23,8 @@ const { label, onClick } = Astro.props;
 		overflow: hidden;
 		text-transform: uppercase;
 		transition: border-color 0.3s cubic-bezier(0.3, 0.86, 0.36, 0.95);
+
+		position: relative;
 
 		&::after {
 			content: attr(data-title);

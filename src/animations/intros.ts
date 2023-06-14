@@ -29,7 +29,7 @@ export const introAnimation = (classItem: string) => {
 			stagger: 0.05,
 			ease: Power2.easeOut,
 		})
-		.addPause(4);
+		.addPause(8);
 
 	ScrollTrigger.create({
 		trigger: classItem,
@@ -37,7 +37,7 @@ export const introAnimation = (classItem: string) => {
 		pin: true,
 		end: () => "+=" + introTl.duration() * 100, // Pin until the timeline animation completes
 		scrub: false,
-		markers: true,
+		// markers: true,
 		animation: introTl,
 	});
 };

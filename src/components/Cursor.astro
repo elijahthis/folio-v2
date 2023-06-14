@@ -1,8 +1,6 @@
 ---
-export interface Props {}
+import ImageCursorCarousel from "./ImageCursorCarousel.astro";
 ---
-
-<div class="Cursor"></div>
 
 <script>
 	const cursor = document.querySelector(".Cursor");
@@ -29,7 +27,11 @@ export interface Props {}
 	});
 </script>
 
+<div class="Cursor"><ImageCursorCarousel /></div>
+
 <style lang="scss">
+	@import "../styles/variables";
+
 	@keyframes cursorAnimation {
 		from {
 			transform: translateX(-50%) translateY(-50%) scale(1);
@@ -83,6 +85,10 @@ export interface Props {}
 			background-color: transparent;
 			border: 1px solid green;
 			mix-blend-mode: unset;
+		}
+
+		&--slower {
+			transition: all 0.65s ease-out;
 		}
 	}
 </style>

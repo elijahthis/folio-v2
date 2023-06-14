@@ -8,16 +8,42 @@ const workList = [
 		title: "Kardinal",
 		desc: "Bring everyone together for work by reimagining how they travel, connect, and collaborate. We help businesses create unique, engaging experiences for employees, clients, and partners that drive productivity and connection.",
 		link: "https://gokardinal.com",
+		images: [
+			"/images/kardinal-1.webp",
+			"/images/kardinal-2.webp",
+			"/images/kardinal-3.webp",
+			"/images/kardinal-4.webp",
+			"/images/kardinal-5.webp",
+			"/images/kardinal-6.webp",
+		],
 	},
 	{
 		title: "Knight Ventures",
 		desc: "Bring everyone together for work by reimagining how they travel, connect, and collaborate. We help businesses create unique, engaging experiences for employees, clients, and partners that drive productivity and connection.",
 		link: "https://knight.ventures",
+		images: [
+			"/images/kv-1.webp",
+			"/images/kv-2.webp",
+			"/images/kv-3.webp",
+			"/images/kv-4.webp",
+		],
 	},
 	{
 		title: "Yeve",
 		desc: "Bring everyone together for work by reimagining how they travel, connect, and collaborate. We help businesses create unique, engaging experiences for employees, clients, and partners that drive productivity and connection.",
 		link: "https://yeve.co.uk",
+		images: [
+			"/images/yeve-1.webp",
+			"/images/yeve-2.webp",
+			"/images/yeve-3.webp",
+			"/images/yeve-4.webp",
+			"/images/yeve-5.webp",
+			"/images/yeve-6.webp",
+			"/images/yeve-7.webp",
+			"/images/yeve-8.webp",
+			"/images/yeve-9.webp",
+			"/images/yeve-10.webp",
+		],
 	},
 ];
 ---
@@ -31,7 +57,13 @@ const workList = [
 						<h3>{workItem.title}</h3>
 						<div class="workBoxes__box__headerLine" />
 						<div class="flexCenter">
-							<div class="workBoxes__box__img" />
+							<div class="workBoxes__box__images">
+								<div class="workBoxes__box__images__inner">
+									{workItem.images.map((imageItem) => (
+										<img src={imageItem} alt="" />
+									))}
+								</div>
+							</div>
 							<p>{workItem.desc}</p>
 							<Button
 								onClick={`window.open('${workItem.link}', '_blank')`}
@@ -97,19 +129,37 @@ const workList = [
 					align-items: center;
 					// gap: 60px;
 
-					padding: 60px;
-
 					& > p {
 						margin-top: 50px;
 						margin-bottom: 30px;
+						padding: 0 2rem;
 					}
 				}
 
-				&__img {
-					width: 609px;
-					height: 341px;
+				&__images {
+					width: 100%;
+					height: calc(66vh - 112px);
 					background: #000000;
-					box-shadow: 5px 5px 40px #3e4d87;
+					// margin-top: 1rem;
+
+					background-repeat: no-repeat;
+					background-size: cover;
+					overflow-x: scroll;
+					// overflow-x: hidden;
+
+					&__inner {
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						gap: 1rem;
+
+						height: 100%;
+						padding: 0 2rem;
+
+						& > img {
+							height: 80%;
+						}
+					}
 				}
 			}
 		}

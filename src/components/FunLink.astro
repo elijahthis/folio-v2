@@ -1,0 +1,20 @@
+---
+const { href } = Astro.props;
+---
+
+<a href={href} target="_blank" rel="noopener noreferrer" class="FunLink"
+	><slot /></a
+>
+
+<style lang="scss">
+	@import "../styles/variables";
+
+	.FunLink {
+		color: $sec-light;
+		transition: all 0.35s;
+
+		&:hover {
+			color: $tertiary_col;
+		}
+	}
+</style>

@@ -1,5 +1,14 @@
 ---
+import FunLink from "../../components/FunLink.astro";
 import PageLayout from "../../layouts/PageLayout.astro";
+import film1 from "../../assets/images/film 1 - casablanca.jpg";
+import film2 from "../../assets/images/film 2 - a few good men.jpg";
+import film3 from "../../assets/images/film 3 - breaking bad.jpg";
+import film4 from "../../assets/images/film 4 - there will be blood.jpg";
+import film5 from "../../assets/images/film 5 - spirited away.jpg";
+import film6 from "../../assets/images/film 6 - House of the Dragon.jpg";
+import film7 from "../../assets/images/film 7 - The Godfather.jpg";
+import ImageHoverShutter from "../../components/ImageHoverShutter.astro";
 ---
 
 <PageLayout title="more.me.">
@@ -7,24 +16,29 @@ import PageLayout from "../../layouts/PageLayout.astro";
 		<div class="MoreMePage__grid1"></div>
 		<div class="MoreMePage__grid2">
 			<p class="MoreMePage__p1">
-				It's a no-brainer that I <a href="https://github.com/elijahthis"
-					>write code</a
-				>.<br />
+				It's a no-brainer that I
+				<FunLink href="https://github.com/elijahthis">write code</FunLink>.<br
+				/>
 				What else?
 			</p>
 		</div>
 		<div class="MoreMePage__grid3">
-			<p class="MoreMePage__p2">
-				I watch movies. <br />
-				I listen to <a href="/">music</a>. <br />
-				I play the ukulele. <br />
-				I'm a <a href="/">Gunner</a>. <br />
-				I fold paper. <br />
-				I sleep like the dead.<br />
+			<div class="MoreMePage__p2">
+				<ImageHoverShutter images={[film1]}>
+					<p>I watch movies.<br /></p>
+				</ImageHoverShutter>
+				<ImageHoverShutter images={[film2]}>
+					I listen to <FunLink href="/">music</FunLink>. <br />
+				</ImageHoverShutter>
+
+				<div>I fiddle with my ukulele. <br /></div>
+				<div>I'm a <FunLink href="/">Gunner</FunLink>. <br /></div>
+				<div>I fold paper. <br /></div>
+				<div>I sleep like the dead.<br /></div>
 				<!--- -No pics for you ---->
-				I read fiction.<br />
-				I write <a href="/">non-fiction</a>.
-			</p>
+				<div>I read fiction.<br /></div>
+				I write <FunLink href="/">non-fiction</FunLink>.
+			</div>
 		</div>
 	</div>
 </PageLayout>
@@ -56,7 +70,8 @@ import PageLayout from "../../layouts/PageLayout.astro";
 
 		&__grid3 {
 			padding-right: 50vw;
-			p {
+			color: $main-light;
+			* {
 				text-align: right;
 			}
 		}

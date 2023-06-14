@@ -1,0 +1,85 @@
+---
+interface Props {
+	images: string[];
+}
+const { images } = Astro.props;
+---
+
+<script>
+	import gsap, { Power4 } from "gsap";
+
+	const hoverTargets = document.querySelectorAll(".hoverTarget");
+
+	const enterFunc = (el: Element | string) =>
+		gsap.to(el, {
+			// transform: `translate3d(calc(${xPosn}px - 50%), calc(${yPosn}px - 50%), 0)`,
+			width: "200px",
+			duration: 0.5,
+			ease: Power4.easeOut,
+		});
+	const leaveFunc = (el: Element | string) =>
+		gsap.to(el, {
+			width: 0,
+			duration: 0.5,
+			ease: Power4.easeOut,
+		});
+
+	const moveFunc = (el: Element | string, xPosn: number, yPosn: number) =>
+		gsap.to(el, {
+			transform: `translate3d(calc(${xPosn}px - 50%), calc(${yPosn}px - 50%), 0)`,
+			// width: "200px",
+		});
+
+	hoverTargets.forEach((targetEl) => {
+		targetEl.addEventListener("mouseenter", (e: MouseEvent) => {
+			console.log(e);
+
+			enterFunc(targetEl.querySelector(".hoverTarget__images")).play();
+		});
+		targetEl.addEventListener("mousemove", (e: MouseEvent) => {
+			console.log(e);
+
+			moveFunc(
+				targetEl.querySelector(".hoverTarget__images"),
+				e.pageX - targetEl.clientLeft,
+				targetEl.clientTop
+			).play();
+		});
+		targetEl.addEventListener("mouseleave", (e) => {
+			leaveFunc(targetEl.querySelector(".hoverTarget__images")).play();
+		});
+	});
+</script>
+
+<div class="hoverTarget">
+	<slot />
+	<div class="hoverTarget__images">
+		{images.map((item: string) => <img src={item} />)}
+	</div>
+</div>
+
+<style lang="scss">
+	.hoverTarget {
+		position: relative;
+
+		p {
+			z-index: 2;
+		}
+
+		&__images {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			width: 0;
+			overflow: hidden;
+
+			// transition: all 0.5s cubic-bezier(0.84, 0.21, 0.17, 1.01);
+
+			img {
+				width: 200px;
+				object-fit: cover;
+			}
+		}
+	}
+</style>
