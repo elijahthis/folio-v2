@@ -144,8 +144,9 @@ const workList = [
 
 					background-repeat: no-repeat;
 					background-size: cover;
-					overflow-x: scroll;
-					// overflow-x: hidden;
+					// overflow-x: scroll;
+					overflow-x: hidden;
+					position: relative;
 
 					&__inner {
 						display: flex;
@@ -155,6 +156,10 @@ const workList = [
 
 						height: 100%;
 						padding: 0 2rem;
+
+						position: absolute;
+						left: 100%;
+						right: auto;
 
 						& > img {
 							height: 80%;

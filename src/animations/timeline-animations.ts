@@ -17,7 +17,7 @@ const lenis = new Lenis({
 });
 
 lenis.on("scroll", (e) => {
-	console.log(e);
+	// console.log(e);
 });
 
 function raf(time) {
@@ -134,55 +134,103 @@ const workTl = gsap.timeline({
 		trigger: ".astro-3ZBXO6IV",
 		start: "top top",
 		pin: true,
-		end: `+=500%`,
+		end: `+=600%`,
 		scrub: 1,
 		// markers: true,
 	},
 });
 
-workTl
-	.to(".workBoxes__box", {
-		top: 0,
-		duration: 5,
-		stagger: 5,
-		ease: Power2.easeOut,
-	})
-	.to(
-		".workBoxes__box h3",
-		{
-			fontSize: "80px",
-			lineHeight: "80px",
+const workBoxes__box = gsap.utils.toArray(".workBoxes__box");
+
+console.log("workBoxes__box", workBoxes__box);
+
+workBoxes__box.forEach((box: Element) => {
+	const boxTl = gsap.timeline();
+
+	boxTl
+		.to(box, {
+			top: 0,
 			duration: 5,
-			stagger: { each: 5, repeatDelay: 2 },
+			stagger: 5,
 			ease: Power2.easeOut,
-		},
-		"<"
-	)
-	.to(
-		".workBoxes__box__headerLine",
-		{
-			width: "100%",
+		})
+		.to(
+			box.querySelector(".workBoxes__box h3"),
+			{
+				fontSize: "80px",
+				lineHeight: "80px",
+				duration: 5,
+				stagger: { each: 5, repeatDelay: 2 },
+				ease: Power2.easeOut,
+			},
+			"<"
+		)
+		.to(
+			box.querySelector(".workBoxes__box__images__inner"),
+			{
+				left: 0,
+				delay: 1,
+				duration: 6,
+				stagger: { each: 5, repeatDelay: 2 },
+				ease: Power2.easeOut,
+			},
+			"<"
+		)
+		.to(
+			box.querySelector(".workBoxes__box__headerLine"),
+			{
+				width: "100%",
+				delay: 1,
+				duration: 4,
+				stagger: { each: 5, repeatDelay: 2 },
+				ease: Power2.easeOut,
+			},
+			"<"
+		)
+		.to(box.querySelector(".workBoxes__box__images__inner"), {
+			left: `${
+				-box.querySelector(".workBoxes__box__images__inner").clientWidth +
+				box.querySelector(".workBoxes__box__images").clientWidth
+			}px`,
+			// right: 0,
 			delay: 1,
-			duration: 4,
+			duration: 6,
 			stagger: { each: 5, repeatDelay: 2 },
 			ease: Power2.easeOut,
-		},
-		"<"
-	);
-// .fromTo(
-// 	".flexCenter > *",
-// 	{
-// 		y: "20px",
-// 	},
-// 	{
-// 		y: 0,
-// 		delay: 1.5,
-// 		duration: 3.5,
-// 		stagger: 1,
+		});
+
+	workTl.add(boxTl);
+});
+
+// workTl
+// 	.to(".workBoxes__box", {
+// 		top: 0,
+// 		duration: 5,
+// 		stagger: 5,
 // 		ease: Power2.easeOut,
-// 	},
-// 	"<"
-// );
+// 	})
+// 	.to(
+// 		".workBoxes__box h3",
+// 		{
+// 			fontSize: "80px",
+// 			lineHeight: "80px",
+// 			duration: 5,
+// 			stagger: { each: 5, repeatDelay: 2 },
+// 			ease: Power2.easeOut,
+// 		},
+// 		"<"
+// 	)
+// 	.to(
+// 		".workBoxes__box__headerLine",
+// 		{
+// 			width: "100%",
+// 			delay: 1,
+// 			duration: 4,
+// 			stagger: { each: 5, repeatDelay: 2 },
+// 			ease: Power2.easeOut,
+// 		},
+// 		"<"
+// 	);
 /* ------------------------------------------ */
 
 /* -------- More Me Intro animation ---------- */

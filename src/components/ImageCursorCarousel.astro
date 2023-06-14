@@ -16,34 +16,11 @@ const images = [film1, film2, film3, film4, film5, film6, film7];
 	const imageNodes = document.querySelectorAll(".ImageCursor > img");
 	let visibleImage = 0;
 	let imageInterval;
-	let isIntersecting = false;
-
-	let observer = new IntersectionObserver((entries, observer) => {
-		entries.forEach((entry) => {
-			if (entry.isIntersecting) {
-				isIntersecting = true;
-				console.log("entry", entry);
-			} else {
-				isIntersecting = false;
-				console.log("NotEntry", entry);
-			}
-
-			// Each entry describes an intersection change for one observed
-			// target element:
-			//   entry.boundingClientRect
-			//   entry.intersectionRatio
-			//   entry.intersectionRect
-			//   entry.isIntersecting
-			//   entry.rootBounds
-			//   entry.target
-			//   entry.time
-		});
-	});
-
-	observer.observe(document.querySelector(".MoreMePage"));
 
 	// start carousel only when mouse enters .MoreMePage
 	document.querySelector(".MoreMePage").addEventListener("mouseenter", (e) => {
+		imageNodes[visibleImage].setAttribute("style", "width: 400px");
+
 		imageInterval = setInterval(() => {
 			const prevInd = visibleImage;
 			// visibleImage = Math.ceil(Math.random() * 11 - 1);
