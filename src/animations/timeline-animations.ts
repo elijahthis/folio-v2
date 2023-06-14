@@ -85,7 +85,7 @@ const homeTl = gsap.timeline({
 		pin: true,
 		end: `+=${innerHeight * 1}`,
 		scrub: 1,
-		markers: true,
+		// markers: true,
 	},
 	onStart: () => homeMarque.pause(),
 	onReverseComplete: () => homeMarque.resume(),
