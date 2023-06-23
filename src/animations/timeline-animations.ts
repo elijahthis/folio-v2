@@ -102,7 +102,7 @@ homeTl
 	.to(
 		mySplitDesc.lines,
 		{
-			xPercent: 150,
+			xPercent: -150,
 			stagger: 0.1,
 			ease: Power3.easeIn,
 			delay: 0,

@@ -8,14 +8,14 @@ import ImageCursorCarousel from "./ImageCursorCarousel.astro";
 	document.addEventListener("mouseover", (e) => {
 		cursor.setAttribute(
 			"style",
-			`transform: translate3d(calc(${e.pageX}px - 50%), calc(${e.pageY}px - 50%), 0)`
+			`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
 		);
 	});
 
 	document.addEventListener("mousemove", (e) => {
 		cursor.setAttribute(
 			"style",
-			`transform: translate3d(calc(${e.pageX}px - 50%), calc(${e.pageY}px - 50%), 0);`
+			`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0);`
 		);
 	});
 
@@ -69,7 +69,8 @@ import ImageCursorCarousel from "./ImageCursorCarousel.astro";
 		// mix-blend-mode: screen;
 		// mix-blend-mode: difference;
 		border: 1px solid #98767c;
-		position: absolute;
+
+		position: fixed;
 		top: 0;
 
 		display: grid;
