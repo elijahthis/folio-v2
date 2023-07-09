@@ -12,133 +12,154 @@ let bigText = "simple";
 
 <script>
 	// imports
-	import SplitType from "split-type";
-	import gsap from "gsap";
+	import gsap, { Power1, Power2, Power3, Power4, Bounce } from "gsap";
 
-	// const tl = gsap.timeline();
+	const loaderTl = gsap.timeline({ repeat: 0 });
+
+	const BohtTl = gsap.timeline({ repeat: -1 });
+	const YuBirdTl = gsap.timeline({ repeat: -1 });
+
+	loaderTl
+		.to(".Chihiros_friends__line", {
+			width: "100%",
+			duration: 1,
+			ease: Power4.easeIn,
+			delay: 1,
+		})
+		.to(".Boh, .Yu-Bird", {
+			opacity: 1,
+			duration: 0.8,
+			stagger: 0.5,
+			ease: Power4.easeIn,
+			delay: 0.25,
+		});
+
+	BohtTl.to(".Chihiros_friends > .Boh", {
+		yPercent: 10,
+		scaleX: 1.12,
+		scaleY: 0.8,
+		duration: 0.35,
+		ease: Power4.easeOut,
+	}).to(".Chihiros_friends > .Boh", {
+		yPercent: 0,
+		scaleX: 1,
+		scaleY: 1,
+		duration: 0.4,
+		ease: Power2.easeOut,
+	});
+
+	YuBirdTl.to(".Chihiros_friends > .Yu-Bird", {
+		yPercent: -500,
+		duration: 0.12,
+		// duration: 0.2,
+		ease: Power3.easeOut,
+	}).to(".Chihiros_friends > .Yu-Bird", {
+		yPercent: 0,
+		duration: 0.27,
+		// duration: 0.27,
+		ease: Power2.easeIn,
+		delay: 0.15,
+	});
+
+	gsap.to(".PreLoader > .bottomDiv  p", {
+		opacity: 1,
+		transform: "rotateY(0deg)",
+		duration: 0.47,
+		stagger: 2.5,
+		ease: Power2.easeIn,
+		delay: 3,
+	});
 
 	// change time
-	const timeEl = document.querySelector(".bottomDiv__time");
-	if (timeEl)
-		setInterval(() => {
-			timeEl.innerHTML = new Date().toLocaleTimeString();
-		}, 1000);
-
-	let mySplitText: any;
-	let count = 0;
-	const textList = ["hello.", "stranger.", "..."];
-
-	const textAnimation = () => {
-		const textEl = document.querySelector(".split");
-		console.log("textEl.textContent", textEl.textContent);
-
-		// GSAP Text
-		mySplitText = new SplitType(".split", { types: "chars" });
-		console.log("textEl.textContent", textEl.textContent);
-		console.log("mySplitText", mySplitText);
-		const chars = mySplitText.chars;
-
-		gsap.from(chars, {
-			yPercent: 150,
-			stagger: 0.05,
-			ease: "back.out",
-			delay: 0,
-			duration: 0.75,
-
-			onComplete: () => {
-				console.log("comp");
-				gsap.to(chars, {
-					yPercent: 150,
-					stagger: 0.01,
-					ease: "back.out",
-					delay: 0,
-					duration: 0.5,
-				});
-				mySplitText.revert();
-			},
-		});
-	};
-
-	function nextText() {
-		console.log("count", count);
-
-		if (count <= textList.length - 1) {
-			const textEl = document.querySelector(".split");
-			textEl.innerHTML = textList[count];
-
-			textAnimation();
-		}
-
-		if (count < textList.length) {
-			count++;
-		}
-	}
-
-	// Start the animation with the first element in the array
-	nextText();
-	// Schedule the next animation to start after 3 seconds
-	let myInterval = setInterval(nextText, 1500);
-
-	if (count >= textList.length - 1) {
-		clearInterval(myInterval);
-	}
 </script>
 
 <main class="PreLoader">
-	<div class="SplitWrap">
-		<h1 class="split">.</h1>
-		<!-- <p>Welcome to Elijah's trophy room.</p> -->
+	<div class="Chihiros_friends">
+		<div class="Boh"></div>
+		<div class="Yu-Bird"></div>
+		<div class="Chihiros_friends__line"></div>
 	</div>
 	<div class="bottomDiv">
-		<!-- <p>elijah oyerinde</p> -->
-		<!-- <p class="bottomDiv__time">{new Date().toLocaleTimeString()}</p> -->
+		<div>
+			<p>Welcome to my site</p>
+			<p>Elijah and Chihiro's little friends</p>
+		</div>
 	</div>
 </main>
 
 <style lang="scss">
+	// colors: #f0e9d2
+	@import "../styles/variables";
+
 	.PreLoader {
 		height: 100vh;
 		width: 100vw;
-		background: #f0e9d2;
 
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
 		position: fixed;
 		z-index: 1200;
 
-		.SplitWrap {
-			// border: 1px solid black;
-			margin-bottom: 2rem;
-			overflow: hidden;
-		}
-
-		.split {
-			font-weight: 900;
-			font-size: 170px;
-			color: #181d31;
-			text-align: center;
-		}
-
-		p {
-			font-size: 36px;
-			line-height: 55px;
-			color: #181d31;
-		}
-
-		.bottomDiv {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			width: 100%;
+		.Chihiros_friends {
+			height: 66vh;
 
 			display: flex;
 			flex-direction: row;
-			align-items: center;
-			gap: 1rem;
-			justify-content: space-between;
+			align-items: flex-end;
+			justify-content: center;
+			gap: 0.25rem;
+
+			// border-bottom: 1px solid black;
+			position: relative;
+			background: $sec_light;
+
+			.Boh {
+				width: 131px;
+				height: 211px;
+				background-color: $main_dark;
+
+				border-radius: 54% 46% 49% 51% / 71% 74% 26% 29%;
+				opacity: 0;
+			}
+
+			.Yu-Bird {
+				width: 36px;
+				height: 36px;
+				background-color: $main_dark;
+				border-radius: 65% 35% 53% 47% / 49% 62% 38% 51%;
+				opacity: 0;
+			}
+
+			&__line {
+				width: 0;
+				height: 1px;
+				background-color: $main_dark;
+
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+		}
+
+		.bottomDiv {
+			// position: absolute;
+			// bottom: 0;
+			// left: 0;
+			// width: 100%;
+			height: 34vh;
+
+			text-align: center;
 			padding: 60px;
+			background: $sec_light;
+
+			transform-origin: bottom;
+
+			& > div {
+				transform-origin: bottom;
+			}
+
+			p {
+				opacity: 0;
+				transform: rotateX(75deg);
+			}
 		}
 	}
 </style>

@@ -21,24 +21,28 @@ const titleList = [
 		<div class="HomeIntro__top">
 			<div class="HomeIntro__top__inner">
 				<div>
-					{
-						titleList.map((title) => (
-							<>
-								<span>{title}</span>
-								<span>•</span>
-							</>
-						))
-					}
+					<div>
+						{
+							titleList.map((title) => (
+								<>
+									<span>{title}</span>
+									<span>•</span>
+								</>
+							))
+						}
+					</div>
 				</div>
 				<div>
-					{
-						titleList.map((title) => (
-							<>
-								<span>{title}</span>
-								<span>•</span>
-							</>
-						))
-					}
+					<div>
+						{
+							titleList.map((title) => (
+								<>
+									<span>{title}</span>
+									<span>•</span>
+								</>
+							))
+						}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -47,7 +51,7 @@ const titleList = [
 				<span>elijah</span>
 			</h1>
 			<!-- <br /> -->
-			<h1>
+			<h1 style="margin-top: -2%;">
 				<span>oyerinde</span>
 			</h1>
 		</div>
@@ -174,6 +178,7 @@ const titleList = [
 				font-family: "Nexa Regular";
 				font-size: 1rem;
 				line-height: 1rem;
+				overflow: hidden;
 
 				p {
 					margin-top: 3px;
@@ -231,5 +236,13 @@ const titleList = [
 				margin: auto 0;
 			}
 		}
+	}
+</style>
+
+<style is:global>
+	.lineClass {
+		display: none;
+		min-width: max-content;
+		/* overflow-x: visible; */
 	}
 </style>

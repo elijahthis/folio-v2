@@ -5,11 +5,15 @@ import Contact from "../sections/Contact.astro";
 import Work from "../sections/Work.astro";
 import MoreMe from "../sections/MoreMe.astro";
 import Loading from "./loading.astro";
+import Sidebar from "../components/Sidebar.astro";
 ---
 
 <Layout title="Elijah Oyerinde • Software Engineer">
 	<!-- <Loading /> -->
 	<div class="MainWrap">
+		<Sidebar />
+
+		<!-- pages -->
 		<Home />
 		<Work />
 		<MoreMe />

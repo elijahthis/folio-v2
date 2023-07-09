@@ -53,7 +53,7 @@ const workList = [
 		<div class="workBoxes">
 			{
 				workList.map((workItem, ind) => (
-					<div class="workBoxes__box">
+					<div class="workBoxes__box" id={ind === 0 && "work"}>
 						<h3>
 							<div class="workCount">
 								<span>#{ind + 1}</span>

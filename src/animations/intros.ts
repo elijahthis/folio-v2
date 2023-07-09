@@ -9,19 +9,7 @@ export const introAnimation = (classItem: string) => {
 		types: "chars",
 	});
 
-	const introTl = gsap
-		.timeline
-		// 	{
-		// 	scrollTrigger: {
-		// 		trigger: classItem,
-		// 		start: "top top",
-		// 		pin: true,
-		// 		end: `+=100%`,
-		// 		scrub: false,
-		// 		markers: true,
-		// 	},
-		// }
-		();
+	const introTl = gsap.timeline();
 	introTl
 		.to(splitIntro.chars, {
 			color: "transparent",

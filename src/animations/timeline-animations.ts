@@ -30,31 +30,42 @@ requestAnimationFrame(raf);
 
 /* --------------------- --------------------- */
 
-const autoTl = gsap.timeline();
+const autoTl = gsap.timeline({ delay: 7 });
 
 autoTl
-	.to(".PreLoader", {
-		height: 0,
-		duration: 1.5,
-		delay: 5,
-		ease: "power4",
+	.to(".PreLoader > .Chihiros_friends > *", {
+		opacity: 0,
+		duration: 0.5,
+		ease: Power4.easeOut,
 	})
-	.from(".HomePage__imgBackground", {
-		width: 0,
+	.to(".PreLoader > .bottomDiv", {
+		transform: "scale(1, 0)",
 		duration: 1,
-		ease: "power4",
+		ease: Power4.easeOut,
 	})
-	.from(
-		".HomePage__rest > p",
+	.to(
+		".PreLoader > .bottomDiv > div",
 		{
-			yPercent: -30,
-			opacity: 0,
+			transform: "scale(1, 2) translateY(-100%)",
 			duration: 1,
-			stagger: 0.05,
-			ease: "power4",
+			ease: Power4.easeOut,
 		},
 		"<"
-	);
+	)
+	.to(
+		".PreLoader > .Chihiros_friends",
+		{
+			height: 0,
+			duration: 2.5,
+			ease: Power4.easeOut,
+		},
+		"<"
+	)
+	.to(".PreLoader", {
+		height: 0,
+		duration: 0.001,
+		ease: Power4.easeOut,
+	});
 
 /* Split text	*/
 const mySplitName = new SplitType(".HomeIntro__bigHeader > h1 > span", {
@@ -63,6 +74,7 @@ const mySplitName = new SplitType(".HomeIntro__bigHeader > h1 > span", {
 
 const mySplitDesc = new SplitType(".rightDesc p", {
 	types: "lines",
+	lineClass: "lineClass",
 });
 
 /* ------------  */
@@ -87,8 +99,10 @@ const homeTl = gsap.timeline({
 		scrub: 1,
 		// markers: true,
 	},
-	onStart: () => homeMarque.pause(),
-	onReverseComplete: () => homeMarque.resume(),
+
+	// onStart: () => homeMarque.pause(),
+	// onInterrupt: () => homeMarque.resume(),
+	// onReverseComplete: () => homeMarque.resume(),
 });
 
 homeTl
@@ -111,13 +125,24 @@ homeTl
 		"<"
 	)
 	.to(
-		".HomeIntro__top__inner > div",
+		".HomeIntro__top__inner > div > div",
 		{
 			xPercent: -150,
 			// stagger: 0.1,
 			ease: Power3.easeIn,
 			delay: 0,
 			duration: 2,
+		},
+		"<"
+	)
+	.to(
+		".HomeIntro__bottom > .scrollLink > *",
+		{
+			yPercent: -150,
+			stagger: 0.25,
+			ease: Power3.easeIn,
+			delay: 0,
+			duration: 1,
 		},
 		"<"
 	);
@@ -290,7 +315,7 @@ gsap.to(".ContactCarouselItem__topLine", {
 
 	scrollTrigger: {
 		trigger: ".contactBody",
-		start: "top top",
+		start: "top 10%",
 		// pin: true,
 		end: `+=100%`,
 		scrub: false,
