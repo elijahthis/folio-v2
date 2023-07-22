@@ -99,10 +99,6 @@ const homeTl = gsap.timeline({
 		scrub: 1,
 		// markers: true,
 	},
-
-	// onStart: () => homeMarque.pause(),
-	// onInterrupt: () => homeMarque.resume(),
-	// onReverseComplete: () => homeMarque.resume(),
 });
 
 homeTl
@@ -179,6 +175,17 @@ workBoxes__box.forEach((box: Element) => {
 		box.querySelector(".workBoxes__box__images__inner").clientWidth
 	);
 
+	// const workMarque = gsap
+	// 	.to(".workBoxes__box__images__inner", {
+	// 		xPercent: -100,
+	// 		duration: 2,
+	// 		// document.querySelector(".workBoxes__box__images__inner").clientWidth /
+	// 		// 50,
+	// 		repeat: -1,
+	// 		ease: Linear.easeIn,
+	// 	})
+	// 	.totalProgress(0.5);
+
 	boxTl
 		.to(box, {
 			top: 0,
@@ -197,17 +204,17 @@ workBoxes__box.forEach((box: Element) => {
 			},
 			"<"
 		)
-		.to(
-			box.querySelector(".workBoxes__box__images__inner"),
-			{
-				left: 0,
-				delay: 1,
-				duration: 6,
-				stagger: { each: 5, repeatDelay: 2 },
-				ease: Power2.easeOut,
-			},
-			"<"
-		)
+		// .to(
+		// 	box.querySelector(".workBoxes__box__images__inner"),
+		// 	{
+		// 		left: 0,
+		// 		delay: 1,
+		// 		duration: 6,
+		// 		stagger: { each: 5, repeatDelay: 2 },
+		// 		ease: Power2.easeOut,
+		// 	},
+		// 	"<"
+		// )
 		.to(
 			box.querySelector(".workBoxes__box__headerLine"),
 			{
@@ -218,22 +225,22 @@ workBoxes__box.forEach((box: Element) => {
 				ease: Power2.easeOut,
 			},
 			"<"
-		)
-		.to(box.querySelector(".workBoxes__box__images__inner"), {
-			// left: `${
-			// 	box.querySelector(".workBoxes__box__images").clientWidth -
-			// 	box.querySelector(".workBoxes__box__images__inner").clientWidth
-			// }px`,
-			transform: `translateX(${
-				document.documentElement.clientWidth -
-				box.querySelector(".workBoxes__box__images__inner").clientWidth
-			}px)`,
-			// right: 0,
-			delay: 1,
-			duration: 6,
-			stagger: { each: 5, repeatDelay: 2 },
-			ease: Power2.easeOut,
-		});
+		);
+	// .to(box.querySelector(".workBoxes__box__images__inner"), {
+	// 	// left: `${
+	// 	// 	box.querySelector(".workBoxes__box__images").clientWidth -
+	// 	// 	box.querySelector(".workBoxes__box__images__inner").clientWidth
+	// 	// }px`,
+	// 	transform: `translateX(${
+	// 		document.documentElement.clientWidth -
+	// 		box.querySelector(".workBoxes__box__images__inner").clientWidth
+	// 	}px)`,
+	// 	// right: 0,
+	// 	delay: 1,
+	// 	duration: 6,
+	// 	stagger: { each: 5, repeatDelay: 2 },
+	// 	ease: Power2.easeOut,
+	// });
 
 	workTl.add(boxTl);
 });
