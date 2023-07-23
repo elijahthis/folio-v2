@@ -1,5 +1,4 @@
 ---
-import Navigation from "../components/Navigation.astro";
 export interface Props {
 	title: string | Element;
 	className: string;
@@ -10,55 +9,15 @@ const { title, className } = Astro.props;
 
 <main class={`PageLayout ${className}}`}>
 	<slot />
-	<aside class="PageLayout__title">
-		<!-- <h1>{title}</h1> -->
-	</aside>
-
-	<!-- <Navigation /> -->
 </main>
 
 <style lang="scss">
 	@import "../styles/variables";
 
 	.PageLayout {
-		// padding-left: 144px;
 		min-height: 100vh;
 		background-color: $main_dark;
 		position: relative;
 		display: flex;
-
-		&__title {
-			// h1 {
-
-			height: max-content;
-			// background-color: yellow;
-			// width: 100%;
-
-			position: fixed;
-			bottom: 70%;
-			right: 10%;
-			user-select: none;
-
-			transform: rotate(-90deg) translateY(-10%);
-			transform-origin: top right;
-			// z-index: -1;
-
-			// }
-
-			h1 {
-				font-family: "Nexa-Heavy", Arial, sans-serif;
-				font-style: normal;
-				font-weight: 900;
-				font-size: 170px;
-				line-height: 170px;
-				color: rgba($main_light, 0.5);
-				// width: 100%;
-				// height: max-content;
-			}
-		}
-
-		&__rest {
-			z-index: 1;
-		}
 	}
 </style>
