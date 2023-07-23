@@ -1,8 +1,101 @@
 ---
 import FunLink from "../../components/FunLink.astro";
 import PageLayout from "../../layouts/PageLayout.astro";
-import ImageHoverShutter from "../../components/ImageHoverShutter.astro";
 ---
+
+<script>
+	import gsap from "gsap";
+	import { Power2, Power3, Power4, Linear } from "gsap";
+
+	const images = [
+		"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/film%201%20-%20casablanca",
+		"https://i.scdn.co/image/ab67616d0000b273ef257882db8c9f4b078afc98",
+		"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/film%202%20-%20a%20few%20good%20men",
+		"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/film%203%20-%20breaking%20bad",
+		"https://i.scdn.co/image/ab67616d0000b27347cfffa8f1d84c57d613c714",
+		"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/film%204%20-%20there%20will%20be%20blood",
+		"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/film%205%20-%20spirited%20away",
+		"https://i.scdn.co/image/ab67616d0000b2736ca5c90113b30c3c43ffb8f4",
+		"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/film%206%20-%20House%20of%20the%20Dragon",
+		"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/film%207%20-%20The%20Godfather",
+	];
+
+	// amount of pixels mouse must move to generate new tile
+	const cutoff = 64;
+	// maximum number of images that can be on the screen at a time
+	const maxImgCount = 20;
+
+	// store clients X and Y in state
+	let currX: number = 0;
+	let currY: number = 0;
+	let imgCount: number = 0;
+	let currImg: number = 0;
+
+	const pageWrapper = document.querySelector(".MoreMePage");
+
+	const fadeOutFunc = () => {
+		let imgTl = gsap.timeline({ duration: 0.2, delay: 0.2 });
+		imgTl.to(pageWrapper.querySelector(".imgTile"), {
+			opacity: 0,
+			transform: `rotate(0deg) translateX(-50%) translateY(-50%)`,
+			ease: Power2.easeIn,
+
+			onComplete: () => {
+				pageWrapper.removeChild(pageWrapper.querySelector(".imgTile"));
+				imgCount--;
+			},
+		});
+	};
+
+	pageWrapper.addEventListener("mousemove", (e: MouseEvent) => {
+		if (
+			Math.abs(currX - e.clientX) > cutoff ||
+			Math.abs(currY - e.clientY) > cutoff
+		) {
+			if (imgCount > maxImgCount) {
+				fadeOutFunc();
+			}
+
+			const newImg = document.createElement("img");
+			newImg.setAttribute("src", images[currImg]);
+			newImg.classList.add("imgTile");
+
+			pageWrapper.appendChild(newImg);
+
+			currX = e.clientX;
+			currY = e.clientY;
+			imgCount++;
+			currImg = (currImg + 1) % images.length;
+
+			// this timeline makes the images fade in
+			let imgTl = gsap.timeline({ duration: 0.3 });
+			imgTl.fromTo(
+				newImg,
+				{
+					opacity: 0,
+
+					left: `${e.clientX}px`,
+					top: `${e.clientY}px`,
+					transform: `translateX(-50%) translateY(-50%)`,
+				},
+				{
+					// autoAlpha: 1,
+					opacity: 0.7,
+					transform: `rotate(${
+						(e.movementX / window.innerWidth) * 180
+					}deg) translateX(-50%) translateY(-50%)`,
+					ease: Power2.easeOut,
+				}
+			);
+		}
+	});
+
+	setInterval(() => {
+		if (imgCount > 0) {
+			fadeOutFunc();
+		}
+	}, 1000);
+</script>
 
 <PageLayout title="more.me." className="MoreMeWrapper">
 	<div class="MoreMePage">
@@ -24,13 +117,6 @@ import ImageHoverShutter from "../../components/ImageHoverShutter.astro";
 		</div>
 		<div class="MoreMePage__grid3">
 			<div class="MoreMePage__p2">
-				<!-- <ImageHoverShutter images={[film1]}>
-					<p>I watch movies.<br /></p>
-				</ImageHoverShutter>
-				<ImageHoverShutter images={[film2]}>
-					I listen to <FunLink href="/">music</FunLink>. <br />
-				</ImageHoverShutter> -->
-
 				<div class="MoreMe__row--left">
 					<span>I watch movies.<br /></span>
 				</div>
@@ -76,6 +162,11 @@ import ImageHoverShutter from "../../components/ImageHoverShutter.astro";
 		display: grid;
 		grid-template-rows: repeat(3, 1fr);
 		width: 100%;
+		position: relative;
+
+		* {
+			z-index: 2;
+		}
 
 		p {
 			color: $main-light;
@@ -109,6 +200,14 @@ import ImageHoverShutter from "../../components/ImageHoverShutter.astro";
 			& > span {
 				display: block;
 			}
+		}
+
+		.imgTile {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			width: 300px;
+			height: 300px;
 		}
 	}
 </style>

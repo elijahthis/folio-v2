@@ -84,12 +84,11 @@ const homeMarque = gsap
 	.to(".HomeIntro__top__inner > div", {
 		xPercent: -100,
 		duration:
-			document.querySelector(".HomeIntro__top__inner").clientWidth / 300,
+			document.querySelector(".HomeIntro__top__inner").clientWidth / 200,
 		repeat: -1,
 		ease: Linear.easeIn,
 	})
 	.totalProgress(0.5);
-// homeMarque.pause();
 
 const homeTl = gsap.timeline({
 	scrollTrigger: {
@@ -170,7 +169,7 @@ const workMarque = gsap
 		xPercent: -50,
 		duration:
 			document.querySelector(".workBoxes__box__images__inner").clientWidth /
-			200,
+			100,
 		repeat: -1,
 		ease: Linear.easeIn,
 	})
@@ -226,54 +225,10 @@ workBoxes__box.forEach((box: Element) => {
 			},
 			"<"
 		);
-	// .to(box.querySelector(".workBoxes__box__images__inner"), {
-	// 	// left: `${
-	// 	// 	box.querySelector(".workBoxes__box__images").clientWidth -
-	// 	// 	box.querySelector(".workBoxes__box__images__inner").clientWidth
-	// 	// }px`,
-	// 	transform: `translateX(${
-	// 		document.documentElement.clientWidth -
-	// 		box.querySelector(".workBoxes__box__images__inner").clientWidth
-	// 	}px)`,
-	// 	// right: 0,
-	// 	delay: 1,
-	// 	duration: 6,
-	// 	stagger: { each: 5, repeatDelay: 2 },
-	// 	ease: Power2.easeOut,
-	// });
 
 	workTl.add(boxTl);
 });
 
-// workTl
-// 	.to(".workBoxes__box", {
-// 		top: 0,
-// 		duration: 5,
-// 		stagger: 5,
-// 		ease: Power2.easeOut,
-// 	})
-// 	.to(
-// 		".workBoxes__box h3",
-// 		{
-// 			fontSize: "80px",
-// 			lineHeight: "80px",
-// 			duration: 5,
-// 			stagger: { each: 5, repeatDelay: 2 },
-// 			ease: Power2.easeOut,
-// 		},
-// 		"<"
-// 	)
-// 	.to(
-// 		".workBoxes__box__headerLine",
-// 		{
-// 			width: "100%",
-// 			delay: 1,
-// 			duration: 4,
-// 			stagger: { each: 5, repeatDelay: 2 },
-// 			ease: Power2.easeOut,
-// 		},
-// 		"<"
-// 	);
 /* ------------------------------------------ */
 
 /* -------- More Me Intro animation ---------- */
@@ -281,32 +236,6 @@ introAnimation(".MoreMeIntro");
 /* ------------------------------------------ */
 
 /* -------- More Me animation ---------- */
-
-// const moreMeTl = gsap.timeline();
-
-// moreMeTl
-// 	.fromTo(
-// 		".MoreMe__row--left > span",
-// 		{ xPercent: 150 },
-// 		{
-// 			xPercent: 0,
-// 			stagger: 0.1,
-// 			ease: Power3.easeIn,
-// 			delay: 0,
-// 			duration: 4,
-// 		}
-// 	)
-// 	.addPause(8);
-
-// ScrollTrigger.create({
-// 	trigger: ".MoreMePage",
-// 	start: "top top",
-// 	pin: true,
-// 	end: () => "+=" + moreMeTl.duration() * 100, // Pin until the timeline animation completes
-// 	scrub: false,
-// 	markers: true,
-// 	animation: moreMeTl,
-// });
 
 /* ------------------------------------------ */
 
