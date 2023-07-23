@@ -165,6 +165,17 @@ const workBoxes__box = gsap.utils.toArray(".workBoxes__box");
 
 console.log("workBoxes__box", workBoxes__box);
 
+const workMarque = gsap
+	.to(".workBoxes__box__images__inner", {
+		xPercent: -50,
+		duration:
+			document.querySelector(".workBoxes__box__images__inner").clientWidth /
+			200,
+		repeat: -1,
+		ease: Linear.easeIn,
+	})
+	.totalProgress(0.5);
+
 workBoxes__box.forEach((box: Element) => {
 	const boxTl = gsap.timeline();
 
@@ -174,17 +185,6 @@ workBoxes__box.forEach((box: Element) => {
 		box.querySelector(".workBoxes__box__images").clientWidth,
 		box.querySelector(".workBoxes__box__images__inner").clientWidth
 	);
-
-	// const workMarque = gsap
-	// 	.to(".workBoxes__box__images__inner", {
-	// 		xPercent: -100,
-	// 		duration: 2,
-	// 		// document.querySelector(".workBoxes__box__images__inner").clientWidth /
-	// 		// 50,
-	// 		repeat: -1,
-	// 		ease: Linear.easeIn,
-	// 	})
-	// 	.totalProgress(0.5);
 
 	boxTl
 		.to(box, {
@@ -204,17 +204,17 @@ workBoxes__box.forEach((box: Element) => {
 			},
 			"<"
 		)
-		// .to(
-		// 	box.querySelector(".workBoxes__box__images__inner"),
-		// 	{
-		// 		left: 0,
-		// 		delay: 1,
-		// 		duration: 6,
-		// 		stagger: { each: 5, repeatDelay: 2 },
-		// 		ease: Power2.easeOut,
-		// 	},
-		// 	"<"
-		// )
+		.to(
+			box.querySelector(".workBoxes__box__images__inner > div"),
+			{
+				xPercent: -20,
+				delay: 1,
+				duration: 6,
+				stagger: { each: 5, repeatDelay: 2 },
+				ease: Power2.easeOut,
+			},
+			"<"
+		)
 		.to(
 			box.querySelector(".workBoxes__box__headerLine"),
 			{

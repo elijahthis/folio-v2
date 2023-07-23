@@ -65,11 +65,12 @@ const workList = [
 							<div class="workBoxes__box__images">
 								<div class="workBoxes__box__images__inner">
 									<div>
-										{[...workItem.images, ...workItem.images].map(
-											(imageItem) => (
-												<img src={imageItem} alt="" />
-											)
-										)}
+										{[
+											...workItem.images,
+											...workItem.images
+										].map((imageItem) => (
+											<img src={imageItem} alt="" />
+										))}
 									</div>
 								</div>
 							</div>
@@ -164,7 +165,7 @@ const workList = [
 				}
 
 				&__images {
-					// width: 100%;
+					width: 100%;
 					height: calc(66vh - 112px);
 					background: #000000;
 					// margin-top: 1rem;
@@ -178,6 +179,7 @@ const workList = [
 
 					&__inner {
 						height: 100%;
+						width: max-content;
 
 						// position: absolute;
 						// left: 100%;
