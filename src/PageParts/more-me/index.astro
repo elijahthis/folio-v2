@@ -33,7 +33,46 @@ import PageLayout from "../../layouts/PageLayout.astro";
 
 	const pageWrapper = document.querySelector(".MoreMePage");
 
+	const createImageFunc = (e: MouseEvent) => {
+		// creates an image element and appends it to the MoreMePage
+
+		const newImgWrap = document.createElement("img");
+		newImgWrap.setAttribute("src", images[currImg]);
+		newImgWrap.classList.add("imgTile");
+
+		pageWrapper.appendChild(newImgWrap);
+
+		currX = e.clientX;
+		currY = e.clientY;
+		imgCount++;
+		currImg = (currImg + 1) % images.length;
+
+		// this timeline makes the images fade in
+		let imgTl = gsap.timeline({ duration: 0.3 });
+		imgTl.fromTo(
+			newImgWrap,
+			{
+				opacity: 0,
+
+				left: `${e.clientX}px`,
+				top: `${e.clientY}px`,
+				transform: `translateX(-50%) translateY(-50%)`,
+			},
+			{
+				// autoAlpha: 1,
+				opacity: 0.7,
+				transform: `rotate(${
+					(e.movementX / window.innerWidth) * 180
+				}deg) translateX(-50%) translateY(-50%)`,
+				ease: Power2.easeOut,
+			}
+		);
+	};
+
 	const fadeOutFunc = () => {
+		// fades the image at the top of MoreMePage before removing it from the DOM
+		// FIFO (First in, First Out) style
+
 		let imgTl = gsap.timeline({ duration: 0.2, delay: 0.2 });
 		imgTl.to(pageWrapper.querySelector(".imgTile"), {
 			opacity: 0,
@@ -47,6 +86,10 @@ import PageLayout from "../../layouts/PageLayout.astro";
 		});
 	};
 
+	pageWrapper.addEventListener("mouseenter", (e: MouseEvent) => {
+		createImageFunc(e);
+	});
+
 	pageWrapper.addEventListener("mousemove", (e: MouseEvent) => {
 		if (
 			Math.abs(currX - e.clientX) > cutoff ||
@@ -56,41 +99,12 @@ import PageLayout from "../../layouts/PageLayout.astro";
 				fadeOutFunc();
 			}
 
-			const newImg = document.createElement("img");
-			newImg.setAttribute("src", images[currImg]);
-			newImg.classList.add("imgTile");
-
-			pageWrapper.appendChild(newImg);
-
-			currX = e.clientX;
-			currY = e.clientY;
-			imgCount++;
-			currImg = (currImg + 1) % images.length;
-
-			// this timeline makes the images fade in
-			let imgTl = gsap.timeline({ duration: 0.3 });
-			imgTl.fromTo(
-				newImg,
-				{
-					opacity: 0,
-
-					left: `${e.clientX}px`,
-					top: `${e.clientY}px`,
-					transform: `translateX(-50%) translateY(-50%)`,
-				},
-				{
-					// autoAlpha: 1,
-					opacity: 0.7,
-					transform: `rotate(${
-						(e.movementX / window.innerWidth) * 180
-					}deg) translateX(-50%) translateY(-50%)`,
-					ease: Power2.easeOut,
-				}
-			);
+			createImageFunc(e);
 		}
 	});
 
 	setInterval(() => {
+		// removes the first image to be added to MoreMePage, from the DOM, every second. Again, FIFO style
 		if (imgCount > 0) {
 			fadeOutFunc();
 		}

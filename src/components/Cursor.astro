@@ -3,28 +3,34 @@ import ImageCursorCarousel from "./ImageCursorCarousel.astro";
 ---
 
 <script>
+	import { isSafari } from "../helperFuncs";
+
 	const cursor = document.querySelector(".Cursor");
 
-	document.addEventListener("mouseover", (e) => {
-		cursor.setAttribute(
-			"style",
-			`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
-		);
-	});
+	if (!isSafari()) {
+		document.addEventListener("mouseover", (e) => {
+			cursor.setAttribute(
+				"style",
+				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
+			);
+		});
 
-	document.addEventListener("mousemove", (e) => {
-		cursor.setAttribute(
-			"style",
-			`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0);`
-		);
-	});
+		document.addEventListener("mousemove", (e) => {
+			cursor.setAttribute(
+				"style",
+				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0);`
+			);
+		});
 
-	document.addEventListener("click", (e) => {
-		cursor.classList.add("Cursor--expand");
-		setTimeout(() => {
-			cursor.classList.remove("Cursor--expand");
-		}, 300);
-	});
+		document.addEventListener("click", (e) => {
+			cursor.classList.add("Cursor--expand");
+			setTimeout(() => {
+				cursor.classList.remove("Cursor--expand");
+			}, 300);
+		});
+	} else {
+		cursor.setAttribute("style", "display: none;");
+	}
 </script>
 
 <div class="Cursor">
