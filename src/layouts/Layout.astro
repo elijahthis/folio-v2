@@ -34,6 +34,22 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<script src="../animations/timeline-animations.ts"></script>
+		<script>
+			function isSafari() {
+				return (
+					(!!window.ApplePaySetupFeature || !!window.safari) &&
+					agentHas("Safari") &&
+					!agentHas("Chrome") &&
+					!agentHas("CriOS")
+				);
+			}
+
+			// hide custom cursor if the user is using Safari. Cos Safari is annoying.
+			if (!isSafari()) {
+				console.log("document", document);
+				document.body.setAttribute("style", "cursor: none;");
+			}
+		</script>
 	</head>
 	<body>
 		<div id="smooth-wrapper">
@@ -83,9 +99,12 @@ const { title } = Astro.props;
 		html {
 			font-family: "Nexa Regular", Arial, sans-serif;
 			background-color: #ffffff;
-			cursor: none;
+			// cursor: none;
 
 			scroll-behavior: smooth;
+
+			body {
+			}
 		}
 
 		*::selection {

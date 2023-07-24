@@ -5,22 +5,28 @@ export interface Props {}
 <div class="Cursor2"></div>
 
 <script>
+	import { isSafari } from "../helperFuncs";
+
 	const cursor = document.querySelector(".Cursor2");
 
-	document.addEventListener("mouseover", (e) => {
-		console.log(e);
-		cursor.setAttribute(
-			"style",
-			`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
-		);
-	});
+	if (!isSafari()) {
+		document.addEventListener("mouseover", (e) => {
+			console.log(e);
+			cursor.setAttribute(
+				"style",
+				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
+			);
+		});
 
-	document.addEventListener("mousemove", (e) => {
-		cursor.setAttribute(
-			"style",
-			`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0);`
-		);
-	});
+		document.addEventListener("mousemove", (e) => {
+			cursor.setAttribute(
+				"style",
+				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0);`
+			);
+		});
+	} else {
+		cursor.setAttribute("style", "display: none;");
+	}
 </script>
 
 <style lang="scss">
