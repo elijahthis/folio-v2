@@ -21,8 +21,8 @@ export const introAnimation = (classItem: string) => {
 
 	ScrollTrigger.create({
 		trigger: classItem,
-		start: "top top",
-		pin: true,
+		start: "top 40%",
+		pin: false,
 		end: () => "+=" + introTl.duration() * 100, // Pin until the timeline animation completes
 		scrub: false,
 		// markers: true,
