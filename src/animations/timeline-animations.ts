@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 const lenis = new Lenis({
 	// duration: 1.2,
 	// easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-	lerp: 0.1,
+	lerp: 0.03,
 });
 
 function raf(time: number) {
@@ -90,6 +90,7 @@ const homeTl = gsap.timeline({
 	scrollTrigger: {
 		trigger: ".HomeIntroWrap",
 		pin: true,
+		// start: "bottom 98%",
 		end: `+=${innerHeight * 1}`,
 		scrub: 1,
 		// markers: true,
@@ -97,12 +98,12 @@ const homeTl = gsap.timeline({
 });
 
 homeTl
-	.to(mySplitName.words, {
-		xPercent: -150,
+	.to(".HomeIntro__top__inner > div > div", {
+		xPercent: -200,
 		// stagger: 0.1,
 		ease: Power3.easeIn,
 		delay: 0,
-		duration: 2,
+		duration: 1.5,
 	})
 	.to(
 		mySplitDesc.lines,
@@ -111,18 +112,18 @@ homeTl
 			stagger: 0.1,
 			ease: Power3.easeIn,
 			delay: 0,
-			duration: 2,
+			duration: 1.5,
 		},
 		"<"
 	)
 	.to(
-		".HomeIntro__top__inner > div > div",
+		mySplitName.words,
 		{
 			xPercent: -150,
 			// stagger: 0.1,
 			ease: Power3.easeIn,
 			delay: 0,
-			duration: 2,
+			duration: 3,
 		},
 		"<"
 	)
@@ -164,8 +165,7 @@ const workMarque = gsap
 	.to(".workBoxes__box__images__inner", {
 		xPercent: -50,
 		duration:
-			document.querySelector(".workBoxes__box__images__inner").clientWidth /
-			100,
+			document.querySelector(".workBoxes__box__images__inner").clientWidth / 50,
 		repeat: -1,
 		ease: Linear.easeIn,
 	})
@@ -205,17 +205,6 @@ workBoxes__box.forEach((box: Element) => {
 				xPercent: -20,
 				delay: 1,
 				duration: 6,
-				stagger: { each: 5, repeatDelay: 2 },
-				ease: Power2.easeOut,
-			},
-			"<"
-		)
-		.to(
-			box.querySelector(".workBoxes__box__headerLine"),
-			{
-				width: "100%",
-				delay: 1,
-				duration: 4,
 				stagger: { each: 5, repeatDelay: 2 },
 				ease: Power2.easeOut,
 			},

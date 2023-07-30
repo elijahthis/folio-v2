@@ -6,7 +6,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
 const workList = [
 	{
 		title: "Kardinal",
-		desc: "Bring everyone together for work by reimagining how they travel, connect, and collaborate. We help businesses create unique, engaging experiences for employees, clients, and partners that drive productivity and connection.",
+		desc: "Book and manage flights, car trips and other experiences for your business. Bring everyone together for work by reimagining how they travel, connect, and collaborate.",
 		link: "https://gokardinal.com",
 		images: [
 			"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/kardinal-1",
@@ -19,7 +19,7 @@ const workList = [
 	},
 	{
 		title: "Knight Ventures",
-		desc: "Bring everyone together for work by reimagining how they travel, connect, and collaborate. We help businesses create unique, engaging experiences for employees, clients, and partners that drive productivity and connection.",
+		desc: "Knight Ventures is a Pan Africa Digital Accelerator providing a platform to connect startups, mentors and Investors. We have a mission to develop 100 high-growth tech enabled startups to scale and success.",
 		link: "https://knight.ventures",
 		images: [
 			"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/kv-1",
@@ -30,7 +30,7 @@ const workList = [
 	},
 	{
 		title: "Yeve",
-		desc: "Bring everyone together for work by reimagining how they travel, connect, and collaborate. We help businesses create unique, engaging experiences for employees, clients, and partners that drive productivity and connection.",
+		desc: "From extravagant, large-scale parties to small, intimate celebrations- plan, track and execute unforgettable events and experiences by connecting with leading talents and service providers on the Yeve platform.",
 		link: "https://yeve.co.uk",
 		images: [
 			"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/yeve-1",
@@ -60,25 +60,25 @@ const workList = [
 							</div>
 							{workItem.title}
 						</h3>
-						<div class="workBoxes__box__headerLine" />
 						<div class="flexCenter">
 							<div class="workBoxes__box__images">
 								<div class="workBoxes__box__images__inner">
 									<div>
-										{[
-											...workItem.images,
-											...workItem.images
-										].map((imageItem) => (
-											<img src={imageItem} alt="" />
-										))}
+										{[...workItem.images, ...workItem.images].map(
+											(imageItem) => (
+												<img src={imageItem} alt="" />
+											)
+										)}
 									</div>
 								</div>
 							</div>
-							<p>{workItem.desc}</p>
-							<Button
-								onClick={`window.open('${workItem.link}', '_blank')`}
-								label="View Live"
-							/>
+							<p class="flexCenter__desc">{workItem.desc}</p>
+							<div>
+								<!-- <Button 
+									 onClick={`window.open('${workItem.link}', '_blank')`}
+									label="View Live"
+								 /> -->
+							</div>
 						</div>
 					</div>
 				))
@@ -103,9 +103,9 @@ const workList = [
 			// overflow-y: hidden;
 			position: relative;
 
-			& > :nth-child(even) {
-				background-color: $tertiary_col;
-			}
+			// & > :nth-child(even) {
+			// 	background-color: $tertiary_col;
+			// }
 
 			&__box {
 				width: 100vw;
@@ -121,24 +121,24 @@ const workList = [
 				// padding: 1rem;
 
 				h3 {
-					font-size: 200px;
-					line-height: 200px;
+					font-size: 140px;
+					line-height: 140px;
 					text-align: center;
-					padding: 0.5rem 0;
+					padding: 0.5rem 100px;
 					padding-top: 1.5rem;
 					position: relative;
+					text-align: right;
+
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					gap: 1rem;
+					justify-content: space-between;
 
 					.workCount {
 						font-weight: 400;
 						font-size: 50px;
 						line-height: 64px;
-
-						position: absolute;
-						left: 100px;
-						transform: translateX(-100%);
-
-						display: flex;
-						flex-direction: row;
 
 						& > span {
 							margin: auto 0;
@@ -146,21 +146,21 @@ const workList = [
 					}
 				}
 
-				&__headerLine {
-					border-bottom: 1px solid;
-					width: 0;
-				}
-
 				.flexCenter {
 					display: flex;
 					flex-direction: column;
-					align-items: center;
+					align-items: stretch;
 					// gap: 60px;
 
-					& > p {
+					&__desc {
 						margin-top: 50px;
 						margin-bottom: 30px;
 						padding: 0 100px;
+						text-align: left;
+						width: 50vw;
+
+						font-size: 1.2rem;
+						font-weight: 600;
 					}
 				}
 
