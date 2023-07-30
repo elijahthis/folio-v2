@@ -8,17 +8,10 @@ import ImageCursorCarousel from "./ImageCursorCarousel.astro";
 	const cursor = document.querySelector(".Cursor");
 
 	if (!isSafari()) {
-		document.addEventListener("mouseover", (e) => {
-			cursor.setAttribute(
-				"style",
-				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
-			);
-		});
-
 		document.addEventListener("mousemove", (e) => {
 			cursor.setAttribute(
 				"style",
-				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0);`
+				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0); display: grid;`
 			);
 		});
 
@@ -81,7 +74,7 @@ import ImageCursorCarousel from "./ImageCursorCarousel.astro";
 		position: fixed;
 		top: 0;
 
-		display: grid;
+		display: none;
 		place-items: center;
 		transition: all 0.35s ease-out;
 		// animation: cursorAnimation 0.5s infinite alternate;

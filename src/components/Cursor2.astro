@@ -10,18 +10,10 @@ export interface Props {}
 	const cursor = document.querySelector(".Cursor2");
 
 	if (!isSafari()) {
-		document.addEventListener("mouseover", (e) => {
-			console.log(e);
-			cursor.setAttribute(
-				"style",
-				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`
-			);
-		});
-
 		document.addEventListener("mousemove", (e) => {
 			cursor.setAttribute(
 				"style",
-				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0);`
+				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0); display: grid;`
 			);
 		});
 	} else {
@@ -51,7 +43,7 @@ export interface Props {}
 		position: fixed;
 		top: 0;
 
-		display: grid;
+		display: none;
 		place-items: center;
 		transition: all 0.05s ease-out;
 		// animation: cursorAnimation 5s infinite alternate;
