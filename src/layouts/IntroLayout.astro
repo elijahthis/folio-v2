@@ -37,4 +37,21 @@ const { title, className } = Astro.props;
 			-webkit-text-stroke-color: $main_light;
 		}
 	}
+
+	@media screen and (max-width: 768px) {
+		.IntroLayout {
+			height: 100vh;
+
+			padding: 0 1.5rem;
+
+			// position: absolute;
+			// top: 100%;
+
+			h1 {
+				font-weight: 900;
+				font-size: clamp(68px, 19vw, 170px);
+				line-height: clamp(68px, 19vw, 170px);
+			}
+		}
+	}
 </style>

@@ -103,16 +103,16 @@ homeTl
 		// stagger: 0.1,
 		ease: Power3.easeIn,
 		delay: 0,
-		duration: 1.5,
+		duration: 0.75,
 	})
 	.to(
-		mySplitDesc.lines,
+		".rightDesc p",
 		{
 			xPercent: -150,
 			stagger: 0.1,
 			ease: Power3.easeIn,
 			delay: 0,
-			duration: 1.5,
+			duration: 0.85,
 		},
 		"<"
 	)
@@ -123,7 +123,7 @@ homeTl
 			// stagger: 0.1,
 			ease: Power3.easeIn,
 			delay: 0,
-			duration: 3,
+			duration: 1.5,
 		},
 		"<"
 	)
@@ -134,7 +134,7 @@ homeTl
 			stagger: 0.25,
 			ease: Power3.easeIn,
 			delay: 0,
-			duration: 1,
+			duration: 0.5,
 		},
 		"<"
 	);
@@ -191,8 +191,9 @@ workBoxes__box.forEach((box: Element) => {
 		.to(
 			box.querySelector(".workBoxes__box h3"),
 			{
-				fontSize: "80px",
-				lineHeight: "80px",
+				fontSize: document.documentElement.clientWidth > 780 ? "80px" : "2rem",
+				lineHeight:
+					document.documentElement.clientWidth > 780 ? "80px" : "2rem",
 				duration: 5,
 				stagger: { each: 5, repeatDelay: 2 },
 				ease: Power2.easeOut,

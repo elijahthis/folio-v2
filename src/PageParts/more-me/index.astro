@@ -136,7 +136,11 @@ import PageLayout from "../../layouts/PageLayout.astro";
 				</div>
 				<div class="MoreMe__row--left">
 					<span>
-						I listen to <FunLink href="/">music</FunLink>.<br />
+						I listen to <FunLink
+							href="https://open.spotify.com/user/31p52rv5epdsuj3iszx4ykknme7q"
+						>
+							music
+						</FunLink>.<br />
 					</span>
 				</div>
 			</div>
@@ -177,6 +181,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
 		grid-template-rows: repeat(3, 1fr);
 		width: 100%;
 		position: relative;
+		overflow: hidden;
 
 		* {
 			z-index: 2;
@@ -222,6 +227,30 @@ import PageLayout from "../../layouts/PageLayout.astro";
 			left: 10px;
 			width: 300px;
 			height: 300px;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		.MoreMePage {
+			&__grid2 {
+				padding-left: 1.5rem;
+			}
+
+			&__grid3 {
+				padding-right: unset;
+				padding-left: 1.5rem;
+				* {
+					text-align: left;
+				}
+			}
+
+			.imgTile {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				width: 300px;
+				height: 300px;
+			}
 		}
 	}
 </style>
