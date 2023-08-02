@@ -154,7 +154,7 @@ const workTl = gsap.timeline({
 		pin: true,
 		end: `+=600%`,
 		scrub: 1,
-		markers: true,
+		// markers: true,
 	},
 });
 
