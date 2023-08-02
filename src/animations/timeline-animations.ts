@@ -80,7 +80,8 @@ const homeMarque = gsap
 	.to(".HomeIntro__top__inner > div", {
 		xPercent: -100,
 		duration:
-			document.querySelector(".HomeIntro__top__inner").clientWidth / 200,
+			document.querySelector(".HomeIntro__top__inner").clientWidth /
+			(document.documentElement.clientWidth > 780 ? 100 : 50),
 		repeat: -1,
 		ease: Linear.easeIn,
 	})
@@ -153,7 +154,7 @@ const workTl = gsap.timeline({
 		pin: true,
 		end: `+=600%`,
 		scrub: 1,
-		// markers: true,
+		markers: true,
 	},
 });
 
