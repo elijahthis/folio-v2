@@ -41,6 +41,12 @@ const { title } = Astro.props;
 
 		<script src="../animations/timeline-animations.ts"></script>
 		<script>
+			function agentHas(keyword) {
+				return (
+					navigator.userAgent.toLowerCase().search(keyword.toLowerCase()) > -1
+				);
+			}
+
 			function isSafari() {
 				return (
 					(!!window.ApplePaySetupFeature || !!window.safari) &&
