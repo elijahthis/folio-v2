@@ -14,6 +14,7 @@ export const introAnimation = (classItem: string) => {
 		.to(splitIntro.chars, {
 			color: "transparent",
 			"-webkit-text-stroke-color": "#c92c6d",
+			"-webkit-text-stroke-width": "0.8px",
 			stagger: 0.05,
 			ease: Power2.easeOut,
 		})
