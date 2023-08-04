@@ -11,7 +11,7 @@ import ImageCursorCarousel from "./ImageCursorCarousel.astro";
 		document.addEventListener("mousemove", (e) => {
 			cursor.setAttribute(
 				"style",
-				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0) scaleX(1.12); display: grid;`
+				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0); display: grid;`
 			);
 		});
 

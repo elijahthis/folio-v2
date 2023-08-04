@@ -209,17 +209,21 @@ const workBoxes__box = gsap.utils.toArray(".workBoxes__box");
 
 console.log("workBoxes__box", workBoxes__box);
 
-const workMarque = gsap
-	.to(".workBoxes__box__images__inner", {
-		xPercent: -50,
-		duration:
-			document.querySelector(".workBoxes__box__images__inner").clientWidth / 50,
-		repeat: -1,
-		ease: Linear.easeIn,
-	})
-	.totalProgress(0.5);
+// remember to update this array when adding new work boxes
+const workWidths = [7268, 4840, 12124];
 
 workBoxes__box.forEach((box: Element, ind: number) => {
+	// work images marquee
+	const workMarque = gsap
+		.to(box.querySelector(".workBoxes__box__images__inner"), {
+			xPercent: -50,
+			duration: workWidths[ind] / 50,
+			repeat: -1,
+			ease: Linear.easeIn,
+		})
+		.totalProgress(0.5);
+
+	// work box animation timeline
 	const boxTl = gsap.timeline();
 
 	const splitWorkDesc = new SplitType(
@@ -237,24 +241,38 @@ workBoxes__box.forEach((box: Element, ind: number) => {
 			ease: Power2.easeOut,
 		})
 		.to(
-			box.querySelector(".workBoxes__box h3"),
-			{
-				fontSize: document.documentElement.clientWidth > 780 ? "80px" : "2rem",
-				lineHeight:
-					document.documentElement.clientWidth > 780 ? "80px" : "2rem",
-				duration: 5,
-				stagger: { each: 5, repeatDelay: 2 },
-				ease: Power2.easeOut,
-			},
-			"<"
-		)
-		.to(
 			box.querySelector(".workBoxes__box__images__inner > div"),
 			{
 				xPercent: -20,
 				delay: 1,
 				duration: 6,
 				stagger: { each: 5, repeatDelay: 2 },
+				ease: Power2.easeOut,
+			},
+			"<"
+		)
+		.fromTo(
+			box.querySelector(".workBoxes__box__top > .workCount"),
+			{ yPercent: 100, opacity: 0 },
+			{
+				yPercent: 0,
+				opacity: 1,
+				delay: 1,
+				duration: 2,
+				// stagger: 0.75,
+				ease: Power2.easeOut,
+			},
+			"<"
+		)
+		.fromTo(
+			box.querySelector(".workBoxes__box__top > h3"),
+			{ yPercent: 100, opacity: 0 },
+			{
+				yPercent: 0,
+				opacity: 1,
+				delay: 3,
+				duration: 4,
+				// stagger: 0.75,
 				ease: Power2.easeOut,
 			},
 			"<"

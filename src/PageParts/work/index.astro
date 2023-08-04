@@ -57,12 +57,12 @@ const workList = [
 						class={`workBoxes__box workBoxes__box${ind + 1}`}
 						id={ind === 0 && "work"}
 					>
-						<h3>
+						<div class="workBoxes__box__top">
 							<div class="workCount">
 								<span>#{ind + 1}</span>
 							</div>
-							{workItem.title}
-						</h3>
+							<h3>{workItem.title}</h3>
+						</div>
 						<div class="flexCenter">
 							<div class="workBoxes__box__images">
 								<div class="workBoxes__box__images__inner">
@@ -126,25 +126,28 @@ const workList = [
 				text-align: center;
 				// padding: 1rem;
 
-				h3 {
-					font-size: 140px;
-					line-height: 140px;
-					text-align: center;
-					padding: 0.5rem $horizontal-padding;
-					padding-top: 1.5rem;
-					position: relative;
-					text-align: right;
-
+				&__top {
 					display: flex;
 					flex-direction: row;
 					align-items: center;
 					gap: 1rem;
 					justify-content: space-between;
+					padding: 0.5rem $horizontal-padding;
+					padding-top: 1.5rem;
+					overflow-y: hidden;
+
+					h3 {
+						font-size: 80px;
+						line-height: 80px;
+						position: relative;
+						text-align: right;
+					}
 
 					.workCount {
 						font-weight: 400;
 						font-size: 50px;
 						line-height: 64px;
+						text-align: left;
 
 						& > span {
 							margin: auto 0;
@@ -252,8 +255,8 @@ const workList = [
 					// padding: 1rem;
 
 					h3 {
-						font-size: 3rem;
-						line-height: 3rem;
+						font-size: 2rem;
+						line-height: 2rem;
 						padding: 0.5rem $horizontal-padding-mobile;
 						padding-top: 1rem;
 
