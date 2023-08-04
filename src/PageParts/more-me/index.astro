@@ -4,8 +4,8 @@ import PageLayout from "../../layouts/PageLayout.astro";
 ---
 
 <script>
-	import gsap from "gsap";
-	import { Power2 } from "gsap";
+	import gsap, { Power2 } from "gsap";
+	import { ScrollTrigger } from "gsap/all";
 
 	const images = [
 		"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/film%201%20-%20casablanca",
@@ -109,6 +109,27 @@ import PageLayout from "../../layouts/PageLayout.astro";
 			fadeOutFunc();
 		}
 	}, 1000);
+
+	// just so they know there's some interactivity here
+	ScrollTrigger.create({
+		trigger: ".MoreMePage",
+		start: "top 25%",
+		end: `+=${innerHeight * 1}`,
+		scrub: 1,
+		// markers: true,
+		onEnter: () => {
+			// console.log("enter");
+			createImageFunc(
+				new MouseEvent("mouseenter", { clientX: 200, clientY: 200 })
+			);
+			createImageFunc(
+				new MouseEvent("mouseenter", { clientX: 800, clientY: 300 })
+			);
+			createImageFunc(
+				new MouseEvent("mouseenter", { clientX: 400, clientY: 400 })
+			);
+		},
+	});
 </script>
 
 <PageLayout title="more.me." className="MoreMeWrapper">

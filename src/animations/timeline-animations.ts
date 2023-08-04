@@ -95,6 +95,31 @@ const homeTl = gsap.timeline({
 		end: `+=${innerHeight * 1}`,
 		scrub: 1,
 		// markers: true,
+		onUpdate({ getVelocity }) {
+			// tilt the animated text to simulate realistic motion
+			gsap.fromTo(
+				".HomeIntro__top__inner > div > div, .rightDesc p",
+				{
+					skewX: `${-getVelocity() / 50}deg`,
+					duration: 0.2,
+				},
+				{
+					skewX: 0,
+					duration: 0.2,
+				}
+			);
+			gsap.fromTo(
+				mySplitName.words,
+				{
+					skewX: `${-getVelocity() / 200}deg`,
+					duration: 0.5,
+				},
+				{
+					skewX: 0,
+					duration: 0.5,
+				}
+			);
+		},
 	},
 });
 
@@ -155,6 +180,20 @@ const workTl = gsap.timeline({
 		end: `+=600%`,
 		scrub: 1,
 		// markers: true,
+		onUpdate({ getVelocity }) {
+			// tilt the animated images to simulate realistic motion
+			gsap.fromTo(
+				".workBoxes__box__images__inner > div > img",
+				{
+					skewX: `${-getVelocity() / 300}deg`,
+					duration: 0.2,
+				},
+				{
+					skewX: 0,
+					duration: 0.2,
+				}
+			);
+		},
 	},
 });
 
@@ -175,12 +214,12 @@ const workMarque = gsap
 workBoxes__box.forEach((box: Element) => {
 	const boxTl = gsap.timeline();
 
-	console.log(
-		"boxx",
-		box.querySelector(".workBoxes__box__images__inner"),
-		box.querySelector(".workBoxes__box__images").clientWidth,
-		box.querySelector(".workBoxes__box__images__inner").clientWidth
-	);
+	// console.log(
+	// 	"boxx",
+	// 	box.querySelector(".workBoxes__box__images__inner"),
+	// 	box.querySelector(".workBoxes__box__images").clientWidth,
+	// 	box.querySelector(".workBoxes__box__images__inner").clientWidth
+	// );
 
 	boxTl
 		.to(box, {

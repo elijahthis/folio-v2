@@ -16,30 +16,32 @@ const titleList = [
 <main class="HomeIntroWrap">
 	<div class="HomeIntro">
 		<!-- View 01 -->
-		<div class="HomeIntro__top">
-			<div class="HomeIntro__top__inner">
-				<div>
+		<div class="HomeIntro__topWrap">
+			<div class="HomeIntro__top">
+				<div class="HomeIntro__top__inner">
 					<div>
-						{
-							titleList.map((title) => (
-								<>
-									<span>{title}</span>
-									<span>•</span>
-								</>
-							))
-						}
+						<div>
+							{
+								titleList.map((title) => (
+									<>
+										<span>{title}</span>
+										<span>•</span>
+									</>
+								))
+							}
+						</div>
 					</div>
-				</div>
-				<div>
 					<div>
-						{
-							titleList.map((title) => (
-								<>
-									<span>{title}</span>
-									<span>•</span>
-								</>
-							))
-						}
+						<div>
+							{
+								titleList.map((title) => (
+									<>
+										<span>{title}</span>
+										<span>•</span>
+									</>
+								))
+							}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -55,10 +57,10 @@ const titleList = [
 		</div>
 		<div class="HomeIntro__bottom">
 			<div class="rightDesc">
-				<p>I’m a software engineer that works with other talented</p>
-				<p>people to build cool things. I love when they’re beautiful.</p>
-				<p>Bonus points if they work seamlessly.</p>
-				<p>Read more</p>
+				<p>I’m a software engineer that collaborates with other</p>
+				<p>uber-talented creatives and select open-minded</p>
+				<p>brands to craft beautiful things.</p>
+				<p>What do I offer?</p>
 				<!-- <FunLink href="/about" >Learn more</FunLink> -->
 			</div>
 			<div class="scrollLink">
@@ -91,7 +93,7 @@ const titleList = [
 		&__bigHeader {
 			margin: auto 0;
 			padding: 0 $left-padding;
-			height: 38vh;
+			// height: 38vh;
 
 			& > :first-child {
 				color: $tertiary_col;
@@ -110,11 +112,7 @@ const titleList = [
 				// font-size: 170px;
 				// line-height: 170px;
 				// height: 185px;
-				font-size: 18vh;
-				// line-height: 19vh;
-				// line-height: 19.3vh;
-				// height: 12.847vw;
-				// height: 17vh;
+				font-size: 10vw;
 				color: rgba($main_light, 0.5);
 
 				overflow-x: hidden;
@@ -127,16 +125,30 @@ const titleList = [
 			}
 		}
 
-		&__top {
-			padding: 1.5rem 0;
-			margin: 0 $left-padding;
-
+		&__topWrap {
 			position: absolute;
 			top: 0;
 			left: 0;
-			width: calc(100% - 200px);
 			overflow: hidden;
-			border-bottom: 1px solid #202020;
+			// border-bottom: 1px solid rgba($sec_light, 0.2);
+
+			&::after {
+				// draw white line under the header
+				content: "";
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 1px;
+				background-color: rgba($sec_light, 0.2);
+			}
+		}
+
+		&__top {
+			padding: 1.5rem 0;
+			margin: 0 $left-padding;
+			width: calc(100vw - $left-padding * 2);
+			overflow-x: hidden;
 
 			&__inner {
 				display: flex;
@@ -260,7 +272,7 @@ const titleList = [
 			&__top {
 				padding: 1.5rem 0;
 				margin: 0 $left-padding-mobile;
-				width: calc(100% - $left-padding-mobile * 2);
+				width: calc(100vw - $left-padding-mobile * 2);
 
 				font-size: 0.75rem;
 				line-height: 1.3;
