@@ -18,13 +18,14 @@ const { label, onClick } = Astro.props;
 		font-family: "Outfit", Arial, sans-serif;
 		border-radius: 9999px;
 
-		border: 1px solid black;
+		border: 1px solid $main_dark;
 		background-color: transparent;
 		overflow: hidden;
 		text-transform: uppercase;
 		transition: border-color 0.3s cubic-bezier(0.3, 0.86, 0.36, 0.95);
 
 		position: relative;
+		color: $main_dark;
 
 		&::after {
 			content: attr(data-title);
