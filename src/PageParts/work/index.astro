@@ -53,7 +53,10 @@ const workList = [
 		<div class="workBoxes">
 			{
 				workList.map((workItem, ind) => (
-					<div class="workBoxes__box" id={ind === 0 && "work"}>
+					<div
+						class={`workBoxes__box workBoxes__box${ind + 1}`}
+						id={ind === 0 && "work"}
+					>
 						<h3>
 							<div class="workCount">
 								<span>#{ind + 1}</span>
@@ -278,6 +281,7 @@ const workList = [
 
 							font-size: 1rem;
 							font-weight: 500;
+							opacity: 0;
 						}
 
 						&__role {

@@ -11,7 +11,7 @@ import ImageCursorCarousel from "./ImageCursorCarousel.astro";
 		document.addEventListener("mousemove", (e) => {
 			cursor.setAttribute(
 				"style",
-				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0); display: grid;`
+				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0) scaleX(1.12); display: grid;`
 			);
 		});
 
@@ -66,10 +66,10 @@ import ImageCursorCarousel from "./ImageCursorCarousel.astro";
 		height: 50px;
 		border-radius: 50%;
 		background-color: transparent;
-		mix-blend-mode: exclusion;
+		// mix-blend-mode: exclusion;
 		// mix-blend-mode: screen;
 		// mix-blend-mode: difference;
-		border: 1px solid #98767c;
+		border: 1px solid $tertiary-col;
 
 		position: fixed;
 		top: 0;
@@ -80,7 +80,7 @@ import ImageCursorCarousel from "./ImageCursorCarousel.astro";
 		// animation: cursorAnimation 0.5s infinite alternate;
 		pointer-events: none;
 		z-index: 5000;
-		transform-origin: 0%;
+		transform-origin: center;
 
 		&--expand {
 			animation: cursorAnimationExpand 0.5s infinite alternate;

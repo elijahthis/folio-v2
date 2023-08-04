@@ -15,13 +15,61 @@ const currentlyReading: { title: string; link: string } = {
 ---
 
 <script>
+	import gsap, { Power2 } from "gsap";
+
 	let isOpen = false;
 	const sidebarElement = document.querySelector(".Sidebar");
 	const sidebarButton = document.querySelector(".Sidebar__button");
 	const sidebarCloseSvg = document.querySelector(".Sidebar__close");
 
+	const animateIn = () => {
+		gsap.fromTo(
+			".Sidebar__inner > nav > ul > li > a",
+			{ yPercent: 50, opacity: 0 },
+			{
+				yPercent: 0,
+				opacity: 1,
+				delay: 0.5,
+				duration: 0.4,
+				stagger: 0.1,
+				ease: Power2.easeOut,
+			}
+		);
+		gsap.fromTo(
+			".Sidebar__reading > * > *, .Sidebar__footer > p",
+			{ yPercent: 50, opacity: 0 },
+			{
+				yPercent: 0,
+				opacity: 1,
+				delay: 0.8,
+				duration: 0.3,
+				stagger: 0.01,
+				ease: Power2.easeOut,
+			}
+		);
+	};
+
+	const animateOut = () => {
+		gsap.to(".Sidebar__inner > nav > ul > li > a", {
+			yPercent: 50,
+			opacity: 0,
+			duration: 0.4,
+			stagger: 0.1,
+			ease: Power2.easeOut,
+		});
+		gsap.to(".Sidebar__reading > * > *, .Sidebar__footer > p", {
+			yPercent: 50,
+			opacity: 0,
+			duration: 0.4,
+			stagger: 0.1,
+			ease: Power2.easeOut,
+		});
+	};
+
 	function openSidebar() {
 		if (isOpen) {
+			animateOut();
+
 			sidebarElement.classList.remove("Sidebar--open");
 			sidebarButton.classList.remove("Sidebar__button--open");
 			isOpen = false;
@@ -29,10 +77,14 @@ const currentlyReading: { title: string; link: string } = {
 			sidebarElement.classList.add("Sidebar--open");
 			sidebarButton.classList.add("Sidebar__button--open");
 			isOpen = true;
+
+			animateIn();
 		}
 	}
 
 	function hideSidebar() {
+		animateOut();
+
 		sidebarElement.classList.remove("Sidebar--open");
 		sidebarButton.classList.remove("Sidebar__button--open");
 		isOpen = false;
@@ -47,7 +99,17 @@ const currentlyReading: { title: string; link: string } = {
 
 <aside class="Sidebar">
 	<button class="Sidebar__button">
-		<BsChevronLeft size="50" />
+		<svg
+			stroke="currentColor"
+			fill="currentColor"
+			stroke-width="0"
+			viewBox="0 0 16 16"
+			xmlns="http://www.w3.org/2000/svg"
+			><path
+				fill-rule="evenodd"
+				d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+			></path></svg
+		>
 	</button>
 	<TfiClose size="40" className="Sidebar__close" />
 	<div class="Sidebar__inner">
@@ -65,20 +127,24 @@ const currentlyReading: { title: string; link: string } = {
 			</ul>
 		</nav>
 		<div class="Sidebar__reading">
-			<h4>Currently reading:</h4>
-			<a href={currentlyReading.link} target="_blank"
-				>{currentlyReading.title}
-				<svg
-					stroke="currentColor"
-					fill="currentColor"
-					stroke-width="0"
-					viewBox="0 0 24 24"
-					height="1em"
-					width="1em"
-					xmlns="http://www.w3.org/2000/svg"
-					><path fill="none" d="M0 0h24v24H0z"></path><path
-						d="M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z"></path></svg
-				></a
+			<h4>
+				<div>Currently reading:</div>
+			</h4>
+			<a href={currentlyReading.link} target="_blank">
+				<div>
+					{currentlyReading.title}
+					<svg
+						stroke="currentColor"
+						fill="currentColor"
+						stroke-width="0"
+						viewBox="0 0 24 24"
+						height="1em"
+						width="1em"
+						xmlns="http://www.w3.org/2000/svg"
+						><path fill="none" d="M0 0h24v24H0z"></path><path
+							d="M6 6v2h8.59L5 17.59 6.41 19 16 9.41V18h2V6z"></path></svg
+					>
+				</div></a
 			>
 		</div>
 		<div class="Sidebar__footer">
@@ -102,7 +168,7 @@ const currentlyReading: { title: string; link: string } = {
 		transform: translateX(100%);
 
 		background: $main_light;
-		transition: all cubic-bezier(0.51, -0.02, 0.81, 0.07) 750ms;
+		transition: all cubic-bezier(0.77, 0, 0.175, 1) 700ms;
 
 		&__button {
 			position: absolute;
@@ -117,10 +183,15 @@ const currentlyReading: { title: string; link: string } = {
 
 			// color: $tertiary_col;
 			color: $main-light;
-			transition: all cubic-bezier(0.51, -0.02, 0.81, 0.07) 0.45s;
+			transition: all cubic-bezier(0.77, 0, 0.175, 1) 0.45s;
 
 			&--open {
 				transform: translateY(-50%) translateX(-80%) rotate(180deg);
+			}
+
+			svg {
+				width: 50px;
+				height: 50px;
 			}
 		}
 
@@ -135,6 +206,8 @@ const currentlyReading: { title: string; link: string } = {
 				overflow-y: hidden;
 
 				a {
+					opacity: 0;
+
 					font-size: 3.2rem;
 					line-height: 3.5rem;
 					font-weight: 500;
@@ -192,33 +265,61 @@ const currentlyReading: { title: string; link: string } = {
 			h4 {
 				text-transform: uppercase;
 				opacity: 0.7;
+				overflow-y: hidden;
 			}
 
 			a {
 				text-decoration: none;
 				color: $main-dark;
 
-				display: flex;
-				flex-direction: row;
-				align-items: center;
 				// gap: 0.25rem;
 				transition: all 0.4s;
 				text-underline-offset: 0.3rem;
-
-				svg {
-					opacity: 0;
-					transition: all 0.4s;
-					display: block;
-				}
+				display: block;
+				overflow-y: hidden;
+				height: 21px;
 
 				&:hover {
-					color: $tertiary-col;
-					text-decoration: underline;
+					overflow-y: visible;
+				}
+
+				div {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					width: max-content;
+					position: relative;
 
 					svg {
-						opacity: 1;
-						margin-bottom: 0.2rem;
-						margin-left: 0.2rem;
+						opacity: 0;
+						transition: all 0.4s;
+						display: block;
+					}
+
+					&::after {
+						// draw white line underneath
+						content: "";
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						width: 0;
+						height: 1px;
+						background: $tertiary-col;
+						transform: translateY(100%);
+						transition: all ease-in-out 0.25s;
+					}
+
+					&:hover {
+						color: $tertiary-col;
+
+						&::after {
+							width: 146px;
+						}
+
+						svg {
+							opacity: 1;
+							margin-left: 0.2rem;
+						}
 					}
 				}
 			}
@@ -228,6 +329,7 @@ const currentlyReading: { title: string; link: string } = {
 			// position: absolute;
 			// bottom: 0;
 			margin-top: 1.5rem;
+			overflow-y: hidden;
 		}
 
 		&__close {
@@ -239,6 +341,40 @@ const currentlyReading: { title: string; link: string } = {
 
 			&:hover {
 				color: $tertiary-col;
+			}
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		.Sidebar {
+			width: 100%;
+			min-width: 100%;
+			padding: 136px 32px 32px;
+			transform: translateX(100%);
+
+			&--open {
+				transform: translateX(0);
+			}
+
+			&__button {
+				position: absolute;
+				left: 0;
+				top: 50%;
+				transform: translateY(-50%) translateX(-80%);
+				padding: 0.5rem 0.75rem;
+
+				background: transparent;
+				border: 0;
+				border-radius: 0.5rem;
+
+				// color: $tertiary_col;
+				color: $main-light;
+				transition: all cubic-bezier(0.77, 0, 0.175, 1) 0.45s;
+
+				svg {
+					width: 2rem;
+					height: 2rem;
+				}
 			}
 		}
 	}

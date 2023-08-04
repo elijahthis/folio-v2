@@ -74,14 +74,15 @@ const { label, url, ind } = Astro.props;
 
 			position: absolute;
 			top: 0;
+
 			-webkit-text-stroke-width: 0.8px;
-			-webkit-text-stroke-color: rgba($sec_light, 0.5);
+			-webkit-text-stroke-color: transparent;
 
 			&:hover {
 				// color: $tertiary_col;
 				color: $main-dark;
+				// -webkit-text-stroke-color: $tertiary_col;
 				-webkit-text-stroke-color: $tertiary_col;
-				// transform: unset !important;
 			}
 		}
 

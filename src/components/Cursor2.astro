@@ -22,6 +22,8 @@ export interface Props {}
 </script>
 
 <style lang="scss">
+	@import "../styles/variables";
+
 	@keyframes cursorAnimation {
 		from {
 			scale: 1;
@@ -36,7 +38,7 @@ export interface Props {}
 		height: 10px;
 		border-radius: 50%;
 		background-color: transparent;
-		border: 1px solid #98767c;
+		border: 1px solid $sec-light;
 		mix-blend-mode: exclusion;
 		// mix-blend-mode: difference;
 

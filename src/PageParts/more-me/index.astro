@@ -122,9 +122,9 @@ import PageLayout from "../../layouts/PageLayout.astro";
 			createImageFunc(
 				new MouseEvent("mouseenter", { clientX: 200, clientY: 200 })
 			);
-			createImageFunc(
-				new MouseEvent("mouseenter", { clientX: 800, clientY: 300 })
-			);
+			// createImageFunc(
+			// 	new MouseEvent("mouseenter", { clientX: 800, clientY: 300 })
+			// );
 			createImageFunc(
 				new MouseEvent("mouseenter", { clientX: 400, clientY: 400 })
 			);
@@ -237,6 +237,7 @@ import PageLayout from "../../layouts/PageLayout.astro";
 		.MoreMe__row,
 		.MoreMe__row--left {
 			overflow-x: hidden;
+			opacity: 0;
 			& > span {
 				display: block;
 			}

@@ -4,6 +4,7 @@ import SplitType from "split-type";
 import { Power2, Power3, Power4, Linear } from "gsap";
 import Lenis from "@studio-freight/lenis";
 import { introAnimation } from "./intros";
+import { CSSRulePlugin } from "gsap/all";
 
 const { innerHeight } = window;
 
@@ -26,14 +27,21 @@ requestAnimationFrame(raf);
 
 /* --------------------- --------------------- */
 
-const autoTl = gsap.timeline({ delay: 7 });
+// const autoTl = gsap.timeline({ delay: 0 });
+// let rule = CSSRulePlugin.getRule(".HomeIntro__topWrap:after");
+// autoTl.to(rule, {
+// 	cssRule: {
+// 		width: "0",
+// 	},
+// 	duration: 1,
+// 	ease: Power4.easeOut,
+// });
 
-// autoTl
-// 	.to(".PreLoader > .Chihiros_friends > *", {
-// 		opacity: 0,
-// 		duration: 0.5,
-// 		ease: Power4.easeOut,
-// 	})
+// .to(".PreLoader > .Chihiros_friends > *", {
+// 	opacity: 0,
+// 	duration: 0.5,
+// 	ease: Power4.easeOut,
+// })
 // 	.to(".PreLoader > .bottomDiv", {
 // 		transform: "scale(1, 0)",
 // 		duration: 1,
@@ -211,15 +219,15 @@ const workMarque = gsap
 	})
 	.totalProgress(0.5);
 
-workBoxes__box.forEach((box: Element) => {
+workBoxes__box.forEach((box: Element, ind: number) => {
 	const boxTl = gsap.timeline();
 
-	// console.log(
-	// 	"boxx",
-	// 	box.querySelector(".workBoxes__box__images__inner"),
-	// 	box.querySelector(".workBoxes__box__images").clientWidth,
-	// 	box.querySelector(".workBoxes__box__images__inner").clientWidth
-	// );
+	const splitWorkDesc = new SplitType(
+		`.workBoxes__box${ind + 1} .bottomInfo__desc`,
+		{
+			types: "lines",
+		}
+	);
 
 	boxTl
 		.to(box, {
@@ -250,6 +258,19 @@ workBoxes__box.forEach((box: Element) => {
 				ease: Power2.easeOut,
 			},
 			"<"
+		)
+		.fromTo(
+			splitWorkDesc.lines,
+			{ yPercent: 100, opacity: 0 },
+			{
+				yPercent: 0,
+				opacity: 1,
+				delay: 1,
+				duration: 6,
+				stagger: { each: 0.75, repeatDelay: 2 },
+				ease: Power2.easeOut,
+			},
+			"<-0.1"
 		);
 
 	workTl.add(boxTl);
@@ -262,7 +283,29 @@ introAnimation(".MoreMeIntro");
 /* ------------------------------------------ */
 
 /* -------- More Me animation ---------- */
+ScrollTrigger.create({
+	trigger: ".MoreMeWrapper",
+	start: "top 40%",
+	// pin: true,
+	end: `+=50%`,
+	scrub: 1,
+	// markers: true,
+	once: true,
 
+	onEnter: () => {
+		gsap.fromTo(
+			".MoreMe__row, .MoreMe__row--left",
+			{ yPercent: 100, opacity: 0 },
+			{
+				yPercent: 0,
+				opacity: 1,
+				duration: 0.5,
+				stagger: 0.2,
+				ease: Power2.easeOut,
+			}
+		);
+	},
+});
 /* ------------------------------------------ */
 
 /* -------- Contact Intro animation ---------- */
