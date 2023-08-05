@@ -5,7 +5,7 @@ const scenarioList = [
 	"You are assembling a team of creative developers, engineers and designers for your next great idea.",
 	"Your web application is plagued with performance issues and requires a fresh set of eyes, preferrably from an expert who has worked on large scale applications.",
 	"Your engineering team is looking for a senior engineer to help with code reviews, testing, architecture and mentoring.",
-	"Your next project requires an iOS engineer.",
+	"Your next project requires an iOS engineer. (coming soon)",
 ];
 ---
 
@@ -19,7 +19,15 @@ const scenarioList = [
 		</p>
 
 		<ul>
-			{scenarioList.map((scenarioItem) => <li>{scenarioItem}</li>)}
+			{
+				scenarioList.map((scenarioItem, ind) => (
+					<li
+						class={`scenarioItem scenarioItem--${ind === 3 ? "upcoming" : ""}`}
+					>
+						{scenarioItem}
+					</li>
+				))
+			}
 		</ul>
 
 		<p>This is by no means an exhaustive list.</p>
@@ -74,9 +82,14 @@ const scenarioList = [
 			row-gap: 2rem;
 			margin-bottom: 3rem;
 
-			li {
+			.scenarioItem {
 				width: 80%;
 				color: #fdfcfa;
+
+				&--upcoming {
+					color: $sec-light;
+					opacity: 0.5;
+				}
 			}
 		}
 
@@ -88,8 +101,37 @@ const scenarioList = [
 			margin-top: 6rem;
 
 			a {
-				color: $tertiary_col;
+				color: $main_light;
+				// color: $tertiary_col;
 				text-decoration: none;
+				position: relative;
+				transition: all ease-in-out 0.5s;
+
+				// pseudo element for underline
+				&::after {
+					content: "";
+					display: block;
+					width: 0;
+					height: 2px;
+					background: $tertiary_col;
+					transition: width ease-in-out 0.5s;
+
+					position: absolute;
+					bottom: 0;
+					left: 0;
+				}
+
+				&:hover {
+					color: $tertiary_col;
+					&::after {
+						content: "";
+						display: block;
+						width: 100%;
+						height: 2px;
+						background: $tertiary_col;
+						transition: width ease-in-out 0.5s;
+					}
+				}
 			}
 		}
 	}
