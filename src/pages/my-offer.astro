@@ -1,4 +1,5 @@
 ---
+import FunLink from "../components/FunLink.astro";
 import Layout from "../layouts/Layout.astro";
 
 const scenarioList = [
@@ -11,6 +12,10 @@ const scenarioList = [
 
 <Layout title="Elijah Oyerinde • Software Engineer">
 	<div class="AboutPage">
+		<div class="AboutPage__header">
+			<FunLink href="/" target="_self">home</FunLink>
+		</div>
+
 		<h1>what do I offer?</h1>
 		<p class="AboutPage__desc">
 			Say you loved this experience, and wanted to know if I'm the right person
@@ -56,6 +61,23 @@ const scenarioList = [
 
 		min-height: 100vh;
 		padding: $horizontal-padding;
+		padding-top: 0;
+
+		&__header {
+			display: flex;
+			justify-content: flex-end;
+			padding: 1.5rem 0;
+			margin-bottom: calc($horizontal-padding - 68.5px);
+			// display: none;
+		}
+
+		&__desc {
+			font-size: 2.5rem;
+			line-height: 3.5rem;
+			margin-bottom: 4rem;
+			// margin-bottom: 2rem;
+			// color: rgba($main_light, 0.5);
+		}
 
 		h1 {
 			font-family: "Unbounded", Arial, sans-serif;
@@ -68,13 +90,6 @@ const scenarioList = [
 			margin-bottom: 2rem;
 		}
 
-		&__desc {
-			font-size: 2.5rem;
-			line-height: 3.5rem;
-			margin-bottom: 4rem;
-			// margin-bottom: 2rem;
-		}
-
 		ul {
 			list-style-type: none;
 			display: grid;
@@ -84,10 +99,10 @@ const scenarioList = [
 
 			.scenarioItem {
 				width: 80%;
-				color: #fdfcfa;
+				color: $main_light;
 
 				&--upcoming {
-					color: $sec-light;
+					color: $sec_light;
 					opacity: 0.5;
 				}
 			}
@@ -101,7 +116,8 @@ const scenarioList = [
 			margin-top: 6rem;
 
 			a {
-				color: $main_light;
+				color: $sec_light;
+				// color: $main_light;
 				// color: $tertiary_col;
 				text-decoration: none;
 				position: relative;
