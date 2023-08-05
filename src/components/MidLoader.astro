@@ -1,9 +1,80 @@
 ---
 ---
 
-<main class="MidLoader"></main>
+<script>
+	import { gsap, Power4 } from "gsap";
+
+	const quotes = [
+		"In the end, what is a brilliant idea without ruthless execution?",
+		"That is some beautiful, beautiful music",
+		"Sakaaaaaaaaaaaaaaaa",
+		"Show me",
+	];
+
+	let quote = document.querySelector(".quote");
+	quote.innerHTML = `"${quotes[Math.floor(Math.random() * quotes.length)]}"`;
+
+	let tl = gsap.timeline();
+	tl.fromTo(
+		".MidLoader p",
+		{ opacity: 0, yPercent: 100 },
+		{
+			delay: 0.75,
+			duration: 0.75,
+			opacity: 1,
+			yPercent: 0,
+			stagger: 0.15,
+			ease: Power4.easeInOut,
+		}
+	)
+		.to(".MidLoader p", { delay: 2, duration: 0.75, opacity: 0, yPercent: -100 })
+		.to(
+			".MidLoader",
+			{
+				duration: 1.5,
+				height: 0,
+				// skewX: 10,
+				ease: Power4.easeInOut,
+				// perspective on the x axis to make it 3d
+				// transformPerspective: 1000,
+			},
+			"<"
+		);
+</script>
+
+<main class="MidLoader">
+	<div>
+		<div class="overflowWrap"><p class="quote"></p></div>
+		<div class="overflowWrap"><p>- Elijah</p></div>
+	</div>
+</main>
 
 <style lang="scss">
+	@import "../styles/variables";
 	.MidLoader {
+		width: 100vw;
+		height: 100vh;
+		background: $sec_light;
+		color: $main_dark;
+
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 4000;
+
+		display: grid;
+		place-items: center;
+
+		& > div {
+			text-align: center;
+
+			.overflowWrap {
+				overflow: hidden;
+
+				p {
+					opacity: 0;
+				}
+			}
+		}
 	}
 </style>
