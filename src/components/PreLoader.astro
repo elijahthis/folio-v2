@@ -22,14 +22,14 @@ let bigText = "simple";
 	loaderTl
 		.to(".Chihiros_friends__line", {
 			width: "100%",
-			duration: 1,
+			duration: 0.8,
 			ease: Power4.easeIn,
 			delay: 1,
 		})
 		.to(".Boh, .Yu-Bird", {
 			opacity: 1,
-			duration: 0.8,
-			stagger: 0.5,
+			duration: 0.75,
+			stagger: 0.3,
 			ease: Power4.easeIn,
 			delay: 0.25,
 		});
@@ -64,8 +64,8 @@ let bigText = "simple";
 	gsap.to(".PreLoader > .bottomDiv  p", {
 		opacity: 1,
 		transform: "rotateY(0deg)",
-		duration: 0.47,
-		stagger: 2.5,
+		duration: 0.5,
+		stagger: 1.5,
 		ease: Power2.easeIn,
 		delay: 3,
 	});
@@ -81,8 +81,9 @@ let bigText = "simple";
 	</div>
 	<div class="bottomDiv">
 		<div>
-			<p>Welcome to my site</p>
-			<p>Elijah and Chihiro's little friends</p>
+			<p>"Sit here"</p>
+			<p>"Behave yourself, okay?"</p>
+			<p>01:39:33</p>
 		</div>
 	</div>
 </main>
@@ -112,8 +113,8 @@ let bigText = "simple";
 			background: $sec_light;
 
 			.Boh {
-				width: 131px;
-				height: 211px;
+				width: 65.5px;
+				height: 105.5px;
 				background-color: $main_dark;
 
 				border-radius: 54% 46% 49% 51% / 71% 74% 26% 29%;
@@ -121,8 +122,8 @@ let bigText = "simple";
 			}
 
 			.Yu-Bird {
-				width: 36px;
-				height: 36px;
+				width: 18px;
+				height: 18px;
 				background-color: $main_dark;
 				border-radius: 65% 35% 53% 47% / 49% 62% 38% 51%;
 				opacity: 0;

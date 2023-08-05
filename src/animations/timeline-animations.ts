@@ -14,7 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 const lenis = new Lenis({
 	// duration: 1.2,
 	// easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-	lerp: 0.03,
+	lerp: 0.1,
 });
 
 function raf(time: number) {
@@ -27,49 +27,41 @@ requestAnimationFrame(raf);
 
 /* --------------------- --------------------- */
 
-// const autoTl = gsap.timeline({ delay: 0 });
-// let rule = CSSRulePlugin.getRule(".HomeIntro__topWrap:after");
-// autoTl.to(rule, {
-// 	cssRule: {
-// 		width: "0",
-// 	},
-// 	duration: 1,
-// 	ease: Power4.easeOut,
-// });
-
-// .to(".PreLoader > .Chihiros_friends > *", {
-// 	opacity: 0,
-// 	duration: 0.5,
-// 	ease: Power4.easeOut,
-// })
-// 	.to(".PreLoader > .bottomDiv", {
-// 		transform: "scale(1, 0)",
-// 		duration: 1,
-// 		ease: Power4.easeOut,
-// 	})
-// 	.to(
-// 		".PreLoader > .bottomDiv > div",
-// 		{
-// 			transform: "scale(1, 2) translateY(-100%)",
-// 			duration: 1,
-// 			ease: Power4.easeOut,
-// 		},
-// 		"<"
-// 	)
-// 	.to(
-// 		".PreLoader > .Chihiros_friends",
-// 		{
-// 			height: 0,
-// 			duration: 2.5,
-// 			ease: Power4.easeOut,
-// 		},
-// 		"<"
-// 	)
-// 	.to(".PreLoader", {
-// 		height: 0,
-// 		duration: 0.001,
-// 		ease: Power4.easeOut,
-// 	});
+const autoTl = gsap.timeline({ delay: 8 });
+autoTl
+	.to(".PreLoader > .Chihiros_friends > *", {
+		opacity: 0,
+		duration: 0.5,
+		ease: Power4.easeOut,
+	})
+	.to(".PreLoader > .bottomDiv", {
+		transform: "scale(1, 0)",
+		duration: 1,
+		ease: Power4.easeOut,
+	})
+	.to(
+		".PreLoader > .bottomDiv > div",
+		{
+			transform: "scale(1, 2) translateY(-100%)",
+			duration: 1,
+			ease: Power4.easeOut,
+		},
+		"<"
+	)
+	.to(
+		".PreLoader > .Chihiros_friends",
+		{
+			height: 0,
+			duration: 2.5,
+			ease: Power4.easeOut,
+		},
+		"<"
+	)
+	.to(".PreLoader", {
+		height: 0,
+		duration: 0.001,
+		ease: Power4.easeOut,
+	});
 
 /* Split text	*/
 const mySplitName = new SplitType(".HomeIntro__bigHeader > h1 > span", {

@@ -29,9 +29,9 @@ const currentlyReading: { title: string; link: string } = {
 			{
 				yPercent: 0,
 				opacity: 1,
-				delay: 0.5,
-				duration: 0.4,
-				stagger: 0.1,
+				delay: 1,
+				duration: 0.8,
+				stagger: 0.2,
 				ease: Power2.easeOut,
 			}
 		);
@@ -41,9 +41,9 @@ const currentlyReading: { title: string; link: string } = {
 			{
 				yPercent: 0,
 				opacity: 1,
-				delay: 0.8,
-				duration: 0.3,
-				stagger: 0.01,
+				delay: 1.6,
+				duration: 0.6,
+				stagger: 0.02,
 				ease: Power2.easeOut,
 			}
 		);
@@ -53,15 +53,15 @@ const currentlyReading: { title: string; link: string } = {
 		gsap.to(".Sidebar__inner > nav > ul > li > a", {
 			yPercent: 50,
 			opacity: 0,
-			duration: 0.4,
-			stagger: 0.1,
+			duration: 0.8,
+			stagger: 0.2,
 			ease: Power2.easeOut,
 		});
 		gsap.to(".Sidebar__reading > * > *, .Sidebar__footer > p", {
 			yPercent: 50,
 			opacity: 0,
-			duration: 0.4,
-			stagger: 0.1,
+			duration: 0.6,
+			stagger: 0.2,
 			ease: Power2.easeOut,
 		});
 	};
@@ -168,7 +168,7 @@ const currentlyReading: { title: string; link: string } = {
 		transform: translateX(100%);
 
 		background: $main_light;
-		transition: all cubic-bezier(0.77, 0, 0.175, 1) 700ms;
+		transition: all cubic-bezier(0.77, 0, 0.175, 1) 1.5s;
 
 		&__button {
 			position: absolute;
@@ -183,7 +183,7 @@ const currentlyReading: { title: string; link: string } = {
 
 			// color: $tertiary_col;
 			color: $main-light;
-			transition: all cubic-bezier(0.77, 0, 0.175, 1) 0.45s;
+			transition: all cubic-bezier(0.77, 0, 0.175, 1) 0.5s;
 
 			&--open {
 				transform: translateY(-50%) translateX(-80%) rotate(180deg);
