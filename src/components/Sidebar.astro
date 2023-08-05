@@ -3,9 +3,9 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs/index.js";
 import { TfiClose } from "react-icons/tfi/index.js";
 
 const navList = [
-	{ label: "work.", id: "work" },
-	{ label: "info.", id: "info" },
-	{ label: "contact.", id: "contact" },
+	{ label: "work.", href: "#work" },
+	{ label: "my.offer.", href: "/my-offer" },
+	{ label: "contact.", href: "#contact" },
 ];
 
 const currentlyReading: { title: string; link: string } = {
@@ -118,7 +118,7 @@ const currentlyReading: { title: string; link: string } = {
 				{
 					navList.map((navItem) => (
 						<li>
-							<a href={`#${navItem.id}`} data-title={navItem.label}>
+							<a href={navItem.href} data-title={navItem.label}>
 								<div>{navItem.label}</div>
 							</a>
 						</li>
