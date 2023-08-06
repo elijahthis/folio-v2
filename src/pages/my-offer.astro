@@ -7,6 +7,7 @@ const scenarioList = [
 	"You are assembling a team of creative developers, engineers and designers for your next great idea.",
 	"Your web application is plagued with performance issues and requires a fresh set of eyes, preferrably from an expert who has worked on large scale applications.",
 	"Your engineering team is looking for a senior engineer to help with code reviews, testing, architecture and mentoring.",
+	"You need to optimize your website or web application for SEO and accessibility.",
 	"Your next project requires an iOS engineer. (coming soon)",
 ];
 ---
@@ -29,7 +30,7 @@ const scenarioList = [
 			{
 				scenarioList.map((scenarioItem, ind) => (
 					<li
-						class={`scenarioItem scenarioItem--${ind === 3 ? "upcoming" : ""}`}
+						class={`scenarioItem scenarioItem--${ind === 4 ? "upcoming" : ""}`}
 					>
 						{scenarioItem}
 					</li>
