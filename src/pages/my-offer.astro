@@ -20,9 +20,9 @@ const scenarioList = [
 
 		<h1>what do I offer?</h1>
 		<p class="AboutPage__desc">
-			Say you loved this experience, and wanted to know if I'm the right person
-			for your project or vision. I'll outline a few scenarios and hopefully, we
-			can gain clarity.
+			Now I have your attention, how do you know if I'm the right person for
+			your project or vision? I'll outline a few scenarios and hopefully, we can
+			gain clarity:
 		</p>
 
 		<ul>
@@ -37,13 +37,12 @@ const scenarioList = [
 			}
 		</ul>
 
-		<p>This is by no means an exhaustive list.</p>
-		<p>
+		<p class="smallTxt">This is by no means an exhaustive list.</p>
+		<p class="smallTxt">
 			You love my work, are critical of it, would love to collaborate with me in
 			some other capacity, need my help, or would simply love to connect or say
-			hello,
+			hello,<br /> feel free to reach out:
 		</p>
-		<p>feel free to reach out:</p>
 		<h3>
 			<a
 				href="mailto:hello@elijahthis.com"
@@ -77,8 +76,8 @@ const scenarioList = [
 			font-size: 2.5rem;
 			line-height: 3.5rem;
 			margin-bottom: 4rem;
-			// margin-bottom: 2rem;
-			// color: rgba($main_light, 0.5);
+			color: $sec_light;
+			opacity: 0.5;
 		}
 
 		h1 {
@@ -89,25 +88,33 @@ const scenarioList = [
 			text-align: left;
 
 			color: rgba($main_light, 0.5);
-			margin-bottom: 2rem;
+			margin-bottom: 3rem;
 		}
 
 		ul {
 			list-style-type: none;
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			row-gap: 2rem;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 2rem;
 			margin-bottom: 3rem;
 
 			.scenarioItem {
-				width: 80%;
+				// width: 80%;
 				color: $main_light;
+
+				font-size: 2rem;
+				line-height: 2.5rem;
 
 				&--upcoming {
 					color: $sec_light;
 					opacity: 0.5;
 				}
 			}
+		}
+
+		.smallTxt {
+			margin-bottom: 0.5rem;
 		}
 
 		h3 {
@@ -150,6 +157,51 @@ const scenarioList = [
 						transition: width ease-in-out 0.5s;
 					}
 				}
+			}
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		.AboutPage {
+			padding: $horizontal-padding-mobile;
+
+			&__header {
+				padding-top: 0;
+				margin-bottom: calc($horizontal-padding - 68.5px);
+				// display: none;
+			}
+
+			h1 {
+				font-size: 3rem;
+				line-height: 3.2rem;
+
+				margin-bottom: 3rem;
+			}
+
+			&__desc {
+				font-size: 1.5rem;
+				line-height: 2rem;
+				margin-bottom: 1rem;
+			}
+
+			ul {
+				gap: 1.5rem;
+				margin-bottom: 3rem;
+
+				.scenarioItem {
+					font-size: 1.2rem;
+					line-height: 1.8rem;
+				}
+			}
+			.smallTxt {
+				font-size: 1rem;
+			}
+
+			h3 {
+				font-size: 2rem;
+				line-height: 3rem;
+
+				margin-top: 4rem;
 			}
 		}
 	}
