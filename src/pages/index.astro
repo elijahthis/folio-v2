@@ -4,20 +4,32 @@ import Home from "../sections/Home.astro";
 import Contact from "../sections/Contact.astro";
 import Work from "../sections/Work.astro";
 import MoreMe from "../sections/MoreMe.astro";
-import Loading from "./loading.astro";
 import Sidebar from "../components/Sidebar.astro";
+import PreLoader from "../components/PreLoader.astro";
 ---
 
 <Layout title="Elijah Oyerinde • Software Engineer">
-	<Loading />
+	<PreLoader />
 	<div class="MainWrap">
 		<Sidebar />
 
-		<!-- pages -->
+		<!-- Sections -->
+
+		<!-- Home -->
 		<Home />
+		<!--    -->
+
+		<!-- Work -->
 		<Work />
+		<!--    -->
+
+		<!-- MoreMe -->
 		<MoreMe />
+		<!--    -->
+
+		<!-- Contact -->
 		<Contact />
+		<!--    -->
 	</div>
 </Layout>
 

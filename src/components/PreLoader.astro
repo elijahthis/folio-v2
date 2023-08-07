@@ -1,13 +1,4 @@
 ---
-import Cursor from "./Cursor.astro";
-import Cursor2 from "./Cursor2.astro";
-
-export interface Props {
-	loading: boolean;
-}
-
-const { loading } = Astro.props;
-let bigText = "simple";
 ---
 
 <script>
@@ -32,6 +23,55 @@ let bigText = "simple";
 			stagger: 0.3,
 			ease: Power4.easeIn,
 			delay: 0.25,
+		})
+		.fromTo(
+			".PreLoader > .bottomDiv p",
+			{ opacity: 0, yPercent: 100, delay: 1.5 },
+			{
+				opacity: 1,
+				yPercent: 0,
+				duration: 0.5,
+				stagger: 0.1,
+				ease: Power2.easeIn,
+			},
+			">"
+		)
+		.to(".PreLoader > .Chihiros_friends > *", {
+			opacity: 0,
+			yPercent: -100,
+			duration: 0.5,
+			ease: Power4.easeOut,
+			delay: 2,
+		})
+		.to(
+			".PreLoader > .bottomDiv p",
+			{
+				opacity: 0,
+				yPercent: -100,
+				duration: 0.5,
+				// stagger: 0.05,
+				ease: Power4.easeOut,
+			},
+			"<"
+		)
+		.to(".PreLoader > .bottomDiv", {
+			transform: "scale(1, 0)",
+			duration: 1,
+			ease: Power4.easeOut,
+		})
+		.to(
+			".PreLoader > .Chihiros_friends",
+			{
+				height: 0,
+				duration: 2.5,
+				ease: Power4.easeOut,
+			},
+			"<"
+		)
+		.to(".PreLoader", {
+			height: 0,
+			duration: 0.001,
+			ease: Power4.easeOut,
 		});
 
 	BohtTl.to(".Chihiros_friends > .Boh", {
@@ -61,15 +101,6 @@ let bigText = "simple";
 		delay: 0.15,
 	});
 
-	gsap.to(".PreLoader > .bottomDiv  p", {
-		opacity: 1,
-		transform: "rotateY(0deg)",
-		duration: 0.5,
-		stagger: 1.5,
-		ease: Power2.easeIn,
-		delay: 3,
-	});
-
 	// change time
 </script>
 
@@ -81,9 +112,10 @@ let bigText = "simple";
 	</div>
 	<div class="bottomDiv">
 		<div>
-			<p>"Sit here"</p>
-			<p>"Behave yourself, okay?"</p>
-			<p>01:39:33</p>
+			<!-- <div style="overflow: hidden;"><p>"Sit here"</p></div> -->
+			<!-- <div style="overflow: hidden;"><p>Curious?</p></div>
+			<div style="overflow: hidden;"><p>Here's your clue:</p></div> -->
+			<div style="overflow: hidden;"><p>01:39:33</p></div>
 		</div>
 	</div>
 </main>
@@ -159,7 +191,6 @@ let bigText = "simple";
 
 			p {
 				opacity: 0;
-				transform: rotateX(75deg);
 			}
 		}
 	}

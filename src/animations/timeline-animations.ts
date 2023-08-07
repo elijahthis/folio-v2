@@ -27,42 +27,6 @@ requestAnimationFrame(raf);
 
 /* --------------------- --------------------- */
 
-const autoTl = gsap.timeline({ delay: 8 });
-autoTl
-	.to(".PreLoader > .Chihiros_friends > *", {
-		opacity: 0,
-		duration: 0.5,
-		ease: Power4.easeOut,
-	})
-	.to(".PreLoader > .bottomDiv", {
-		transform: "scale(1, 0)",
-		duration: 1,
-		ease: Power4.easeOut,
-	})
-	.to(
-		".PreLoader > .bottomDiv > div",
-		{
-			transform: "scale(1, 2) translateY(-100%)",
-			duration: 1,
-			ease: Power4.easeOut,
-		},
-		"<"
-	)
-	.to(
-		".PreLoader > .Chihiros_friends",
-		{
-			height: 0,
-			duration: 2.5,
-			ease: Power4.easeOut,
-		},
-		"<"
-	)
-	.to(".PreLoader", {
-		height: 0,
-		duration: 0.001,
-		ease: Power4.easeOut,
-	});
-
 /* Split text	*/
 const mySplitName = new SplitType(".HomeIntro__bigHeader > h1 > span", {
 	types: "words",
