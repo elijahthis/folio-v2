@@ -6,6 +6,7 @@ const { label, onClick } = Astro.props;
 	onclick={`setTimeout(()=>${onClick}(), 400) `}
 	class="Button"
 	data-title={label}
+	aria-label={label}
 >
 	<div>{label}</div>
 </button>
