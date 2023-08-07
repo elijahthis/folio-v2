@@ -69,7 +69,7 @@ const workList = [
 									<div>
 										{[...workItem.images, ...workItem.images].map(
 											(imageItem) => (
-												<img src={imageItem} alt="" />
+												<img src={imageItem} alt={workItem.title} />
 											)
 										)}
 									</div>

@@ -117,7 +117,11 @@ const images = [
 </script>
 
 <div class="ImageCursor">
-	{images.map((item: string) => <img src={item} />)}
+	{
+		images.map((item: string, ind: number) => (
+			<img src={item} alt={`my interest ${ind + 1}`} />
+		))
+	}
 </div>
 
 <style lang="scss">
