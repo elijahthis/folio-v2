@@ -1,4 +1,5 @@
 ---
+import { SEO } from "astro-seo";
 import Cursor from "../components/Cursor.astro";
 import Cursor2 from "../components/Cursor2.astro";
 
@@ -21,8 +22,48 @@ const { title } = Astro.props;
 			href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Unbounded:wght@200;300;400;500;600;700;800;900&display=swap"
 			rel="stylesheet"
 		/>
+		<link rel="manifest" href="/site.webmanifest" />
+		<SEO
+			title={title}
+			description="A software engineer that collaborates with other uber-talented creatives and select open-minded brands to craft beautiful things."
+			openGraph={{
+				basic: {
+					title: "Elijah Oyerinde • Software Engineer",
+					type: "website",
+					url: "https://www.elijahthis.com",
+					image:
+						"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/seo-img",
+				},
+				optional: {
+					description:
+						"A software engineer that collaborates with other uber-talented creatives and select open-minded brands to craft beautiful things.",
+					// locale: "en_US",
+					siteName: "Elijah Oyerinde • Software Engineer",
+				},
+			}}
+			twitter={{
+				card: "summary_large_image",
+				site: "@elijahthis",
+				creator: "@elijahthis",
+				title: "Elijah Oyerinde • Software Engineer",
+				description:
+					"A software engineer that collaborates with other uber-talented creatives and select open-minded brands to craft beautiful things.",
+
+				image:
+					"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/seo-img",
+			}}
+			extend={{
+				// extending the default meta tags
+				meta: [
+					{
+						name: "twitter:url",
+						content:
+							"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/seo-img",
+					},
+				],
+			}}
+		/>
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
 	</head>
 	<body>
 		<div id="smooth-wrapper">
@@ -56,37 +97,37 @@ const { title } = Astro.props;
 				document.body.setAttribute("style", "cursor: none;");
 			}
 		</script>
-	</body>
-	<style is:global lang="scss">
-		@import "../styles/variables";
+		<style is:global lang="scss">
+			@import "../styles/variables";
 
-		html {
-			font-family: "Outfit", Arial, sans-serif;
-			background-color: #ffffff;
-			// cursor: none;
+			html {
+				font-family: "Outfit", Arial, sans-serif;
+				background-color: #ffffff;
+				// cursor: none;
 
-			body {
+				body {
+				}
 			}
-		}
 
-		*::selection {
-			color: $tertiary_col;
-			background-color: #ffffff;
-		}
+			*::selection {
+				color: $tertiary_col;
+				background-color: #ffffff;
+			}
 
-		* {
-			padding: 0;
-			margin: 0;
-			box-sizing: border-box;
-		}
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
 
-		.imgTile {
-			position: absolute;
-			top: 10px;
-			left: 10px;
-			width: 300px;
-			opacity: 0;
-			transform: translateX(-50%) translateY(-50%);
-		}
-	</style>
+			.imgTile {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				width: 300px;
+				opacity: 0;
+				transform: translateX(-50%) translateY(-50%);
+			}
+		</style>
+	</body>
 </html>
