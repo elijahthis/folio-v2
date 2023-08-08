@@ -23,39 +23,39 @@ export function pause(delay) {
 	} while (currDate - date < delay * 1000);
 }
 
-export const cursor1EventListeners = () => {
-	const cursor = document.querySelector(".Cursor");
+// export const cursor1EventListeners = () => {
+// 	const cursor = document.querySelector(".Cursor");
 
-	if (!isSafari()) {
-		document.addEventListener("mousemove", (e) => {
-			cursor.setAttribute(
-				"style",
-				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0); display: grid; visibility: visible;`
-			);
-		});
+// 	if (!isSafari()) {
+// 		document.addEventListener("mousemove", (e) => {
+// 			cursor.setAttribute(
+// 				"style",
+// 				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0); display: grid; visibility: visible;`
+// 			);
+// 		});
 
-		document.addEventListener("click", (e) => {
-			cursor.classList.add("Cursor--expand");
-			setTimeout(() => {
-				cursor.classList.remove("Cursor--expand");
-			}, 300);
-		});
-	} else {
-		cursor.setAttribute("style", "display: none;");
-	}
-};
+// 		document.addEventListener("click", (e) => {
+// 			cursor.classList.add("Cursor--expand");
+// 			setTimeout(() => {
+// 				cursor.classList.remove("Cursor--expand");
+// 			}, 300);
+// 		});
+// 	} else {
+// 		cursor.setAttribute("style", "display: none;");
+// 	}
+// };
 
-export const cursor2EventListeners = () => {
-	const cursor = document.querySelector(".Cursor2");
+// export const cursor2EventListeners = () => {
+// 	const cursor = document.querySelector(".Cursor2");
 
-	if (!isSafari()) {
-		document.addEventListener("mousemove", (e) => {
-			cursor.setAttribute(
-				"style",
-				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0); display: grid; visibility: visible;`
-			);
-		});
-	} else {
-		cursor.setAttribute("style", "display: none;");
-	}
-};
+// 	if (!isSafari()) {
+// 		document.addEventListener("mousemove", (e) => {
+// 			cursor.setAttribute(
+// 				"style",
+// 				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0); display: grid; visibility: visible;`
+// 			);
+// 		});
+// 	} else {
+// 		cursor.setAttribute("style", "display: none;");
+// 	}
+// };
