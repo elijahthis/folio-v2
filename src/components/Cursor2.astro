@@ -13,7 +13,7 @@ export interface Props {}
 		document.addEventListener("mousemove", (e) => {
 			cursor.setAttribute(
 				"style",
-				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0); display: grid;`
+				`transform: translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0); display: grid; visibility: visible;`
 			);
 		});
 	} else {
@@ -45,7 +45,7 @@ export interface Props {}
 		position: fixed;
 		top: 0;
 
-		display: none;
+		// display: none;
 		place-items: center;
 		transition: all 0.05s ease-out;
 		// animation: cursorAnimation 5s infinite alternate;
@@ -54,5 +54,6 @@ export interface Props {}
 		z-index: 5000;
 
 		transform-origin: 0%;
+		visibility: hidden;
 	}
 </style>
