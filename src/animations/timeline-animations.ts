@@ -25,280 +25,282 @@ function raf(time: number) {
 
 requestAnimationFrame(raf);
 
-/* --------------------- --------------------- */
+if (window.location.pathname === "/") {
+	/* --------------------- --------------------- */
 
-/* Split text	*/
-const mySplitName = new SplitType(".HomeIntro__bigHeader > h1 > span", {
-	types: "words",
-});
+	/* Split text	*/
+	const mySplitName = new SplitType(".HomeIntro__bigHeader > h1 > span", {
+		types: "words",
+	});
 
-const mySplitDesc = new SplitType(".rightDesc p", {
-	types: "lines",
-	lineClass: "lineClass",
-});
+	const mySplitDesc = new SplitType(".rightDesc p", {
+		types: "lines",
+		lineClass: "lineClass",
+	});
 
-/* ------------  */
+	/* ------------  */
 
-/* -------- Home animations ---------- */
-const homeMarque = gsap
-	.to(".HomeIntro__top__inner > div", {
-		xPercent: -100,
-		duration:
-			document.querySelector(".HomeIntro__top__inner").clientWidth /
-			(document.documentElement.clientWidth > 780 ? 100 : 50),
-		repeat: -1,
-		ease: Linear.easeIn,
-	})
-	.totalProgress(0.5);
-
-const homeTl = gsap.timeline({
-	scrollTrigger: {
-		trigger: ".HomeIntroWrap",
-		pin: true,
-		// start: "bottom 98%",
-		end: `+=${innerHeight * 1}`,
-		scrub: 1,
-		// markers: true,
-		onUpdate({ getVelocity }) {
-			// tilt the animated text to simulate realistic motion
-			gsap.fromTo(
-				".HomeIntro__top__inner > div > div, .rightDesc p",
-				{
-					skewX: `${-getVelocity() / 50}deg`,
-					duration: 0.2,
-				},
-				{
-					skewX: 0,
-					duration: 0.2,
-				}
-			);
-			gsap.fromTo(
-				mySplitName.words,
-				{
-					skewX: `${-getVelocity() / 200}deg`,
-					duration: 0.5,
-				},
-				{
-					skewX: 0,
-					duration: 0.5,
-				}
-			);
-		},
-	},
-});
-
-homeTl
-	.to(".HomeIntro__top__inner > div > div", {
-		xPercent: -200,
-		// stagger: 0.1,
-		ease: Power3.easeIn,
-		delay: 0,
-		duration: 0.75,
-	})
-	.to(
-		".rightDesc p",
-		{
-			xPercent: -150,
-			stagger: 0.1,
-			ease: Power3.easeIn,
-			delay: 0,
-			duration: 0.85,
-		},
-		"<"
-	)
-	.to(
-		mySplitName.words,
-		{
-			xPercent: -150,
-			// stagger: 0.1,
-			ease: Power3.easeIn,
-			delay: 0,
-			duration: 1.5,
-		},
-		"<"
-	)
-	.to(
-		".HomeIntro__bottom > .scrollLink > *",
-		{
-			yPercent: -150,
-			stagger: 0.25,
-			ease: Power3.easeIn,
-			delay: 0,
-			duration: 0.5,
-		},
-		"<"
-	);
-
-/* ------------------------------------------ */
-
-/* -------- Work Intro animation ---------- */
-introAnimation(".WorkIntro");
-/* ------------------------------------------ */
-
-/* -------- Work animation ---------- */
-const workTl = gsap.timeline({
-	scrollTrigger: {
-		trigger: ".WorkWrapper",
-		start: "top top",
-		pin: true,
-		end: `+=600%`,
-		scrub: 1,
-		// markers: true,
-		onUpdate({ getVelocity }) {
-			// tilt the animated images to simulate realistic motion
-			gsap.fromTo(
-				".workBoxes__box__images__inner > div > img",
-				{
-					skewX: `${-getVelocity() / 300}deg`,
-					duration: 0.2,
-				},
-				{
-					skewX: 0,
-					duration: 0.2,
-				}
-			);
-		},
-	},
-});
-
-const workBoxes__box = gsap.utils.toArray(".workBoxes__box");
-
-console.log("workBoxes__box", workBoxes__box);
-
-// remember to update this array when adding new work boxes
-const workWidths = [7268, 4840, 12124];
-
-workBoxes__box.forEach((box: Element, ind: number) => {
-	// work images marquee
-	const workMarque = gsap
-		.to(box.querySelector(".workBoxes__box__images__inner"), {
-			xPercent: -50,
-			duration: workWidths[ind] / 50,
+	/* -------- Home animations ---------- */
+	const homeMarque = gsap
+		.to(".HomeIntro__top__inner > div", {
+			xPercent: -100,
+			duration:
+				document.querySelector(".HomeIntro__top__inner").clientWidth /
+				(document.documentElement.clientWidth > 780 ? 100 : 50),
 			repeat: -1,
 			ease: Linear.easeIn,
 		})
 		.totalProgress(0.5);
 
-	// work box animation timeline
-	const boxTl = gsap.timeline();
+	const homeTl = gsap.timeline({
+		scrollTrigger: {
+			trigger: ".HomeIntroWrap",
+			pin: true,
+			// start: "bottom 98%",
+			end: `+=${innerHeight * 1}`,
+			scrub: 1,
+			// markers: true,
+			onUpdate({ getVelocity }) {
+				// tilt the animated text to simulate realistic motion
+				gsap.fromTo(
+					".HomeIntro__top__inner > div > div, .rightDesc p",
+					{
+						skewX: `${-getVelocity() / 50}deg`,
+						duration: 0.2,
+					},
+					{
+						skewX: 0,
+						duration: 0.2,
+					}
+				);
+				gsap.fromTo(
+					mySplitName.words,
+					{
+						skewX: `${-getVelocity() / 200}deg`,
+						duration: 0.5,
+					},
+					{
+						skewX: 0,
+						duration: 0.5,
+					}
+				);
+			},
+		},
+	});
 
-	const splitWorkDesc = new SplitType(
-		`.workBoxes__box${ind + 1} .bottomInfo__desc`,
-		{
-			types: "lines",
-		}
-	);
-
-	boxTl
-		.to(box, {
-			top: 0,
-			duration: 5,
-			stagger: 5,
-			ease: Power2.easeOut,
+	homeTl
+		.to(".HomeIntro__top__inner > div > div", {
+			xPercent: -200,
+			// stagger: 0.1,
+			ease: Power3.easeIn,
+			delay: 0,
+			duration: 0.75,
 		})
 		.to(
-			box.querySelector(".workBoxes__box__images__inner > div"),
+			".rightDesc p",
 			{
-				xPercent: -20,
-				delay: 1,
-				duration: 6,
-				stagger: { each: 5, repeatDelay: 2 },
-				ease: Power2.easeOut,
+				xPercent: -150,
+				stagger: 0.1,
+				ease: Power3.easeIn,
+				delay: 0,
+				duration: 0.85,
 			},
 			"<"
 		)
-		.fromTo(
-			box.querySelector(".workBoxes__box__top > .workCount"),
-			{ yPercent: 100, opacity: 0 },
+		.to(
+			mySplitName.words,
 			{
-				yPercent: 0,
-				opacity: 1,
-				delay: 1,
-				duration: 2,
-				// stagger: 0.75,
-				ease: Power2.easeOut,
+				xPercent: -150,
+				// stagger: 0.1,
+				ease: Power3.easeIn,
+				delay: 0,
+				duration: 1.5,
 			},
 			"<"
 		)
-		.fromTo(
-			box.querySelector(".workBoxes__box__top > h3"),
-			{ yPercent: 100, opacity: 0 },
+		.to(
+			".HomeIntro__bottom > .scrollLink > *",
 			{
-				yPercent: 0,
-				opacity: 1,
-				delay: 3,
-				duration: 4,
-				// stagger: 0.75,
-				ease: Power2.easeOut,
+				yPercent: -150,
+				stagger: 0.25,
+				ease: Power3.easeIn,
+				delay: 0,
+				duration: 0.5,
 			},
 			"<"
-		)
-		.fromTo(
-			splitWorkDesc.lines,
-			{ yPercent: 100, opacity: 0 },
-			{
-				yPercent: 0,
-				opacity: 1,
-				delay: 1,
-				duration: 6,
-				stagger: { each: 0.75, repeatDelay: 2 },
-				ease: Power2.easeOut,
-			},
-			"<-0.1"
 		);
 
-	workTl.add(boxTl);
-});
+	/* ------------------------------------------ */
 
-/* ------------------------------------------ */
+	/* -------- Work Intro animation ---------- */
+	introAnimation(".WorkIntro");
+	/* ------------------------------------------ */
 
-/* -------- More Me Intro animation ---------- */
-introAnimation(".MoreMeIntro");
-/* ------------------------------------------ */
+	/* -------- Work animation ---------- */
+	const workTl = gsap.timeline({
+		scrollTrigger: {
+			trigger: ".WorkWrapper",
+			start: "top top",
+			pin: true,
+			end: `+=600%`,
+			scrub: 1,
+			// markers: true,
+			onUpdate({ getVelocity }) {
+				// tilt the animated images to simulate realistic motion
+				gsap.fromTo(
+					".workBoxes__box__images__inner > div > img",
+					{
+						skewX: `${-getVelocity() / 300}deg`,
+						duration: 0.2,
+					},
+					{
+						skewX: 0,
+						duration: 0.2,
+					}
+				);
+			},
+		},
+	});
 
-/* -------- More Me animation ---------- */
-ScrollTrigger.create({
-	trigger: ".MoreMeWrapper",
-	start: "top 40%",
-	// pin: true,
-	end: `+=50%`,
-	scrub: 1,
-	// markers: true,
-	once: true,
+	const workBoxes__box = gsap.utils.toArray(".workBoxes__box");
 
-	onEnter: () => {
-		gsap.fromTo(
-			".MoreMe__row, .MoreMe__row--left",
-			{ yPercent: 100, opacity: 0 },
+	console.log("workBoxes__box", workBoxes__box);
+
+	// remember to update this array when adding new work boxes
+	const workWidths = [7268, 4840, 12124];
+
+	workBoxes__box.forEach((box: Element, ind: number) => {
+		// work images marquee
+		const workMarque = gsap
+			.to(box.querySelector(".workBoxes__box__images__inner"), {
+				xPercent: -50,
+				duration: workWidths[ind] / 50,
+				repeat: -1,
+				ease: Linear.easeIn,
+			})
+			.totalProgress(0.5);
+
+		// work box animation timeline
+		const boxTl = gsap.timeline();
+
+		const splitWorkDesc = new SplitType(
+			`.workBoxes__box${ind + 1} .bottomInfo__desc`,
 			{
-				yPercent: 0,
-				opacity: 1,
-				duration: 0.5,
-				stagger: 0.2,
-				ease: Power2.easeOut,
+				types: "lines",
 			}
 		);
-	},
-});
-/* ------------------------------------------ */
 
-/* -------- Contact Intro animation ---------- */
-introAnimation(".ContactIntro");
-/* ------------------------------------------ */
+		boxTl
+			.to(box, {
+				top: 0,
+				duration: 5,
+				stagger: 5,
+				ease: Power2.easeOut,
+			})
+			.to(
+				box.querySelector(".workBoxes__box__images__inner > div"),
+				{
+					xPercent: -20,
+					delay: 1,
+					duration: 6,
+					stagger: { each: 5, repeatDelay: 2 },
+					ease: Power2.easeOut,
+				},
+				"<"
+			)
+			.fromTo(
+				box.querySelector(".workBoxes__box__top > .workCount"),
+				{ yPercent: 100, opacity: 0 },
+				{
+					yPercent: 0,
+					opacity: 1,
+					delay: 1,
+					duration: 2,
+					// stagger: 0.75,
+					ease: Power2.easeOut,
+				},
+				"<"
+			)
+			.fromTo(
+				box.querySelector(".workBoxes__box__top > h3"),
+				{ yPercent: 100, opacity: 0 },
+				{
+					yPercent: 0,
+					opacity: 1,
+					delay: 3,
+					duration: 4,
+					// stagger: 0.75,
+					ease: Power2.easeOut,
+				},
+				"<"
+			)
+			.fromTo(
+				splitWorkDesc.lines,
+				{ yPercent: 100, opacity: 0 },
+				{
+					yPercent: 0,
+					opacity: 1,
+					delay: 1,
+					duration: 6,
+					stagger: { each: 0.75, repeatDelay: 2 },
+					ease: Power2.easeOut,
+				},
+				"<-0.1"
+			);
 
-/* -------- Contact animation ---------- */
-gsap.to(".ContactCarouselItem__topLine", {
-	width: "100%",
-	ease: Power4.easeIn,
-	duration: 1,
+		workTl.add(boxTl);
+	});
 
-	scrollTrigger: {
-		trigger: ".contactBody",
-		start: "top 10%",
+	/* ------------------------------------------ */
+
+	/* -------- More Me Intro animation ---------- */
+	introAnimation(".MoreMeIntro");
+	/* ------------------------------------------ */
+
+	/* -------- More Me animation ---------- */
+	ScrollTrigger.create({
+		trigger: ".MoreMeWrapper",
+		start: "top 40%",
 		// pin: true,
-		end: `+=100%`,
-		scrub: false,
+		end: `+=50%`,
+		scrub: 1,
 		// markers: true,
-	},
-});
-/* ------------------------------------------ */
+		once: true,
+
+		onEnter: () => {
+			gsap.fromTo(
+				".MoreMe__row, .MoreMe__row--left",
+				{ yPercent: 100, opacity: 0 },
+				{
+					yPercent: 0,
+					opacity: 1,
+					duration: 0.5,
+					stagger: 0.2,
+					ease: Power2.easeOut,
+				}
+			);
+		},
+	});
+	/* ------------------------------------------ */
+
+	/* -------- Contact Intro animation ---------- */
+	introAnimation(".ContactIntro");
+	/* ------------------------------------------ */
+
+	/* -------- Contact animation ---------- */
+	gsap.to(".ContactCarouselItem__topLine", {
+		width: "100%",
+		ease: Power4.easeIn,
+		duration: 1,
+
+		scrollTrigger: {
+			trigger: ".contactBody",
+			start: "top 10%",
+			// pin: true,
+			end: `+=100%`,
+			scrub: false,
+			// markers: true,
+		},
+	});
+	/* ------------------------------------------ */
+}
