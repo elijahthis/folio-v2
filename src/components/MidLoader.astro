@@ -3,16 +3,35 @@
 
 <script>
 	import { gsap, Power4 } from "gsap";
+	import { CustomEase } from "../gsap/CustomEase";
+	import { myShutter } from "../helperFuncs";
+	gsap.registerPlugin(CustomEase);
+
+	CustomEase.create("my_shutter", myShutter);
 
 	const quotes = [
-		"In the end, what is a brilliant idea without ruthless execution?",
-		"That is some beautiful, beautiful music",
-		"Sakaaaaaaaaaaaaaaaa",
-		"Show me",
+		{
+			quote: "In the end, what is a brilliant idea without ruthless execution?",
+			author: "Elijah",
+		},
+		{ quote: "That is some beautiful, beautiful music", author: "Elijah" },
+		{ quote: "Sakaaaaaaaaaaaaaaaa", author: "Elijah" },
+		{ quote: "Show me", author: "Elijah" },
+		{
+			quote:
+				"The confidence that I have in my taste, and my ability to express what I feel...",
+			author: "Rick Rubin",
+		},
 	];
 
-	let quote = document.querySelector(".quote");
-	quote.innerHTML = `"${quotes[Math.floor(Math.random() * quotes.length)]}"`;
+	let quote = document.querySelector(".MidLoader .quote");
+	let author = document.querySelector(".MidLoader .author");
+	quote.innerHTML = `"${
+		quotes[Math.floor(Math.random() * quotes.length)].quote
+	}"`;
+	author.innerHTML = `- ${
+		quotes[Math.floor(Math.random() * quotes.length)].author
+	}`;
 
 	let tl = gsap.timeline();
 	tl.fromTo(
@@ -27,14 +46,19 @@
 			ease: Power4.easeInOut,
 		}
 	)
-		.to(".MidLoader p", { delay: 2, duration: 0.75, opacity: 0, yPercent: -100 })
+		.to(".MidLoader p", {
+			delay: 2,
+			duration: 0.75,
+			opacity: 0,
+			yPercent: -100,
+		})
 		.to(
 			".MidLoader",
 			{
-				duration: 1.5,
+				duration: 2.5,
 				height: 0,
 				// skewX: 10,
-				ease: Power4.easeInOut,
+				ease: "my_shutter",
 				// perspective on the x axis to make it 3d
 				// transformPerspective: 1000,
 			},
@@ -44,8 +68,8 @@
 
 <main class="MidLoader">
 	<div>
-		<div class="overflowWrap"><p class="quote"></p></div>
-		<div class="overflowWrap"><p>- Elijah</p></div>
+		<div class="overflowWrap"><p class="quote">Sakaaaaaaaaaaaaaaaa</p></div>
+		<div class="overflowWrap"><p class="author">- Elijah</p></div>
 	</div>
 </main>
 

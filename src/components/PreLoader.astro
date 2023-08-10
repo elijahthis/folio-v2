@@ -4,17 +4,23 @@
 <script>
 	// imports
 	import gsap, { Power1, Power2, Power3, Power4, Bounce } from "gsap";
+	import { CustomEase } from "../gsap/CustomEase";
+	import { myShutter } from "../helperFuncs";
+
+	gsap.registerPlugin(CustomEase);
 
 	const loaderTl = gsap.timeline({ repeat: 0 });
 
 	const BohtTl = gsap.timeline({ repeat: -1 });
 	const YuBirdTl = gsap.timeline({ repeat: -1 });
 
+	CustomEase.create("my_shutter", myShutter);
+
 	loaderTl
 		.to(".Chihiros_friends__line", {
 			width: "100%",
-			duration: 0.8,
-			ease: Power4.easeIn,
+			duration: 1,
+			ease: "my_shutter",
 			delay: 1,
 		})
 		.to(".Boh, .Yu-Bird", {
@@ -56,22 +62,22 @@
 		)
 		.to(".PreLoader > .bottomDiv", {
 			transform: "scale(1, 0)",
-			duration: 1,
-			ease: Power4.easeOut,
+			duration: 1.5,
+			ease: "my_shutter",
 		})
 		.to(
 			".PreLoader > .Chihiros_friends",
 			{
 				height: 0,
 				duration: 2.5,
-				ease: Power4.easeOut,
+				ease: "my_shutter",
 			},
 			"<"
 		)
 		.to(".PreLoader", {
 			height: 0,
 			duration: 0.001,
-			ease: Power4.easeOut,
+			ease: "my_shutter",
 		});
 
 	BohtTl.to(".Chihiros_friends > .Boh", {
