@@ -16,6 +16,7 @@ const workList = [
 			"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/kardinal-5",
 			"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/kardinal-6",
 		],
+		hats: ["Web Development", "Performance Optimization", "SEO Optimization"],
 	},
 	{
 		title: "Knight Ventures",
@@ -27,6 +28,7 @@ const workList = [
 			"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/kv-3",
 			"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/kv-4",
 		],
+		hats: ["Web Development", "Performance Optimization", "SEO Optimization"],
 	},
 	{
 		title: "Yeve",
@@ -44,6 +46,7 @@ const workList = [
 			"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/yeve-8",
 			"https://res.cloudinary.com/dywp91yx7/image/upload/f_auto,q_auto/v1/folio-v2/yeve-10",
 		],
+		hats: ["Web Development", "Performance Optimization", "SEO Optimization"],
 	},
 ];
 ---
@@ -80,6 +83,9 @@ const workList = [
 								<div class="bottomInfo__role">
 									<h3>ROLE</h3>
 									<div>
+										{workItem.hats.map((role) => (
+											<p>{role}</p>
+										))}
 										<p>Web Development</p>
 										<p>Performance Optimization</p>
 									</div>
