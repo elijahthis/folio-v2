@@ -63,7 +63,15 @@
 				// transformPerspective: 1000,
 			},
 			"<"
-		);
+		)
+		.to(".MidLoader *", {
+			duration: 0.005,
+			height: 0,
+			// skewX: 10,
+			ease: "my_shutter",
+			// perspective on the x axis to make it 3d
+			// transformPerspective: 1000,
+		});
 </script>
 
 <main class="MidLoader">
