@@ -94,7 +94,14 @@ const currentlyReading: { title: string; link: string } = {
 	sidebarButton.addEventListener("click", openSidebar);
 
 	// close sidebar
-	sidebarCloseSvg.addEventListener("click", hideSidebar);
+sidebarCloseSvg.addEventListener("click", hideSidebar);
+
+	const linkElements = document.querySelectorAll(
+		".Sidebar__inner > nav > ul > li > a"
+	);
+	linkElements.forEach((linkElement) => {
+		linkElement.addEventListener("click", hideSidebar);
+	});
 </script>
 
 <aside class="Sidebar">

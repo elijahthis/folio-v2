@@ -26,12 +26,10 @@
 
 	let quote = document.querySelector(".MidLoader .quote");
 	let author = document.querySelector(".MidLoader .author");
-	quote.innerHTML = `"${
-		quotes[Math.floor(Math.random() * quotes.length)].quote
-	}"`;
-	author.innerHTML = `- ${
-		quotes[Math.floor(Math.random() * quotes.length)].author
-	}`;
+
+	const randomNum = Math.floor(Math.random() * quotes.length);
+	quote.innerHTML = `"${quotes[randomNum].quote}"`;
+	author.innerHTML = `- ${quotes[randomNum].author}`;
 
 	let tl = gsap.timeline();
 	tl.fromTo(
