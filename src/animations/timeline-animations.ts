@@ -179,6 +179,12 @@ if (window.location.pathname === "/") {
 				ease: Linear.easeIn,
 			})
 			.totalProgress(0.5);
+		box
+			.querySelector(".workBoxes__box__images__inner")
+			.addEventListener("mouseover", () => workMarque.pause());
+		box
+			.querySelector(".workBoxes__box__images__inner")
+			.addEventListener("mouseleave", () => workMarque.play());
 
 		// work box animation timeline
 		const boxTl = gsap.timeline();
