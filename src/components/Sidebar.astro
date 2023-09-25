@@ -2,10 +2,11 @@
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs/index.js";
 import { TfiClose } from "react-icons/tfi/index.js";
 
-const navList = [
-	{ label: "work.", href: "#work" },
-	{ label: "my.offer.", href: "/my-offer" },
-	{ label: "contact.", href: "#contact" },
+const navList: { label: string; href: string; new: boolean }[] = [
+	{ label: "work.", href: "#work", new: false },
+	{ label: "my.offer.", href: "/my-offer", new: false },
+	{ label: "contact.", href: "#contact", new: false },
+	{ label: "blog.", href: "https://scribe.elijahthis.com/", new: true },
 ];
 
 const currentlyReading: { title: string; link: string } = {
@@ -94,7 +95,7 @@ const currentlyReading: { title: string; link: string } = {
 	sidebarButton.addEventListener("click", openSidebar);
 
 	// close sidebar
-sidebarCloseSvg.addEventListener("click", hideSidebar);
+	sidebarCloseSvg.addEventListener("click", hideSidebar);
 
 	const linkElements = document.querySelectorAll(
 		".Sidebar__inner > nav > ul > li > a"
@@ -125,7 +126,11 @@ sidebarCloseSvg.addEventListener("click", hideSidebar);
 				{
 					navList.map((navItem) => (
 						<li>
-							<a href={navItem.href} data-title={navItem.label}>
+							<a
+								href={navItem.href}
+								data-title={navItem.label}
+								target={navItem.new ? "_blank" : "_self"}
+							>
 								<div>{navItem.label}</div>
 							</a>
 						</li>
