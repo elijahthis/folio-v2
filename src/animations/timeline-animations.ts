@@ -212,7 +212,7 @@ if (window.location.pathname === "/") {
 		boxTl
 			.fromTo(
 				box,
-				{ top: "100vh" },
+				{ top: "110vh" },
 				{
 					top: 0,
 					duration: 5,
