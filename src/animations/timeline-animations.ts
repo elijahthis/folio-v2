@@ -7,6 +7,8 @@ import { introAnimation } from "./intros";
 import { CSSRulePlugin } from "gsap/all";
 
 const { innerHeight } = window;
+const isTallScreenHome = innerHeight > 485;
+const isTallScreenWork = innerHeight > 612;
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,6 +91,17 @@ if (window.location.pathname === "/") {
 	});
 
 	homeTl
+		.to(
+			".HomeIntro__bigHeader > h1, .HomeIntro__bottom",
+			isTallScreenHome
+				? {}
+				: {
+						y: -100,
+						duration: 0.75,
+						stagger: 0.25,
+				  }
+		)
+
 		.to(".HomeIntro__top__inner > div > div", {
 			xPercent: -200,
 			// stagger: 0.1,
@@ -197,12 +210,16 @@ if (window.location.pathname === "/") {
 		);
 
 		boxTl
-			.to(box, {
-				top: 0,
-				duration: 5,
-				stagger: 5,
-				ease: Power2.easeOut,
-			})
+			.fromTo(
+				box,
+				{ top: "100vh" },
+				{
+					top: 0,
+					duration: 5,
+					stagger: 5,
+					ease: Power2.easeOut,
+				}
+			)
 			.to(
 				box.querySelector(".workBoxes__box__images__inner > div"),
 				{
@@ -252,7 +269,18 @@ if (window.location.pathname === "/") {
 					ease: Power2.easeOut,
 				},
 				"<-0.1"
+			)
+			.to(
+				[
+					box.querySelector(".workBoxes__box__images"),
+					box.querySelector(".bottomInfo"),
+				],
+				isTallScreenWork ? {} : { yPercent: -100, duration: 4, stagger: 2 }
 			);
+		// .to(
+		// 	box.querySelector(".bottomInfo"),
+		// 	isTallScreenWork ? {} : { yPercent: -100 }
+		// );
 
 		workTl.add(boxTl);
 	});

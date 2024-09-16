@@ -10,8 +10,8 @@ const navList: { label: string; href: string; new: boolean }[] = [
 ];
 
 const currentlyReading: { title: string; link: string } = {
-	title: "A Storm of Swords",
-	link: "https://www.goodreads.com/book/show/62291.A_Storm_of_Swords",
+	title: "The Kite Runner",
+	link: "https://www.goodreads.com/book/show/77203.The_Kite_Runner",
 };
 ---
 
@@ -160,7 +160,7 @@ const currentlyReading: { title: string; link: string } = {
 			>
 		</div>
 		<div class="Sidebar__footer">
-			<p>Copyright © 2023 Elijah Oyerinde</p>
+			<p>Copyright © {new Date().getFullYear()} Elijah Oyerinde</p>
 		</div>
 	</div>
 </aside>
@@ -270,6 +270,11 @@ const currentlyReading: { title: string; link: string } = {
 			display: flex;
 			flex-direction: column;
 			align-items: stretch;
+			// overflow-y: auto;
+
+			& > nav {
+				margin-bottom: 1.5rem;
+			}
 		}
 		&__reading {
 			margin-top: auto;
@@ -386,6 +391,25 @@ const currentlyReading: { title: string; link: string } = {
 				svg {
 					width: 2rem;
 					height: 2rem;
+				}
+			}
+		}
+	}
+
+	@media screen and (max-height: 505px) {
+		.Sidebar {
+			padding: 100px 60px 32px;
+			&__inner {
+				& > nav {
+					& > ul {
+						display: grid;
+						grid-template-columns: repeat(2, 1fr);
+
+						li a {
+							font-size: 2.5rem;
+							line-height: 2.8rem;
+						}
+					}
 				}
 			}
 		}

@@ -13,6 +13,17 @@ const titleList = [
 ];
 ---
 
+<script>
+	const isTallScreen = window.innerHeight > 485;
+	const bigHeader = document.querySelector(".HomeIntro__bigHeader");
+	if (isTallScreen)
+		bigHeader.setAttribute(
+			"style",
+			"position: absolute; top: 50%; left: 0; transform: translateY(-50%); "
+		);
+	else bigHeader.setAttribute("style", "margin: 1.5rem 0;");
+</script>
+
 <main class="HomeIntroWrap">
 	<div class="HomeIntro">
 		<div class="HomeIntro__topWrap">
@@ -66,7 +77,7 @@ const titleList = [
 			</div>
 			<div
 				class="scrollLink"
-				onclick="window.scrollBy(0, window.innerHeight * 2);"
+				onclick="window.scrollBy({left:0, top: window.innerHeight * 2, behavior: 'smooth'});"
 			>
 				<p>scroll</p>
 				<BsFillArrowDownCircleFill />
@@ -91,13 +102,12 @@ const titleList = [
 		flex-direction: column;
 		justify-content: space-between;
 
-		height: 100vh;
+		min-height: 100vh;
 		position: relative;
 
 		&__bigHeader {
-			margin: auto 0;
+			//
 			padding: 0 $left-padding;
-			// height: 38vh;
 
 			& > :first-child {
 				color: $tertiary_col;
@@ -130,10 +140,12 @@ const titleList = [
 		}
 
 		&__topWrap {
-			position: absolute;
+			position: relative;
 			top: 0;
 			left: 0;
 			overflow: hidden;
+			z-index: 1;
+			background-color: $main_dark;
 			// border-bottom: 1px solid rgba($sec_light, 0.2);
 
 			&::after {
@@ -172,7 +184,7 @@ const titleList = [
 		}
 
 		&__bottom {
-			position: absolute;
+			// position: absolute;
 			bottom: 0;
 			left: 0;
 
