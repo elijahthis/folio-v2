@@ -180,7 +180,7 @@ if (window.location.pathname === "/") {
 	console.log("workBoxes__box", workBoxes__box);
 
 	// remember to update this array when adding new work boxes
-	const workWidths = [7268, 4840, 12124];
+	const workWidths = [7268, 4840, 11899, 12124];
 
 	workBoxes__box.forEach((box: Element, ind: number) => {
 		// work images marquee
